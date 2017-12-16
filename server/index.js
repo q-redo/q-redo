@@ -85,6 +85,16 @@ app.get('/api/questions', (req, res, next)=> {
     .catch(console.log);
 });
 
+app.get('/api/users/:id', (req, res, next)=> {
+  const dbInstance= req.app.get('db');
+  dbInstance.getUserByAuthId([req.params.id])
+    .then(user=> {
+      console.log(user);
+      res.status(200).json(user);
+    })
+    .catch(console.log);
+});
+
 app.get('/api/me', function(req, res) {
   if(!req.user){
     return res.status(404)
