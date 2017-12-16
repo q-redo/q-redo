@@ -17,9 +17,9 @@ class App extends Component {
 
   componentWillMount() {
     // axios.get('/api/questions').then(response=> console.log(response.data));
-    axios
-      .get(`/api/users/${this.state.user.id}`)
-      .then(response => console.log(response.data));
+    // axios
+    //   .get(`/api/users/${this.state.user.id}`)
+    //   .then(response => console.log(response.data));
   }
 
   handleLogin() {
@@ -29,6 +29,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {Router}
+        <hr />
         <h1>Q2</h1>
         <button onClick={() => this.handleLogin()}>TEST AUTH0</button>
       </div>
