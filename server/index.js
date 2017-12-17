@@ -87,6 +87,8 @@ app.get('/api/questions', (req, res, next) => {
     .catch(console.log);
 });
 
+app.post('/api/questions', controller.postQuestion);
+
 app.get('/api/users/:id', (req, res, next) => {
   const dbInstance = req.app.get('db');
   dbInstance
