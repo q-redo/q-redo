@@ -1,0 +1,7 @@
+.code-main-container{
+  min-height: 300px;
+  min-width: 300px;
+  background: rgb(0,43,54);
+  color: rgb(26,135,210);
+  border: red solid;
+}
