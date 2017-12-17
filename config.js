@@ -10,4 +10,4 @@ module.exports= {
     clientID: 'q0TWNRzL40vqvT8SLZCAI7LsJJT74sDh',
     clientSecret: 'aMeMnX7wqqgdFNVfS0hRUycEjqvq1CiyoX0iyOzzVoxGya6nNt2rhrF8AsBcWl59'
   }
-}
+};
