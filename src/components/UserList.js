@@ -34,7 +34,7 @@ class UserList extends Component {
         </div>
       );
     });
-    return <div className="userlist-main-container m10">{users}</div>;
+    return <div className="userlist-main-container m10 shadowed">{users}</div>;
   }
 }
 
