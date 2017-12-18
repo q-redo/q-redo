@@ -8,7 +8,9 @@ class StudentView extends Component {
   render() {
     return (
       <div id="StudentView">
+        <section style={{display: 'inline-block'}}>
         <QuestionForm/>
+        </section>
         <UserList />
       </div>
     );

@@ -12,31 +12,30 @@ class QuestionForm extends Component {
       text: '',
       code: ''
     }
-    this.handleCodeInput= this.handleCodeInput.bind(this);
-    this.codify= this.codify.bind(this);
-    this.submitQuestion= this.submitQuestion.bind(this);
+    this.handleQuestionChange= this.handleQuestionChange.bind(this);
+    this.handleCodeChange= this.handleCodeChange.bind(this);
   }
 
-  handleCodeInput(userInput){
-    this.setState({ text: userInput });
+  handleCodeChange(input){
+    this.setState({ code: input });
   }
-
-  codify(){
-    this.setState({ code: this.state.text, text: '' });
+  handleQuestionChange(input){
+    this.setState({ text: input});
   }
 
   submitQuestion(){
-    axios.post('/api/questions', { code: this.state.code }).then(response=> console.log(response.data));
+    axios.post('/api/questions', { text: this.state.text, code: this.state.code }).then(response=> console.log(response.data));
   }
+
   render() {
     return (
       <div className="questionForm-main-container m10 curved">
           <div className="firstQBox">
-              <input className="questionInput"/>           
-              <input className="code"/>       
+              <input onChange={ (e)=> this.handleQuestionChange(e.target.value) } className="questionInput"/>           
+              <input onChange={ (e)=> this.handleCodeChange(e.target.value) } className="code"/>       
         </div>
         <div className="secondBox">
-        <div className="bigCircle flexed">
+        <div onClick={ ()=> this.submitQuestion() }className="bigCircle flexed">
         ? =>
         </div>
         </div>
