@@ -36,13 +36,8 @@ class QuestionForm extends Component {
             </div>
           </div>
         </div>
-        <div>
-          <div>
-            <div>
-              <CodeSnipper />
-            </div>
-          </div>
-        </div>
+
+        <CodeSnipper />
       </div>
     );
   }
