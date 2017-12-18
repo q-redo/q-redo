@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import CodeSnipper from '../CodeSnipper/CodeSnipper';
 import './QuestionForm.css';
 import axios from 'axios';
 
@@ -31,8 +30,8 @@ class QuestionForm extends Component {
     return (
       <div className="questionForm-main-container m10 curved">
           <div className="firstQBox">
-              <input onChange={ (e)=> this.handleQuestionChange(e.target.value) } className="questionInput"/>           
-              <input onChange={ (e)=> this.handleCodeChange(e.target.value) } className="code"/>       
+              <input onChange={ (e)=> this.handleQuestionChange(e.target.value) } className="questionInput"/>
+              <input onChange={ (e)=> this.handleCodeChange(e.target.value) } className="code"/>
         </div>
         <div className="secondBox">
         <div onClick={ ()=> this.submitQuestion() }className="bigCircle flexed">

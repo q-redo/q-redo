@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import UserList from './UserList';
-import CodeSnipper from './CodeSnipper/CodeSnipper.js';
 import './StudentView.css';
 import QuestionForm from './QuestionForm/QuestionForm';
 
