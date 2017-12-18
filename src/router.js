@@ -9,7 +9,6 @@ export default (
   <BrowserRouter>
     <div>
       <Route component={StudentView} exact path="/student" />
-      <Route component={QuestionForm} exact path="/question" />
     </div>
   </BrowserRouter>
 );
