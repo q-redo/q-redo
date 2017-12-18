@@ -6,8 +6,8 @@ module.exports= {
     secret: 'hunter2'
   },
   auth0: {
-    domain: 'h2go.auth0.com',
-    clientID: 'q0TWNRzL40vqvT8SLZCAI7LsJJT74sDh',
-    clientSecret: 'aMeMnX7wqqgdFNVfS0hRUycEjqvq1CiyoX0iyOzzVoxGya6nNt2rhrF8AsBcWl59'
+    domain: 'qtwo.auth0.com',
+    clientID: 'tUvMPh7qif5oH0MueYvDv819KSQOvzMU',
+    clientSecret: '-2ZuH2oCDPKYfgAGaVb6lJG6KXBI_ptbcN0Jbjqz5OcLNHPSalU9Enz7VYkFSuzj'
   }
 };
