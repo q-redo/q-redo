@@ -23,11 +23,11 @@ class UserList extends Component {
       return (
         <div className="user-card" key={index}>
           <div className="user-card-left">
-            <div className="user-avatar" />
+            <div className="user-avatar" style={{backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage:`url('${user.image_url}')`}}/>
           </div>
 
           <div className="user-card-right">
-            <p>{user.name}</p>
+            <small>{user.name.split(' ')[0]}</small>
           </div>
         </div>
       );

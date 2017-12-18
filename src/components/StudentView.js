@@ -9,7 +9,6 @@ class StudentView extends Component {
       <div>
         <h1>Student View</h1>
         <UserList />
-        <CodeSnipper />
       </div>
     );
   }
