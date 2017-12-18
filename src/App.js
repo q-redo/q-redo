@@ -30,9 +30,6 @@ class App extends Component {
     return (
       <div className="App">
         {Router}
-        <hr />
-        <h1>Q2</h1>
-        
         <button onClick={() => this.handleLogin()}>TEST AUTH0</button>
       </div>
     );

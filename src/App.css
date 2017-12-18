@@ -1,3 +1,11 @@
 body {
-  background: #191919;
+  background: #333333;
+}
+
+.m10{
+  margin: 10px;
+}
+
+.curved {
+ border-radius: 6px;
 }

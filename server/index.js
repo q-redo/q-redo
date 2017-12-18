@@ -30,44 +30,45 @@ app.use(
 );
 
 //Auth0
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
-// passport.use(
-//   new Auth0Strategy(
-//     {
-//       domain,
-//       clientID,
-//       clientSecret,
-//       callbackURL: '/login'
-//     },
-//     function(accessToken, refreshToken, extraParams, profile, done) {
-//       app
-//         .get('db')
-//         .getUserByAuthId([profile._json.user_id])
-//         .then(response => {
-//           if (!response[0]) {
-//             const db = app.get('db');
-//             db
-//               .createUserByAuth([profile._json.user_id, profile._json.name])
-//               .then(created => {
-//                 return done(null, created[0]);
-//               });
-//           } else {
-//             return done(null, response[0]);
-//           }
-//         });
-//     }
-//   )
-// );
+passport.use(
+  new Auth0Strategy(
+    {
+      domain,
+      clientID,
+      clientSecret,
+      callbackURL: '/login'
+    },
+    function(accessToken, refreshToken, extraParams, profile, done) {
+      console.log('LINKEDIN', profile.displayName, profile.id);
+      app
+        .get('db')
+        .getUserByAuthId([profile.id])
+        .then(response => {
+          if (!response[0]) {
+            const db = app.get('db');
+            db
+              .createUserByAuth([profile.id, profile.displayName, profile.picture])
+              .then(created => {
+                return done(null, created[0]);
+              });
+          } else {
+            return done(null, response[0]);
+          }
+        });
+    }
+  )
+);
 
-// passport.serializeUser(function(user, done) {
-//   done(null, user);
-// });
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
 
-// passport.deserializeUser(function(obj, done) {
-//   done(null, obj);
-// });
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
 
 app.get(
   '/login',

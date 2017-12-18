@@ -5,16 +5,16 @@ import MentorCard from './MentorCard/MentorCard';
 import RecentQuestions from './RecentQuestions/RecentQuestions';
 
 import './StudentView.css';
+import QuestionForm from './QuestionForm/QuestionForm';
 
 class StudentView extends Component {
   render() {
     return (
-      <div>
-        <h1 className="navHere">Student View Navbar</h1>
-        <MentorCard />
+      <div id="StudentView">
+        <section style={{ display: 'inline-block' }}>
+          <QuestionForm />
+        </section>
         <UserList />
-        <RecentQuestions />
-        <div>name </div>
       </div>
     );
   }
