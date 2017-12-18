@@ -2,46 +2,43 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import CodeSnipper from '../CodeSnipper/CodeSnipper';
 import './QuestionForm.css';
+import axios from 'axios';
 
 class QuestionForm extends Component {
+  constructor(){
+    super();
+
+    this.state= {
+      text: '',
+      code: ''
+    }
+    this.handleCodeInput= this.handleCodeInput.bind(this);
+    this.codify= this.codify.bind(this);
+    this.submitQuestion= this.submitQuestion.bind(this);
+  }
+
+  handleCodeInput(userInput){
+    this.setState({ text: userInput });
+  }
+
+  codify(){
+    this.setState({ code: this.state.text, text: '' });
+  }
+
+  submitQuestion(){
+    axios.post('/api/questions', { code: this.state.code }).then(response=> console.log(response.data));
+  }
   render() {
     return (
-      <div>
-        <div className="questionHere">
+      <div className="questionForm-main-container m10 curved">
           <div className="firstQBox">
-            <div>
-              <div>
-                <h1>Question Form View</h1>
-              </div>
-              <div className="inputField">
-                <p>Insert Questions into Me</p>
-                <input />
-              </div>
-              <div className="roundDivs">
-                <div className="inRoundDivs">
-                  <p>Snippits</p>
-                </div>
-                <div className="inRoundDivs">
-                  <p>Dropdown</p>
-                </div>
-              </div>
-            </div>
-            <div className="secondBox">
-              <div classname="submitBox">
-                <button className="submitQuestion">Ask My ?</button>
-              </div>
-              <div>
-                <h3 className="submitQuestion">Submit</h3>
-              </div>
-            </div>
-          </div>
+              <input className="questionInput"/>           
+              <input className="code"/>       
         </div>
-        <div>
-          <div>
-            <div>
-              <CodeSnipper />
-            </div>
-          </div>
+        <div className="secondBox">
+        <div className="bigCircle flexed">
+        ? =>
+        </div>
         </div>
       </div>
     );

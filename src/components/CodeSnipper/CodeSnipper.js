@@ -29,10 +29,10 @@ class CodeSnipper extends Component{
 
   render(){
     return(
-      <div className='code-main-container'>
+      <div className='code-main-container curved'>
         <textarea value={this.state.text} onChange={ (e)=> this.handleCodeInput(e.target.value) }></textarea>
         <button onClick={ ()=> this.codify() }>CODIFY</button>
-        <button onClick={ ()=> this.submitQuestion() }>SUBMIT QUESTION BITCH</button>
+        <button onClick={ ()=> this.submitQuestion() }>SUBMIT</button>
         <div className='result-box'>
           <pre>
             <code>

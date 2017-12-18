@@ -20,8 +20,10 @@ class UserList extends Component {
 
   render() {
     const users = this.state.userList.map((user, index) => {
+      console.log(user)
       return (
         <div className="user-card" key={index}>
+        
           <div className="user-card-left">
             <div className="user-avatar" style={{backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage:`url('${user.image_url}')`}}/>
           </div>
@@ -32,7 +34,7 @@ class UserList extends Component {
         </div>
       );
     });
-    return <div className="userlist-main-container">{users}</div>;
+    return <div className="userlist-main-container m10">{users}</div>;
   }
 }
 
