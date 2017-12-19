@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import CodeSnipper from '../CodeSnipper/CodeSnipper';
-import './QuestionForm.css';
-import axios from 'axios';
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import "./QuestionForm.css";
+import axios from "axios";
 
 class QuestionForm extends Component {
   constructor() {
     super();
 
     this.state = {
-      text: '',
-      code: '',
-      category: '',
+      text: "",
+      code: "",
+      topic: "",
       showCode: false,
-      showCategory: 'none'
+      showCategory: "none"
     };
     this.handleQuestionChange = this.handleQuestionChange.bind(this);
     this.handleCodeChange = this.handleCodeChange.bind(this);
@@ -32,30 +31,30 @@ class QuestionForm extends Component {
     this.setState({ showCode: !this.state.showCode });
   }
   handleChooseCategory(select) {
-    this.setState({ category: select, showCategory: 'none' });
+    this.setState({ topic: select, showCategory: "none" });
   }
   handleCategoryClick() {
-    if (this.state.showCategory === 'none') {
-      this.setState({ showCategory: 'inline-block' });
+    if (this.state.showCategory === "none") {
+      this.setState({ showCategory: "inline-block" });
     } else {
-      this.setState({ showCategory: 'none' });
+      this.setState({ showCategory: "none" });
     }
   }
   submitQuestion() {
     let { text, code, topic } = this.state;
     axios
-      .post('/api/questions', { text, code, topic })
+      .post("/api/questions", { text, code, topic })
       .then(response => console.log(response.data));
   }
 
   render() {
     return (
-      <div className="questionForm-main-container m10 curved">
+      <div className="questionForm-main-container m10 curved shadowed">
         <div className="firstQBox">
           <input
             placeholder="What's your question?"
             onChange={e => this.handleQuestionChange(e.target.value)}
-            className="questionInput"
+            className="questionInput inner-shadow"
           />
           <button
             onClick={this.handleCodeClick}
@@ -67,20 +66,20 @@ class QuestionForm extends Component {
             className="circle m10"
             children="#"
           />
-          {this.state.category}
+          {this.state.topic}
           <div
             id="myDropdown"
-            class="dropdown-content curved"
+            className="dropdown-content curved"
             style={{ display: `${this.state.showCategory}` }}
           >
             {/* THIS NEEDS TO CHANGE TO BEING A MAP OVER A TOPICS TABLE */}
-            <a onClick={() => this.handleChooseCategory('CSS')} href="#">
+            <a onClick={() => this.handleChooseCategory("CSS")} href="#">
               CSS
             </a>
-            <a onClick={() => this.handleChooseCategory('JavaScript')} href="#">
+            <a onClick={() => this.handleChooseCategory("JavaScript")} href="#">
               JavaScript
             </a>
-            <a onClick={() => this.handleChooseCategory('React')} href="#">
+            <a onClick={() => this.handleChooseCategory("React")} href="#">
               React
             </a>
           </div>
@@ -88,10 +87,10 @@ class QuestionForm extends Component {
             <input
               placeholder="< code_here />"
               onChange={e => this.handleCodeChange(e.target.value)}
-              className="code"
+              className="code inner-shadow"
             />
           ) : (
-            ''
+            ""
           )}
         </div>
         <div className="secondBox">

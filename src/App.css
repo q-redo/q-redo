@@ -9,3 +9,18 @@ body {
 .curved {
  border-radius: 6px;
 }
+
+.shadowed{
+  -webkit-box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.75);
+box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.75);
+}
+
+.inner-shadow{
+  -moz-box-shadow: rgba(0, 0, 0, 0.8) 3px 3px 10px inset;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.8) 3px 3px 10px inset;
+  box-shadow: rgba(0, 0, 0, 0.8) 3px 3px 10px inset;
+  -webkit-transition: box-shadow 0.2s ease-in;
+  -moz-transition: box-shadow 0.2s ease-in;
+  transition: box-shadow 0.2s ease-in;
+}
