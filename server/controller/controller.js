@@ -34,5 +34,12 @@ module.exports = {
       .get_active_questions()
       .then(questions => res.status(200).json(questions))
       .catch(console.log);
+  },
+  getTopics: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .get_all_topics()
+      .then(questions => res.status(200).json(questions))
+      .catch(console.log);
   }
 };

@@ -30,7 +30,7 @@
 
 .bigCircle{
   border-radius: 50px;
-  border-width: 2px;
+  border-width: 5px;
   height: 100px;
   width: 100px;
   /* background: rgb(115, 159, 189); */
@@ -41,7 +41,7 @@
 }
 
 .bigCircle:hover{
-  transition: all ease 0.5s;
+  transition: all ease 0.3s;
   background: #333;
   color: #2AABE2;
 }

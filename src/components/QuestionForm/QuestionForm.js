@@ -11,6 +11,7 @@ class QuestionForm extends Component {
       text: "",
       code: "",
       topic: "",
+      topicList: [],
       showCode: false,
       showCategory: "none"
     };
@@ -18,6 +19,11 @@ class QuestionForm extends Component {
     this.handleCodeChange = this.handleCodeChange.bind(this);
     this.handleCodeClick = this.handleCodeClick.bind(this);
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
+    this.handleChooseCategory = this.handleChooseCategory.bind(this);
+  }
+
+  componentDidMount(){
+    axios.get('/api/topics').then(response =>this.setState({topicList: response.data})) 
   }
 
   handleCodeChange(input) {
@@ -48,6 +54,13 @@ class QuestionForm extends Component {
   }
 
   render() {
+    const method = this.handleChooseCategory;
+    const topics = this.state.topicList.map(function(thing){
+      return (<a onClick={() => method(`${thing.name}`)} href="#">
+      {thing.name}
+    </a>)
+    })
+  
     return (
       <div className="questionForm-main-container m10 curved shadowed">
         <div className="firstQBox">
@@ -59,29 +72,20 @@ class QuestionForm extends Component {
           <button
             onClick={this.handleCodeClick}
             className="circle m10"
-            children="C"
-          />
+              
+          ><i className="fa fa-code"></i></button>
           <button
             onClick={this.handleCategoryClick}
             className="circle m10"
-            children="#"
-          />
+            
+          ><i className="fa fa-hashtag"></i></button>
           {this.state.topic}
           <div
             id="myDropdown"
             className="dropdown-content curved"
             style={{ display: `${this.state.showCategory}` }}
           >
-            {/* THIS NEEDS TO CHANGE TO BEING A MAP OVER A TOPICS TABLE */}
-            <a onClick={() => this.handleChooseCategory("CSS")} href="#">
-              CSS
-            </a>
-            <a onClick={() => this.handleChooseCategory("JavaScript")} href="#">
-              JavaScript
-            </a>
-            <a onClick={() => this.handleChooseCategory("React")} href="#">
-              React
-            </a>
+            {topics}
           </div>
           {this.state.showCode ? (
             <input
@@ -98,7 +102,7 @@ class QuestionForm extends Component {
             onClick={() => this.submitQuestion()}
             className="bigCircle flexed"
           >
-            ? =>
+            <i className="fa fa-3x fa-caret-right" aria-hidden="true"></i>
           </button>
         </div>
       </div>
