@@ -69,7 +69,7 @@ class QuestionForm extends Component {
           {this.state.topic}
           <div
             id="myDropdown"
-            class="dropdown-content curved"
+            className="dropdown-content curved"
             style={{ display: `${this.state.showCategory}` }}
           >
             {/* THIS NEEDS TO CHANGE TO BEING A MAP OVER A TOPICS TABLE */}

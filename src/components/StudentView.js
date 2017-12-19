@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import UserList from './UserList';
+import MentorCard from './MentorCard/MentorCard';
+import RecentQuestions from './RecentQuestions/RecentQuestions';
+
 import './StudentView.css';
 import {connect} from 'react-redux';
 import QuestionForm from './QuestionForm/QuestionForm';
@@ -12,7 +15,6 @@ class StudentView extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div id="StudentView">
         <section style={{display: 'inline-block'}}>
@@ -21,6 +23,8 @@ class StudentView extends Component {
         this.props.actionAskOrGetHelp === "question"?
         <QuestionForm/>:''
         }
+        <RecentQuestions />
+        <MentorCard />
         </section>
         <UserList />
       </div>
