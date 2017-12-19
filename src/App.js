@@ -16,10 +16,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    // axios.get('/api/questions').then(response=> console.log(response.data));
-    // axios
-    //   .get(`/api/users/${this.state.user.id}`)
-    //   .then(response => console.log(response.data));
+    
   }
 
   handleLogin() {
@@ -28,7 +25,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App flexed">
+      <div  className="App flexed">
         <TopBar/>
         <section style={{maxWidth: '670px'}}>
         {Router}

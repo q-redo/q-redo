@@ -1,11 +1,4 @@
-.mentorCard {
-  min-height: 33vh;
-  min-width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-}
+
 
 .user-question-card{
     border: solid 1px #EEE;
@@ -19,10 +12,6 @@
     padding: 10px;
 }
 
-.user-avatar {
-  background-size: cover;
-  background-repeat: no-repeat;
-}
 
 .question-card-col{
   min-height: 100px;
