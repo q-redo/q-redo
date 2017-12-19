@@ -34,5 +34,10 @@ module.exports = {
       .get_active_questions()
       .then(questions => res.status(200).json(questions));
     // .catch(console.log);
+  },
+  answeredQuestion: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance.update_answered([req.params.q_id]).then();
   }
 };
+//    dbInstance.remove_from_cart([req.params.id]);

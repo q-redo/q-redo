@@ -50,7 +50,11 @@ passport.use(
           if (!response[0]) {
             const db = app.get('db');
             db
-              .createUserByAuth([profile.id, profile.displayName, profile.picture])
+              .createUserByAuth([
+                profile.id,
+                profile.displayName,
+                profile.picture
+              ])
               .then(created => {
                 return done(null, created[0]);
               });
@@ -99,7 +103,9 @@ app.get('/api/users/:id', (req, res, next) => {
     })
     .catch(console.log);
 });
-
+// change answer to true //
+/////////app.post('/answered', controller.answeredQuestion); //////////////////////////////////
+//
 app.get('/api/users', controller.getActiveUsers);
 app.get('/api/mentors', controller.getActiveMentors);
 app.get('/api/recentQuestions', controller.getRecentQuestions);

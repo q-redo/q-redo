@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
 import axios from 'axios';
 import './MentorQuestionCard.css';
 
@@ -7,7 +8,8 @@ class MentorQuestionCard extends Component {
     super();
 
     this.state = {
-      activeQuestionsList: []
+      activeQuestionsList: [],
+      answered: false
     };
   }
 
@@ -18,7 +20,9 @@ class MentorQuestionCard extends Component {
       this.setState({ activeQuestionsList: response.data });
     });
   }
-
+  // answeredQuestion() { ////////////////////////////////////////////////
+  //   axios.post;
+  // }
   render() {
     const activeQuestions = this.state.activeQuestionsList.map(
       (question, index) => {
@@ -26,6 +30,9 @@ class MentorQuestionCard extends Component {
           <div className="user-card" key={index}>
             <p>{question.question}</p>
             <p>NAME: {question.name}</p>
+            <p>
+              <Moment fromNow>{question.time}</Moment>
+            </p>
             <div
               className="user-avatar"
               style={{ backgroundImage: `url(${question.image_url})` }}

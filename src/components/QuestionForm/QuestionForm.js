@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import CodeSnipper from '../CodeSnipper/CodeSnipper';
 import './QuestionForm.css';
 import axios from 'axios';
 
