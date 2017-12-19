@@ -23,15 +23,38 @@ class MentorQuestionCard extends Component {
     const activeQuestions = this.state.activeQuestionsList.map(
       (question, index) => {
         return (
-          <div className="user-card" key={index}>
-            <p>{question.question}</p>
-            <p>NAME: {question.name}</p>
-            <div
-              className="user-avatar"
-              style={{ backgroundImage: `url(${question.image_url})` }}
-            />
-            <hr />
-            <p>{question.code_block}</p>
+          <div className="user-question-card" key={index}>
+            <div className='question-card-col'>
+              <h3>{question.name}</h3>
+              <div
+                className="user-avatar"
+                style={{ backgroundImage: `url(${question.image_url})` }}
+              />
+            </div>
+
+            <div className='question-card-col'>
+              <h3>TOPIC</h3>
+              <p>{question.topic}</p>
+            </div>
+
+            <div className='question-card-col'>
+              <h3>QUESTION</h3>
+              <p>{question.question}</p>
+            </div>
+
+            <div className='question-card-col'>
+              <h3>CODE</h3>
+              <div>
+                  <code>
+                    <pre>
+                      <textarea id='code-col'>
+                        {question.code_block}
+                      </textarea>
+                    </pre>
+                  </code>
+
+              </div>
+            </div>
           </div>
         );
       }

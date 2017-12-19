@@ -29,17 +29,25 @@
 }
 
 .bigCircle{
-  border-radius: 50px; 
-  border-width: 3px;
+  border-radius: 50px;
+  border-width: 2px;
   height: 100px;
   width: 100px;
-  background: rgb(115, 159, 189);
+  /* background: rgb(115, 159, 189); */
+  outline: none;
+  background: #2AABE2;
   font-size: 2em;
   color: white;
 }
 
+.bigCircle:hover{
+  transition: all ease 0.5s;
+  background: #333;
+  color: #2AABE2;
+}
+
 .circle{
-  border-radius: 50px; 
+  border-radius: 50px;
   border-width: 3px;
   height: 36px;
   width: 36px;

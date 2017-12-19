@@ -17,19 +17,19 @@ class ActionCard extends Component {
       <div className="actionForm-main-container m10 curved shadowed flexed">
       <div className="big-circle-card">
         <button onClick={()=>this.props.toggleAction('question')} className="bigCircle flexed">
-        ?
+          <i className="fa fa-2x fa-question"></i>
         </button>
         ASK QUESTION
         </div>
         <div className="big-circle-card">
         <button className="bigCircle flexed">
-        H
+          <i className="fa fa-2x fa-handshake-o"></i>
         </button>
         OFFER HELP
         </div>
         <div className="big-circle-card">
         <button className="bigCircle flexed">
-        !
+          <i className="fa fa-2x fa-exclamation"></i>
         </button>
         GET HELP
         </div>
