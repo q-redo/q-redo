@@ -111,6 +111,7 @@ app.get('/api/me', function(req, res) {
   res.status(200).json(req.user);
 });
 
+
 app.listen(port, () => {
   console.log(`Server is listening on port: ${port}`);
 });
