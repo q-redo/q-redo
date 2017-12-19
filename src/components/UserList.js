@@ -14,6 +14,7 @@ class UserList extends Component {
   //CWM get ALL active users
   componentWillMount() {
     axios.get('/api/users').then(response => {
+      console.log(response.data);
       this.setState({ userList: response.data });
     });
   }
@@ -23,7 +24,7 @@ class UserList extends Component {
       console.log(user)
       return (
         <div className="user-card" key={index}>
-        
+
           <div className="user-card-left">
             <div className="user-avatar" style={{backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage:`url('${user.image_url}')`}}/>
           </div>
