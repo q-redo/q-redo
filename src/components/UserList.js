@@ -14,6 +14,7 @@ class UserList extends Component {
   //CWM get ALL active users
   componentWillMount() {
     axios.get('/api/users').then(response => {
+      console.log(response.data);
       this.setState({ userList: response.data });
     });
   }
@@ -23,9 +24,9 @@ class UserList extends Component {
       console.log(user)
       return (
         <div className="user-card" key={index}>
-        
+
           <div className="user-card-left">
-            <div className="user-avatar" style={{backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage:`url('${user.image_url}')`}}/>
+            <div className="user-avatar" style={{backgroundImage:`url('${user.image_url}')`}}/>
           </div>
 
           <div className="user-card-right">
@@ -34,7 +35,10 @@ class UserList extends Component {
         </div>
       );
     });
-    return <div className="userlist-main-container m10">{users}</div>;
+    return <div className="userlist-main-container m10 shadowed">
+    <h4 style={{margin: '5px 0 0 0', color: 'white'}}>STUDENTS</h4>
+    {users}
+    </div>;
   }
 }
 

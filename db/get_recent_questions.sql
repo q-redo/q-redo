@@ -1,2 +1,0 @@
-SELECT * FROM questions ORDER BY q_id DESC LIMIT 3;
-

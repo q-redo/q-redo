@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Router from './router';
-
+import TopBar from './components/TopBar/TopBar';
 import axios from 'axios';
 import './App.css';
 
@@ -16,10 +16,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    // axios.get('/api/questions').then(response=> console.log(response.data));
-    // axios
-    //   .get(`/api/users/${this.state.user.id}`)
-    //   .then(response => console.log(response.data));
+    
   }
 
   handleLogin() {
@@ -28,9 +25,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div  className="App flexed">
+        <TopBar/>
+        <section style={{maxWidth: '670px'}}>
         {Router}
         <button onClick={() => this.handleLogin()}>TEST AUTH0</button>
+        </section>
       </div>
     );
   }

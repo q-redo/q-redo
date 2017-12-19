@@ -1,6 +1,10 @@
 .mentorCard {
-  width: 25vw;
-  background-color: #d4d4d4;
+    width: 250px  !important;
+    background-color: #222222;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    align-content: center !important;
 }
 .activeMentorsTitle {
   color: #d4d4d4;

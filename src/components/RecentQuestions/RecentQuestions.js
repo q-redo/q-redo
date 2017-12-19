@@ -22,17 +22,19 @@ class RecentQuestions extends Component {
     const recentQuestions = this.state.recentQuestionsList.map(
       (question, index) => {
         return (
-          <div className="user-card" key={index}>
-            <p>{question.question}</p>
-          </div>
+          <button className="topicPill m10 shadowed" style={{borderColor:`${question.color}`, background: `radial-gradient(at top left, ${question.color},${question.color}, black)`}} key={index}>
+            {question.name}
+          </button>
         );
       }
     );
     return (
-      <div>
-        <h1 className="activeMentorsTitle"> 3 Most Recent Questions </h1>
-        <div className="mentorCard">{recentQuestions}</div>
-      </div>
+        <div style={{display: 'inline-block'}}>
+        <div className="recentQuestions curved shadowed m10">
+        <h4 style={{margin: '5px 0 0 0', color: 'white'}}>RECENT QQs</h4>
+        {recentQuestions}
+        </div>
+        </div>
     );
   }
 }

@@ -10,7 +10,8 @@ class QuestionForm extends Component {
     this.state = {
       text: '',
       code: '',
-      category: '',
+      topic: '',
+      topicList: [],
       showCode: false,
       showCategory: 'none'
     };
@@ -18,6 +19,13 @@ class QuestionForm extends Component {
     this.handleCodeChange = this.handleCodeChange.bind(this);
     this.handleCodeClick = this.handleCodeClick.bind(this);
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
+    this.handleChooseCategory = this.handleChooseCategory.bind(this);
+  }
+
+  componentDidMount() {
+    axios
+      .get('/api/topics')
+      .then(response => this.setState({ topicList: response.data }));
   }
 
   handleCodeChange(input) {
@@ -31,7 +39,7 @@ class QuestionForm extends Component {
     this.setState({ showCode: !this.state.showCode });
   }
   handleChooseCategory(select) {
-    this.setState({ category: select, showCategory: 'none' });
+    this.setState({ topic: select, showCategory: 'none' });
   }
   handleCategoryClick() {
     if (this.state.showCategory === 'none') {
@@ -48,46 +56,42 @@ class QuestionForm extends Component {
   }
 
   render() {
+    const method = this.handleChooseCategory;
+    const topics = this.state.topicList.map(function(thing) {
+      return (
+        <a onClick={() => method(`${thing.name}`)} href="#">
+          {thing.name}
+        </a>
+      );
+    });
+
     return (
-      <div className="questionForm-main-container m10 curved">
+      <div className="questionForm-main-container m10 curved shadowed">
         <div className="firstQBox">
           <input
             placeholder="What's your question?"
             onChange={e => this.handleQuestionChange(e.target.value)}
-            className="questionInput"
+            className="questionInput inner-shadow"
           />
-          <button
-            onClick={this.handleCodeClick}
-            className="circle m10"
-            children="C"
-          />
-          <button
-            onClick={this.handleCategoryClick}
-            className="circle m10"
-            children="#"
-          />
-          {this.state.category}
+          <button onClick={this.handleCodeClick} className="circle m10">
+            <i className="fa fa-code" />
+          </button>
+          <button onClick={this.handleCategoryClick} className="circle m10">
+            <i className="fa fa-hashtag" />
+          </button>
+          {this.state.topic}
           <div
             id="myDropdown"
-            class="dropdown-content curved"
+            className="dropdown-content curved"
             style={{ display: `${this.state.showCategory}` }}
           >
-            {/* THIS NEEDS TO CHANGE TO BEING A MAP OVER A TOPICS TABLE */}
-            <a onClick={() => this.handleChooseCategory('CSS')} href="#">
-              CSS
-            </a>
-            <a onClick={() => this.handleChooseCategory('JavaScript')} href="#">
-              JavaScript
-            </a>
-            <a onClick={() => this.handleChooseCategory('React')} href="#">
-              React
-            </a>
+            {topics}
           </div>
           {this.state.showCode ? (
             <input
               placeholder="< code_here />"
               onChange={e => this.handleCodeChange(e.target.value)}
-              className="code"
+              className="code inner-shadow"
             />
           ) : (
             ''
@@ -98,7 +102,7 @@ class QuestionForm extends Component {
             onClick={() => this.submitQuestion()}
             className="bigCircle flexed"
           >
-            ? =>
+            <i className="fa fa-3x fa-caret-right" aria-hidden="true" />
           </button>
         </div>
       </div>

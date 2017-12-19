@@ -19,25 +19,31 @@ module.exports = {
     dbInstance
       .get_active_mentors()
       .then(mentors => res.status(200).json(mentors))
-      .catch(console.log('issue with getActiveMentors'));
+      .catch(console.log);
   },
   getRecentQuestions: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance
       .get_recent_questions()
-      .then(mentors => res.status(200).json(mentors))
-      .catch(console.log('issue with getRecentQuestions'));
+      .then(mentors => {
+        console.log(mentors);
+        res.status(200).json(mentors);
+      })
+      .catch(console.log);
   },
   getActiveQuestions: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance
       .get_active_questions()
-      .then(questions => res.status(200).json(questions));
-    // .catch(console.log);
+      .then(questions => res.status(200).json(questions))
+      .catch(console.log);
   },
-  answeredQuestion: (req, res, next) => {
+  getTopics: (req, res, next) => {
     const dbInstance = req.app.get('db');
-    dbInstance.update_answered([req.params.q_id]).then();
+    dbInstance
+      .get_all_topics()
+      .then(questions => res.status(200).json(questions))
+      .catch(console.log);
   }
 };
 //    dbInstance.remove_from_cart([req.params.id]);
