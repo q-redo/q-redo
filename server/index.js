@@ -42,7 +42,6 @@ passport.use(
       callbackURL: '/login'
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
-      console.log('LINKEDIN', profile.displayName, profile.id);
       app
         .get('db')
         .getUserByAuthId([profile.id])

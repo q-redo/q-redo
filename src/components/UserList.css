@@ -42,6 +42,6 @@
   border-radius: 50%;
   opacity: 0.9;
   background-position: center;
-  background-size: 110%;
-  background-repeat: no-repeat; 
+  background-size: cover;
+  background-repeat: no-repeat;
 }

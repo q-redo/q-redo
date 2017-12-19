@@ -23,7 +23,6 @@ module.exports = {
   },
   getRecentQuestions: (req, res, next) => {
     const dbInstance = req.app.get('db');
-
     dbInstance
     .get_recent_questions()
       .then(mentors => {console.log(mentors); res.status(200).json(mentors)})
@@ -33,7 +32,7 @@ module.exports = {
     const dbInstance = req.app.get('db');
     dbInstance
       .get_active_questions()
-      .then(questions => res.status(200).json(questions));
-    // .catch(console.log);
+      .then(questions => res.status(200).json(questions))
+      .catch(console.log);
   }
 };
