@@ -1,2 +1,2 @@
-SELECT * FROM questions ORDER BY q_id DESC LIMIT 3;
+SELECT * FROM questions WHERE topic IS NOT NULL ORDER BY q_id DESC LIMIT 3;
 

@@ -19,20 +19,20 @@ module.exports = {
     dbInstance
       .get_active_mentors()
       .then(mentors => res.status(200).json(mentors))
-      .catch(console.log('issue with getActiveMentors'));
+      .catch(console.log);
   },
   getRecentQuestions: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance
-      .get_recent_questions()
-      .then(mentors => res.status(200).json(mentors))
-      .catch(console.log('issue with getRecentQuestions'));
+    .get_recent_questions()
+      .then(mentors => {console.log(mentors); res.status(200).json(mentors)})
+      .catch(console.log);
   },
   getActiveQuestions: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance
       .get_active_questions()
-      .then(questions => res.status(200).json(questions));
-    // .catch(console.log);
+      .then(questions => res.status(200).json(questions))
+      .catch(console.log);
   }
 };
