@@ -26,15 +26,11 @@ class MentorQuestionCard extends Component {
           <div className="user-question-card" key={index}>
             <div className='question-card-col'>
               <h3>{question.name}</h3>
-              <div
-                className="user-avatar"
-                style={{ backgroundImage: `url(${question.image_url})` }}
-              />
             </div>
 
             <div className='question-card-col'>
               <h3>TOPIC</h3>
-              <p>{question.topic}</p>
+              <p>{question.name}</p>
             </div>
 
             <div className='question-card-col'>

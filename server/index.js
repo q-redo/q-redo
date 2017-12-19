@@ -103,6 +103,7 @@ app.get('/api/users', controller.getActiveUsers);
 app.get('/api/mentors', controller.getActiveMentors);
 app.get('/api/recentQuestions', controller.getRecentQuestions);
 app.get('/api/activeQuestions', controller.getActiveQuestions);
+app.get('/api/topics', controller.getTopics);
 
 app.get('/api/me', function(req, res) {
   if (!req.user) {

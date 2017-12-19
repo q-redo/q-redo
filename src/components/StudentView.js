@@ -25,6 +25,7 @@ class StudentView extends Component {
         }
         <RecentQuestions />
         <MentorCard />
+
         </section>
         <UserList />
       </div>
