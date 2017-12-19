@@ -28,3 +28,19 @@
   color: rgb(42,161,152);
   border: none;
 }
+
+.question-card-col{
+  min-height: 100px;
+  width: 25%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#code-col{
+  background: rgb(0,43,54);
+  color: rgb(42,161,152);
+  border: none;
+}
