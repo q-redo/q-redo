@@ -1,3 +1,8 @@
+.App{
+  flex-direction: column;
+  
+}
+
 body {
   background: #333333;
 }

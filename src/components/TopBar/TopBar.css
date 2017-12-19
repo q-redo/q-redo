@@ -1,0 +1,8 @@
+.topBar-main-container{
+    margin-bottom: 10px;
+    background-color: #222222;
+    color: white;
+    height: 80px;
+    width: 100vw;
+    justify-content: space-around;
+}
