@@ -25,7 +25,7 @@ class MentorCard extends Component {
         <div className="user-card" style={{width: '45%'}} key={index}>
         
           <div className="user-card-left">
-            <div className="user-avatar" style={{backgroundImage:`url('${mentor.image_url}')`}}/>
+            <div className="user-avatar shadowed" style={{backgroundImage:`url('${mentor.image_url}')`}}/>
           </div>
 
           <div className="user-card-right">

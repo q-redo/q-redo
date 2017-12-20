@@ -2,7 +2,7 @@
     position: absolute;
     top:0;
     margin-bottom: 10px;
-    background-color: #222222;
+    background-color: var(--main-box-color);
     color: white;
     height: 80px;
     width: 100vw;
