@@ -10,7 +10,8 @@ class QuestionForm extends Component {
     this.state = {
       text: "",
       code: "",
-      topic: "",
+      topic_id: 1,
+      topic_name: "",
       topicList: [],
       showCode: false,
       showCategory: "none"
@@ -37,7 +38,7 @@ class QuestionForm extends Component {
     this.setState({ showCode: !this.state.showCode });
   }
   handleChooseCategory(select) {
-    this.setState({ topic: select, showCategory: "none" });
+    this.setState({ topic_id: select.id, topic_name: select.topic, showCategory: "none" });
   }
   handleCategoryClick() {
     if (this.state.showCategory === "none") {
@@ -47,17 +48,18 @@ class QuestionForm extends Component {
     }
   }
   submitQuestion() {
-    let { text, code, topic } = this.state;
+    let { text, code, topic_id } = this.state;
     axios
-      .post("/api/questions", { text, code, topic })
+      .post("/api/questions", { text, code, topic_id })
       .then(response => console.log(response.data));
   }
 
   render() {
+    console.log(this.state)
     const method = this.handleChooseCategory;
     const topics = this.state.topicList.map(function(thing){
-      return (<a onClick={() => method(`${thing.name}`)} href="#">
-      {thing.name}
+      return (<a onClick={() => method(thing)} href="#">
+      {thing.topic}
     </a>)
     })
   
@@ -73,13 +75,13 @@ class QuestionForm extends Component {
             onClick={this.handleCodeClick}
             className="circle m10"
               
-          ><i className="fa fa-code"></i></button>
+          ><i style={{marginLeft: '-1px'}}className="fa fa-code"></i></button>
           <button
             onClick={this.handleCategoryClick}
             className="circle m10"
             
           ><i className="fa fa-hashtag"></i></button>
-          {this.state.topic}
+          {this.state.topic_name}
           <div
             id="myDropdown"
             className="dropdown-content curved"
@@ -102,7 +104,7 @@ class QuestionForm extends Component {
             onClick={() => this.submitQuestion()}
             className="bigCircle flexed"
           >
-            <i className="fa fa-3x fa-caret-right" aria-hidden="true"></i>
+            <i className="fa fa-lg fa-paper-plane" aria-hidden="true"></i>
           </button>
         </div>
       </div>

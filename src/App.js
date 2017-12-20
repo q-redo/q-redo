@@ -27,7 +27,7 @@ class App extends Component {
     return (
       <div  className="App flexed">
         <TopBar/>
-        <section style={{maxWidth: '670px'}}>
+        <section style={{marginTop: '80px', width: '720px'}}>
         {Router}
         <button onClick={() => this.handleLogin()}>TEST AUTH0</button>
         </section>

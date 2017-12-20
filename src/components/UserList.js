@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
+import Avatar from './Avatar/Avatar'
 import './UserList.css';
 
 class UserList extends Component {
@@ -23,16 +25,17 @@ class UserList extends Component {
     const users = this.state.userList.map((user, index) => {
       console.log(user)
       return (
-        <div className="user-card" key={index}>
+        <Avatar user={user} />
+        // <div className="user-card" key={index}>
 
-          <div className="user-card-left">
-            <div className="user-avatar" style={{backgroundImage:`url('${user.image_url}')`}}/>
-          </div>
+        //   <div className="user-card-left" style={{}}>
+        //     <div className="user-avatar" style={{backgroundImage:`url('${user.image_url}')`}}/>
+        //   </div>
 
-          <div className="user-card-right">
-            <small>{user.name.split(' ')[0]}</small>
-          </div>
-        </div>
+        //   <div className="user-card-right">
+        //     <small>{user.name.split(' ')[0]}</small>
+        //   </div>
+        // </div>
       );
     });
     return <div className="userlist-main-container m10 shadowed">
