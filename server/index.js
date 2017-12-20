@@ -32,7 +32,6 @@ var app = require("express")(),
 app.use(passport.initialize())
 app.use(passport.session())
 // console.log("passport sesh", passport.session()) //session object is still intact up to this point
-let userList = []
 passport.use(
   new Auth0Strategy(
     {
@@ -55,11 +54,9 @@ passport.use(
                 profile.picture
               ])
               .then(created => {
-                userList.push(created[0])
                 return done(null, created[0])
               })
           } else {
-            userList.push(response[0])
             return done(null, response[0])
           }
         })
@@ -98,36 +95,37 @@ app.use(json())
 app.use(cors())
 
 massive(connectionString)
-  .then(dbInstance => app.set("db", dbInstance))
+  .then(dbInstance => app.set("db", dbInstance) && dbInstance.log_them_out())
   .catch(console.log)
 
 //SOCKET.IO STARTS
 
 let interval
 io.sockets.on("connection", socket => {
-  const user = you
-  socket.handshake.session.user = user
-  console.log("New client connected")
+  var db = app.get("db")
+  socket.handshake.session.user = you
+  console.log("Client connected!")
+  
+  db.run(`UPDATE users SET logged_in = true WHERE user_id =${socket.handshake.session.user.user_id}`)
+
   var intervalId = setInterval(() => getInfoAndEmit(socket), 5000)
   socket.on("disconnect", () => {
-    console.log(socket.handshake.session.user)
-    console.log("Client disconnected")
-    userList.map((usr, i) => {
-      usr.name === socket.handshake.session.user.name
-        ? userList.splice(i, 1) && console.log(usr.name, "removed")
-        : "Unable to find user to remove"
-    })
-    clearInterval(intervalId)
-  })
-})
+  console.log(socket.handshake.session.user.user_id)
+  console.log("Client disconnected!")
+
+    db.run(`UPDATE users SET logged_in = false WHERE user_id =${socket.handshake.session.user.user_id}`)  })})
+  
 
 const getInfoAndEmit = async socket => {
-  console.log("yay", userList)
+  console.log("yay someone is connected still")
+  var db = app.get("db")
   try {
-    const res = await axios.get("http://localhost:3001/api/questions")
-    socket.emit("UserList", userList)
+    const userres = await db.run(`SELECT * FROM users WHERE logged_in = true AND rank = 3;`)
+    const res = await db.run(`SELECT * FROM questions`)
+    console.log(res)
+    socket.emit("UserList", userres)
     socket.emit("FromMe", socket.handshake.session.user)
-    socket.emit("FromAPI", res.data) // Emitting a new message. It will be consumed by the client
+    socket.emit("FromAPI", res) // Emitting a new message. It will be consumed by the client
   } catch (error) {
     console.error(`Error: ${error}`)
   }
@@ -141,39 +139,34 @@ app.get("/api/questions", (req, res, next) => {
 
 //SOCKET.io ENDS
 
-
-
 ///////////////// I DELETED SOME ENDPOINTS FOR THE ABOVE SOCKET.IO TO WORK//////////
 //Endpoints
 
+app.post("/api/questions", controller.postQuestion)
 
-app.post('/api/questions', controller.postQuestion);
-
-app.get('/api/users/:id', (req, res, next) => {
-  const dbInstance = req.app.get('db');
+app.get("/api/users/:id", (req, res, next) => {
+  const dbInstance = req.app.get("db")
   dbInstance
     .getUserByAuthId([req.params.id])
     .then(user => {
-      res.status(200).json(user);
+      res.status(200).json(user)
     })
-    .catch(console.log);
-});
+    .catch(console.log)
+})
 //change answer to true //
-app.put('/api/questions/:id', controller.answeredQuestion);
+app.put("/api/questions/:id", controller.answeredQuestion)
 
-app.get('/api/users', controller.getActiveUsers);
-app.get('/api/mentors', controller.getActiveMentors);
-app.get('/api/recentQuestions', controller.getRecentQuestions);
-app.get('/api/activeQuestions', controller.getActiveQuestions);
-app.get('/api/topics', controller.getTopics);
+app.get("/api/users", controller.getActiveUsers)
+app.get("/api/mentors", controller.getActiveMentors)
+app.get("/api/recentQuestions", controller.getRecentQuestions)
+app.get("/api/activeQuestions", controller.getActiveQuestions)
+app.get("/api/topics", controller.getTopics)
 
-app.get('/api/me', function(req, res) {
+app.get("/api/me", function(req, res) {
   if (!req.user) {
-    return res.status(404);
+    return res.status(404)
   }
-  res.status(200).json(req.user);
-});
-
-
+  res.status(200).json(req.user)
+})
 
 server.listen(port, () => console.log(`Listening on port ${port}`))

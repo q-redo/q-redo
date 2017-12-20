@@ -51,5 +51,9 @@ module.exports = {
       .put_question_answered([req.params.id])
       .then(response => res.status(200).json(response))
       .catch(console.log);
-  }
+  },
+
+   
+  
+  
 };
