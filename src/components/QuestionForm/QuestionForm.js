@@ -51,8 +51,9 @@ class QuestionForm extends Component {
   }
   submitQuestion() {
     let { text, code, topic_id } = this.state;
+    let { user_id } = this.props.user
     axios
-      .post("/api/questions", { text, code, topic_id })
+      .post("/api/questions", { text, code, topic_id, user_id })
       .then(response => console.log(response.data));
   }
 
