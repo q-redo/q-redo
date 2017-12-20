@@ -23,7 +23,7 @@ class RecentQuestions extends Component {
       (question, index) => {
         return (
           <button className="topicPill m10 shadowed" style={{borderColor:`${question.color}`, background: `radial-gradient(at top left, ${question.color},${question.color}, black)`}} key={index}>
-            {question.name}
+            {question.topic}
           </button>
         );
       }

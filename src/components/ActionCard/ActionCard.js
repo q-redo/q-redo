@@ -23,7 +23,7 @@ class ActionCard extends Component {
         </div>
         <div className="big-circle-card">
         <button className="bigCircle animated flexed">
-          <i className="fa fa-2x fa-handshake-o"></i>
+          <i className="fa fa-lg fa-handshake-o"></i>
         </button>
         OFFER HELP
         </div>

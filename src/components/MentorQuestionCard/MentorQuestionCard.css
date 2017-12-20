@@ -1,43 +1,77 @@
-.user-question-card {
-  border: solid 1px #eee;
-  width: 90%;
-  min-height: 100px;
+#code-col{
+  background: rgb(0,43,54);
+  color: rgb(42,161,152);
+  border: none;
+}
+.user-question-card{
+  background-color: #222222;
+  width: 520px;
+  color: white;
+  display: flex;
+}
+
+.uq-left-side{
+  width: 60%;
+  height: 100%;
+}
+
+.uq-right-side{
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.user-question-card .user-card {
   color: #d4d4d4;
+  width: 50%;
+  height: 40px;
   margin: 5px;
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  align-items: center;
-  padding: 10px;
 }
-
-.question-card-col {
-  min-height: 100px;
-  width: 25%;
-  padding: 5px;
+.user-question-card .user-card-right {
+  width: 70%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
 }
-
-#code-col {
-  background: rgb(0, 43, 54);
-  color: rgb(42, 161, 152);
-  border: none;
+.user-question-card .user-card-left {
+  width: 30%;
 }
-
-.question-card-col {
-  min-height: 100px;
-  width: 25%;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+.user-question-card .user-card-right > small{
+  width: 100%;
+  font-size: 1.2em;
 }
-
-#code-col {
-  background: rgb(0, 43, 54);
-  color: rgb(42, 161, 152);
-  border: none;
+.user-question-card .bigCircle{
+  border-radius: 50px;
+  border-width: 4px;
+  height: 75px;
+  width: 75px;
+  /* background: rgb(115, 159, 189); */
+  outline: none;
+  background: #2AABE2;
+  font-size: 2em;
+  color: white;
+}
+.user-question-card .topicPill{
+  margin-top: 0px !important;
+    padding-left: 10px !important;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding:3px;
+    margin-left:6px;
+    width: 150px;
+    min-height: 30px;
+    font-size: 1.5em;
+    display: flex;
+    border-radius: 22px;
+    border-width: 3px;
+    align-items: center;
+    align-content: center;
 }
