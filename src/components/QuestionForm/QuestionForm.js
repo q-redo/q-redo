@@ -63,25 +63,13 @@ class QuestionForm extends Component {
   render() {
     console.log(this.state)
     const method = this.handleChooseCategory;
-<<<<<<< HEAD
 
-    const topics = this.state.topicList.map(function(thing) {
-      return (
-        <a onClick={() => method(`${thing.name}`)} href="#">
-          {thing.name}
-        </a>
-      );
-    });
-
-
-=======
     const topics = this.state.topicList.map(function(thing){
       return (<a onClick={() => method(thing)} href="#">
       {thing.topic}
     </a>)
     })
-  
->>>>>>> master
+
     return (
       <div className="questionForm-main-container m10 curved shadowed">
         <div className="firstQBox">
@@ -90,7 +78,6 @@ class QuestionForm extends Component {
             onChange={e => this.handleQuestionChange(e.target.value)}
             className="questionInput inner-shadow"
           />
-<<<<<<< HEAD
 
           <button onClick={this.handleCodeClick} className="circle m10">
             <i className="fa fa-code" />
@@ -100,19 +87,19 @@ class QuestionForm extends Component {
           </button>
 
           {this.state.topic}
-=======
+
           <button
             onClick={this.handleCodeClick}
             className="circle m10 shadowed"
-              
+
           ><i style={{marginLeft: '-1px'}}className="fa fa-code"></i></button>
           <button
             onClick={this.handleCategoryClick}
             className="circle m10 shadowed"
-            
+
           ><i className="fa fa-hashtag"></i></button>
           {this.state.topic_name}
->>>>>>> master
+
           <div
             id="myDropdown"
             className="dropdown-content curved"
@@ -132,17 +119,17 @@ class QuestionForm extends Component {
         </div>
         <div className="secondBox">
           <button
-            
+
             style={{marginLeft: '50px'}}
             onClick={() => {this.submitQuestion(); this.props.toggleAction("action")}}
             className="bigCircle animated  shadowed flexed"
           >
-            
+
             <i className="fa fa-lg fa-paper-plane" aria-hidden="true"></i>
           </button>
           <div style={{position: 'relative', width: '10px', height: '100px'}}>
             <i onClick={()=>this.props.toggleAction("action")} class="fa fa-lg fa-times" aria-hidden="true"></i>
-          </div>  
+          </div>
         </div>
       </div>
     );

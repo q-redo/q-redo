@@ -30,7 +30,7 @@ class QuestionThread extends Component{
   componentWillUpdate(){
     axios.get(`/api/answers/${this.props.match.params.id}`).then(answers=> {
       this.setState({ answersList: answers.data });
-    });  
+    });
   }
 
   upvote(id){
