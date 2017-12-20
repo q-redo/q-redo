@@ -10,7 +10,7 @@ module.exports = {
   postQuestion: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance
-      .post_question([req.body.text, req.body.code, req.body.topic])
+      .post_question([req.body.text, req.body.code, req.body.topic_id])
       .then(question => res.status(200).json(question))
       .catch(console.log);
   },
