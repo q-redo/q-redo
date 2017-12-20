@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './WaitingCard.css';
 import axios from 'axios';
-import hourglass from './3b7ea1bc-a337-4ca1-8ae2-616f2a9427cc.svg';
+import hourglass from './hourglass.svg';
 import { relative } from 'path';
 import {connect} from 'react-redux';
 import {toggleAction} from '../../redux/reducer'
