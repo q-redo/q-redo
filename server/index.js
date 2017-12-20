@@ -106,14 +106,14 @@ io.sockets.on("connection", socket => {
   socket.handshake.session.user = you
   console.log("Client connected!")
   
-  db.run(`UPDATE users SET logged_in = true WHERE user_id =${socket.handshake.session.user.user_id}`)
+  socket.handshake.session.user.user_id ? db.run(`UPDATE users SET logged_in = true WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No one signed in")
 
   var intervalId = setInterval(() => getInfoAndEmit(socket), 5000)
   socket.on("disconnect", () => {
   console.log(socket.handshake.session.user.user_id)
   console.log("Client disconnected!")
 
-    db.run(`UPDATE users SET logged_in = false WHERE user_id =${socket.handshake.session.user.user_id}`)  })})
+  socket.handshake.session.user.user_id ?  db.run(`UPDATE users SET logged_in = false WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No user signed in!") })})
   
 
 const getInfoAndEmit = async socket => {
@@ -123,7 +123,7 @@ const getInfoAndEmit = async socket => {
     const userres = await db.run(`SELECT * FROM users WHERE logged_in = true AND rank = 3;`)
     const mentorres = await db.run(`select * FROM users WHERE logged_in = true AND rank = 2`)
     const res = await db.run(`SELECT * FROM questions`)
-    console.log(res)
+  
     socket.emit("MentorList", mentorres)
     socket.emit("UserList", userres)
     socket.emit("FromMe", socket.handshake.session.user)
