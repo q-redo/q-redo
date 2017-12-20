@@ -9,8 +9,9 @@ class MentorQuestionCard extends Component {
 
     this.state = {
       activeQuestionsList: [],
-      answered: false
+      id: 0
     };
+    this.answeredQuestion = this.answeredQuestion.bind(this);
   }
 
   //CWM get three most recent questions
@@ -20,14 +21,18 @@ class MentorQuestionCard extends Component {
       this.setState({ activeQuestionsList: response.data });
     });
   }
-  // answeredQuestion() { ////////////////////////////////////////////////
-  //   axios.post;
-  // }
+
+  answeredQuestion(id) {
+    axios.put(`/api/questions/${id}`).then(response => {
+      return response.data;
+    });
+  }
+
   render() {
     const activeQuestions = this.state.activeQuestionsList.map(
       (question, index) => {
         return (
-          <div className="user-question-card" key={index}>
+          <div className="user-question-card" key={question.q_id}>
             <div className="question-card-col">
               <h3>{question.name}</h3>
             </div>
@@ -51,6 +56,12 @@ class MentorQuestionCard extends Component {
                   </pre>
                 </code>
               </div>
+              <button
+                value={question.q_id}
+                onClick={e => this.answeredQuestion(e.target.value)}
+              >
+                QUESTION ID: {question.q_id}
+              </button>
             </div>
           </div>
         );

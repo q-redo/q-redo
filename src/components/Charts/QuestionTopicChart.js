@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import axios from 'axios';
 
-class Chart extends Component {
+class QuestionTopicChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -91,9 +91,9 @@ class Chart extends Component {
     return (
       <div className="chart">
         <h1>Chart Here</h1>
-        <Bar data={this.state.chartData} />
+        <Bar data={this.state.chartData} width={500} height={500} />
       </div>
     );
   }
 }
-export default Chart;
+export default QuestionTopicChart;

@@ -102,9 +102,9 @@ app.get('/api/users/:id', (req, res, next) => {
     })
     .catch(console.log);
 });
-// change answer to true //
-/////////app.post('/answered', controller.answeredQuestion); //////////////////////////////////
-//
+//change answer to true //
+app.put('/api/questions/:id', controller.answeredQuestion);
+
 app.get('/api/users', controller.getActiveUsers);
 app.get('/api/mentors', controller.getActiveMentors);
 app.get('/api/recentQuestions', controller.getRecentQuestions);

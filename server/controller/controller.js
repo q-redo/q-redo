@@ -44,6 +44,12 @@ module.exports = {
       .get_all_topics()
       .then(questions => res.status(200).json(questions))
       .catch(console.log);
+  },
+  answeredQuestion: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .put_question_answered([req.params.id])
+      .then(response => res.status(200).json(response))
+      .catch(console.log);
   }
 };
-//    dbInstance.remove_from_cart([req.params.id]);
