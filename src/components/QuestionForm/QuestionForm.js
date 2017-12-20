@@ -23,7 +23,7 @@ class QuestionForm extends Component {
   }
 
   componentDidMount(){
-    axios.get('/api/topics').then(response =>this.setState({topicList: response.data})) 
+    axios.get('/api/topics').then(response =>this.setState({topicList: response.data}))
   }
 
   handleCodeChange(input) {
@@ -55,12 +55,12 @@ class QuestionForm extends Component {
 
   render() {
     const method = this.handleChooseCategory;
-    const topics = this.state.topicList.map(function(thing){
-      return (<a onClick={() => method(`${thing.name}`)} href="#">
+    const topics = this.state.topicList.map(function(thing, i){
+      return (<a onClick={() => method(`${thing.name}`)} href="#" key={i}>
       {thing.name}
     </a>)
     })
-  
+
     return (
       <div className="questionForm-main-container m10 curved shadowed">
         <div className="firstQBox">
@@ -72,12 +72,12 @@ class QuestionForm extends Component {
           <button
             onClick={this.handleCodeClick}
             className="circle m10"
-              
+
           ><i className="fa fa-code"></i></button>
           <button
             onClick={this.handleCategoryClick}
             className="circle m10"
-            
+
           ><i className="fa fa-hashtag"></i></button>
           {this.state.topic}
           <div

@@ -34,7 +34,9 @@ export default function reducer(state= initialState, action){
 export function reqUser(){
   return {
     type: REQ_USER,
-    payload: axios.get('/api/me').then(response=> response.data)
+    payload: axios.get('/api/me').then(response=> {
+      return response.data
+    })
   }
 }
 
@@ -44,5 +46,3 @@ export function toggleAction(val){
     payload: val
   }
 }
-
-

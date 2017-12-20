@@ -42,6 +42,7 @@ passport.use(
       callbackURL: '/login'
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
+      console.log('auth0 profile', profile.id);
       app
         .get('db')
         .getUserByAuthId([profile.id])
