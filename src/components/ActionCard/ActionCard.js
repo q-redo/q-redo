@@ -28,7 +28,7 @@ class ActionCard extends Component {
         OFFER HELP
         </div>
         <div className="big-circle-card">
-        <button className="bigCircle animated flexed">
+        <button onClick={()=>this.props.toggleAction('waiting')} className="bigCircle animated flexed">
           <i className="fa fa-2x fa-exclamation"></i>
         </button>
         GET HELP

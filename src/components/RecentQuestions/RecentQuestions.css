@@ -14,11 +14,11 @@
     color: white;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding:3px;
+    padding:7.5px;
     padding-left: 6px;
     width: 190px;
     min-height: 40px;
-    font-size: 2em;
+    font-size: 1.6em;
     display: flex;
     border-radius: 22px;
     border-width: 4px;

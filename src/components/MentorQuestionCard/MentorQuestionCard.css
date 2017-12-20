@@ -64,11 +64,11 @@
     color: white;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding:3px;
+    padding:4px;
     margin-left:6px;
     width: 150px;
     min-height: 30px;
-    font-size: 1.5em;
+    font-size: 1.4em;
     display: flex;
     border-radius: 22px;
     border-width: 3px;

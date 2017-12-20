@@ -7,6 +7,7 @@ import './StudentView.css';
 import {connect} from 'react-redux';
 import QuestionForm from './QuestionForm/QuestionForm';
 import ActionCard from './ActionCard/ActionCard';
+import WaitingCard from './WaitingCard/WaitingCard';
 
 class StudentView extends Component {
   constructor(){
@@ -21,7 +22,9 @@ class StudentView extends Component {
         {this.props.actionAskOrGetHelp === 'action'?
         <ActionCard/>:
         this.props.actionAskOrGetHelp === "question"?
-        <QuestionForm/>:''
+        <QuestionForm/>:
+        this.props.actionAskOrGetHelp === "waiting"?
+        <WaitingCard/>:''
         }
         <RecentQuestions />
         <MentorCard />
