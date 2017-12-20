@@ -78,7 +78,7 @@ passport.deserializeUser(function(obj, done) {
 let you = []
 app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
   you = req.user
-  res.redirect("http://172.31.99.237:3000/student")
+  res.redirect("http://localhost:3000/student")
 })
 
 const sharedsession = require("express-socket.io-session")
@@ -124,7 +124,7 @@ io.sockets.on("connection", socket => {
 const getInfoAndEmit = async socket => {
   console.log("yay", userList)
   try {
-    const res = await axios.get("http://172.31.99.237:3001/api/questions")
+    const res = await axios.get("http://localhost:3001/api/questions")
     socket.emit("UserList", userList)
     socket.emit("FromMe", socket.handshake.session.user)
     socket.emit("FromAPI", res.data) // Emitting a new message. It will be consumed by the client
