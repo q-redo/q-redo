@@ -25,3 +25,7 @@
     align-items: center;
     align-content: center;
 }
+
+.topicPill:hover{
+    cursor: pointer;
+}
