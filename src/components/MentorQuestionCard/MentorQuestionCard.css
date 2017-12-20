@@ -4,7 +4,7 @@
   border: none;
 }
 .user-question-card{
-  background-color: #222222;
+  background-color: var(--main-box-color);
   width: 520px;
   color: white;
   display: flex;

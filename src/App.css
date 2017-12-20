@@ -1,10 +1,13 @@
 .App{
   flex-direction: column;
   overflow: scroll;
+  --main-bg-color: #222222;
+  --main-box-color: #333333;
 }
 
 body {
-  background-color: #333333;
+  --main-bg-color: #222222;
+  background-color: var(--main-bg-color);
 }
 
 .m10{

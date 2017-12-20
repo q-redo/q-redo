@@ -1,6 +1,6 @@
 .questionForm-main-container{
   width: 500px;
-  background: #222222;
+  background: var(--main-box-color);
   color: white;
   padding: 10px;
   display: flex;
@@ -42,7 +42,7 @@
 
 .bigCircle:hover{
   transition: all ease 0.3s;
-  background: #333;
+  background: var(--main-bg-color);
   color: #2AABE2;
 }
 

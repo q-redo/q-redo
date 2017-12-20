@@ -1,6 +1,6 @@
 .recentQuestions{
     width: 250px;
-    background-color: #222222;
+    background-color: var(--main-box-color);
     display: flex;
     justify-content: center;
     flex-direction: column;

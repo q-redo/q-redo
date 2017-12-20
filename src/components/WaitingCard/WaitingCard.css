@@ -1,6 +1,6 @@
 .waiting-card-main-container{
     padding: 10px;
-    background-color: #222222;
+    background-color: var(--main-box-color);
     position: relative;
     color: white;
 }
