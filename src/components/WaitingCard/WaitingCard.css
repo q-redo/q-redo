@@ -1,0 +1,11 @@
+.waiting-card-main-container{
+    padding: 10px;
+    background-color: var(--main-box-color);
+    position: relative;
+    color: white;
+}
+.waiting-card-main-container .fa-times{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }

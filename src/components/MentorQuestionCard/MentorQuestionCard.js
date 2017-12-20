@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 // import Moment from 'react-moment'; 
 import axios from 'axios';
+import hourglass from '../WaitingCard/hourglass.svg'
+
+import Avatar from '../Avatar/Avatar'
 import './MentorQuestionCard.css';
 
 class MentorQuestionCard extends Component {
@@ -32,45 +35,37 @@ class MentorQuestionCard extends Component {
     const activeQuestions = this.state.activeQuestionsList.map(
       (question, index) => {
         return (
-          <div className="user-question-card" key={question.q_id}>
-            <div className="question-card-col">
-              <h3>{question.name}</h3>
-            </div>
-
-            <div className="question-card-col">
-              <h3>TOPIC</h3>
-              <p>{question.name}</p>
-            </div>
-
-            <div className="question-card-col">
-              <h3>QUESTION</h3>
+          <div className="user-question-card curved shadowed m10" key={index}>
+            <section className="uq-left-side m10">
+              <section className="uq-top-left">
+              <Avatar user={{name: question.name, image_url: question.image_url}}/>
+              <span style={{display: 'inline-block'}}>0:00 <img style={{width: '25px'}} src={hourglass} alt="hourglass spinning"/></span>
+              </section>
               <p>{question.question}</p>
-            </div>
+                  <code>
+                    <pre>
+                      <textarea id='code-col'>
+                        {question.code_block}
+                      </textarea>
+                    </pre>
+                  </code>
+            </section>  
 
-            <div className="question-card-col">
-              <h3>CODE</h3>
-              <div>
-                <code>
-                  <pre>
-                    <textarea id="code-col">{question.code_block}</textarea>
-                  </pre>
-                </code>
-              </div>
-              <button
-                value={question.q_id}
-                onClick={e => this.answeredQuestion(e.target.value)}
-              >
-                QUESTION ID: {question.q_id}
-              </button>
-            </div>
+            <section className="uq-right-side m10">
+              <button className="topicPill m10" style={{borderColor:`${question.color}`, background: `radial-gradient(at top left, ${question.color},${question.color}, black)`}} key={index}>
+             {question.topic}
+             </button>
+             <button className="bigCircle animated shadowed" ><i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
+             </button>
+            </section>
+
           </div>
         );
       }
     );
     return (
-      <div>
-        <h1 className="activeMentorsTitle"> All Active Questions </h1>
-        <div className="mentorCard">{activeQuestions}</div>
+      <div className="questions-array">
+        {activeQuestions}
       </div>
     );
   }

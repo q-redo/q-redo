@@ -16,22 +16,22 @@ class ActionCard extends Component {
     return (
       <div className="actionForm-main-container m10 curved shadowed flexed">
       <div className="big-circle-card">
-        <button onClick={()=>this.props.toggleAction('question')} className="bigCircle animated flexed">
+        <button onClick={()=>this.props.toggleAction('question')} className="bigCircle animated  shadowed flexed">
           <i className="fa fa-2x fa-question"></i>
         </button>
-        ASK QUESTION
+        <span style={{marginTop: '10px'}}>ASK QUESTION</span>
         </div>
         <div className="big-circle-card">
-        <button className="bigCircle animated flexed">
-          <i className="fa fa-2x fa-handshake-o"></i>
+        <button className="bigCircle animated  shadowed flexed">
+          <i className="fa fa-lg fa-handshake-o"></i>
         </button>
-        OFFER HELP
+        <span style={{marginTop: '10px'}}>OFFER HELP</span>
         </div>
         <div className="big-circle-card">
-        <button className="bigCircle animated flexed">
+        <button onClick={()=>this.props.toggleAction('waiting')} className="bigCircle shadowed animated flexed">
           <i className="fa fa-2x fa-exclamation"></i>
         </button>
-        GET HELP
+        <span style={{marginTop: '10px'}}>GET HELP</span>
         </div>
       </div>
     );

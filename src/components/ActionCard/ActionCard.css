@@ -1,6 +1,6 @@
 .actionForm-main-container {
   width: 500px;
-  background: #222222;
+  background: var(--main-box-color);
   color: white;
   padding: 10px;
   display: flex;
