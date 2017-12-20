@@ -1,2 +1,2 @@
-INSERT INTO questions (question,code_block,topic,time)
-VALUES($1,$2,$3,now());
+INSERT INTO questions (question,code_block,topic)
+VALUES($1,$2,$3);
