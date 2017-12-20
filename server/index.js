@@ -123,7 +123,7 @@ io.sockets.on("connection", socket => {
 })
 
 const getInfoAndEmit = async(socket) => {
-  console.log("yay", userList)
+  // console.log("yay", userList)
   try {
     const res = await axios.get("http://localhost:3001/api/questions")
     socket.emit("UserList", userList)
@@ -147,9 +147,6 @@ app.get("/api/questions", (req, res, next) => {
 ///////////////// I DELETED SOME ENDPOINTS FOR THE ABOVE SOCKET.IO TO WORK//////////
 //Endpoints
 
-
-app.post('/api/questions', controller.postQuestion);
-
 app.get('/api/users/:id', (req, res, next) => {
   const dbInstance = req.app.get('db');
   dbInstance
@@ -159,14 +156,21 @@ app.get('/api/users/:id', (req, res, next) => {
     })
     .catch(console.log);
 });
-//change answer to true //
+
+app.post('/api/questions', controller.postQuestion);
+app.get('/api/question/:id', controller.getQuestion);
 app.put('/api/questions/:id', controller.answeredQuestion);
 
+app.get('/api/answers/:id', controller.getAnswers);
 app.get('/api/users', controller.getActiveUsers);
 app.get('/api/mentors', controller.getActiveMentors);
 app.get('/api/recentQuestions', controller.getRecentQuestions);
 app.get('/api/activeQuestions', controller.getActiveQuestions);
 app.get('/api/topics', controller.getTopics);
+
+app.put('/api/downvote/answers/:id', controller.downvote);
+app.put('/api/upvote/answers/:id', controller.upvote);
+app.put('/api/verify/answers/:id', controller.toggleVerify);
 
 app.get('/api/me', function(req, res) {
   if (!req.user) {

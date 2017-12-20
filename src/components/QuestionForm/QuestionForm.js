@@ -22,15 +22,10 @@ class QuestionForm extends Component {
     this.handleChooseCategory = this.handleChooseCategory.bind(this);
   }
 
-<<<<<<< HEAD
-  componentDidMount(){
-    axios.get('/api/topics').then(response =>this.setState({topicList: response.data}))
-=======
   componentDidMount() {
     axios
       .get('/api/topics')
       .then(response => this.setState({ topicList: response.data }));
->>>>>>> master
   }
 
   handleCodeChange(input) {
@@ -62,13 +57,7 @@ class QuestionForm extends Component {
 
   render() {
     const method = this.handleChooseCategory;
-<<<<<<< HEAD
-    const topics = this.state.topicList.map(function(thing, i){
-      return (<a onClick={() => method(`${thing.name}`)} href="#" key={i}>
-      {thing.name}
-    </a>)
-    })
-=======
+
     const topics = this.state.topicList.map(function(thing) {
       return (
         <a onClick={() => method(`${thing.name}`)} href="#">
@@ -76,7 +65,7 @@ class QuestionForm extends Component {
         </a>
       );
     });
->>>>>>> master
+
 
     return (
       <div className="questionForm-main-container m10 curved shadowed">
@@ -86,25 +75,14 @@ class QuestionForm extends Component {
             onChange={e => this.handleQuestionChange(e.target.value)}
             className="questionInput inner-shadow"
           />
-<<<<<<< HEAD
-          <button
-            onClick={this.handleCodeClick}
-            className="circle m10"
 
-          ><i className="fa fa-code"></i></button>
-          <button
-            onClick={this.handleCategoryClick}
-            className="circle m10"
-
-          ><i className="fa fa-hashtag"></i></button>
-=======
           <button onClick={this.handleCodeClick} className="circle m10">
             <i className="fa fa-code" />
           </button>
           <button onClick={this.handleCategoryClick} className="circle m10">
             <i className="fa fa-hashtag" />
           </button>
->>>>>>> master
+
           {this.state.topic}
           <div
             id="myDropdown"
