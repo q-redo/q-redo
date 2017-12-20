@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import "./QuestionForm.css";
-import axios from "axios";
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import './QuestionForm.css';
+import axios from 'axios';
 
 class QuestionForm extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class QuestionForm extends Component {
       topic_name: "",
       topicList: [],
       showCode: false,
-      showCategory: "none"
+      showCategory: 'none'
     };
     this.handleQuestionChange = this.handleQuestionChange.bind(this);
     this.handleCodeChange = this.handleCodeChange.bind(this);
@@ -23,8 +23,10 @@ class QuestionForm extends Component {
     this.handleChooseCategory = this.handleChooseCategory.bind(this);
   }
 
-  componentDidMount(){
-    axios.get('/api/topics').then(response =>this.setState({topicList: response.data})) 
+  componentDidMount() {
+    axios
+      .get('/api/topics')
+      .then(response => this.setState({ topicList: response.data }));
   }
 
   handleCodeChange(input) {
@@ -41,10 +43,10 @@ class QuestionForm extends Component {
     this.setState({ topic_id: select.id, topic_name: select.topic, showCategory: "none" });
   }
   handleCategoryClick() {
-    if (this.state.showCategory === "none") {
-      this.setState({ showCategory: "inline-block" });
+    if (this.state.showCategory === 'none') {
+      this.setState({ showCategory: 'inline-block' });
     } else {
-      this.setState({ showCategory: "none" });
+      this.setState({ showCategory: 'none' });
     }
   }
   submitQuestion() {
@@ -96,7 +98,7 @@ class QuestionForm extends Component {
               className="code inner-shadow"
             />
           ) : (
-            ""
+            ''
           )}
         </div>
         <div className="secondBox">

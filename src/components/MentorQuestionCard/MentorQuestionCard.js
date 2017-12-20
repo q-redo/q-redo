@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
 import axios from 'axios';
 
 import Avatar from '../Avatar/Avatar'
@@ -9,8 +10,10 @@ class MentorQuestionCard extends Component {
     super();
 
     this.state = {
-      activeQuestionsList: []
+      activeQuestionsList: [],
+      id: 0
     };
+    this.answeredQuestion = this.answeredQuestion.bind(this);
   }
 
   //CWM get three most recent questions
@@ -18,6 +21,12 @@ class MentorQuestionCard extends Component {
     axios.get('/api/activeQuestions').then(response => {
       console.log(response.data);
       this.setState({ activeQuestionsList: response.data });
+    });
+  }
+
+  answeredQuestion(id) {
+    axios.put(`/api/questions/${id}`).then(response => {
+      return response.data;
     });
   }
 

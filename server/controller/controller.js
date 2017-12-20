@@ -24,8 +24,11 @@ module.exports = {
   getRecentQuestions: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance
-    .get_recent_questions()
-      .then(mentors => {console.log(mentors); res.status(200).json(mentors)})
+      .get_recent_questions()
+      .then(mentors => {
+        console.log(mentors);
+        res.status(200).json(mentors);
+      })
       .catch(console.log);
   },
   getActiveQuestions: (req, res, next) => {
@@ -40,6 +43,13 @@ module.exports = {
     dbInstance
       .get_all_topics()
       .then(questions => res.status(200).json(questions))
+      .catch(console.log);
+  },
+  answeredQuestion: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .put_question_answered([req.params.id])
+      .then(response => res.status(200).json(response))
       .catch(console.log);
   }
 };

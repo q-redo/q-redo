@@ -6,6 +6,7 @@ import StudentView from './components/StudentView';
 import QuestionForm from './components/QuestionForm/QuestionForm';
 import MentorCard from './components/MentorCard/MentorCard';
 import MentorView from './components/MentorView/MentorView';
+import QuestionTopicChart from './components/Charts/QuestionTopicChart';
 import MentorQuestionCard from './components/MentorQuestionCard/MentorQuestionCard';
 
 export default (
@@ -16,6 +17,7 @@ export default (
       <Route component={QuestionForm} exact path="/question" />
       <Route component={MentorCard} exact path="/mentorCard" />
       <Route component={MentorQuestionCard} exact path="/mentorQuestionCard" />
+      <Route component={QuestionTopicChart} exact path="/topicChart" />
     </div>
   </BrowserRouter>
 );
