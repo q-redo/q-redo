@@ -35,7 +35,7 @@
   width: 100px;
   /* background: rgb(115, 159, 189); */
   outline: none;
-  background: #2AABE2;
+  background: var(--main-blue-color);
   font-size: 2em;
   color: white;
 }
@@ -43,7 +43,13 @@
 .bigCircle:hover{
   transition: all ease 0.3s;
   background: var(--main-bg-color);
-  color: #2AABE2;
+  color: var(--main-blue-color);
+}
+
+.circle:hover{
+  transition: all ease 0.3s;
+  background: var(--main-bg-color);
+  color: var(--main-blue-color);
 }
 
 .circle{
@@ -51,7 +57,7 @@
   border-width: 3px;
   height: 36px;
   width: 36px;
-  background: rgb(115, 159, 189);
+  background: var(--main-blue-color);
   font-size: 1.1em;
   color: white;
 }
@@ -72,13 +78,13 @@
 
 
 .code{
-  background: rgb(116, 123, 179);
-  color: rgb(26, 210, 186);
+  background: #222222;
+  color: var(--main-blue-color)
 }
 
 .dropdown-content {
   position: absolute;
-  background-color: rgb(115, 159, 189);
+  background-color: var(--main-blue-color);
   color: white;
   min-width: 130px;
   overflow: auto;
@@ -88,6 +94,12 @@
 
 .dropdown-content a {
   color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  color: var(--main-blue-color);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -120,7 +132,7 @@ input{
 }
 .fa-times:hover{
   cursor: pointer;
-  color: rgb(115, 159, 189)
+  color: var(--main-blue-color)
 }
 .bigCircle:hover{
   cursor: pointer;
