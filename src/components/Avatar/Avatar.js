@@ -8,12 +8,13 @@ class Avatar extends Component {
   }
 
   render() {
+    console.log('avatar props', this.props)
     return (
     
         <div className="user-card">
 
           <div className="user-card-left" style={{}}>
-            <div className="user-avatar" style={{backgroundImage:`url('${this.props.user.image_url}')`}}/>
+            <div className="user-avatar shadowed" style={{backgroundImage:`url('${this.props.user.image_url}')`}}/>
           </div>
 
           <div className="user-card-right">

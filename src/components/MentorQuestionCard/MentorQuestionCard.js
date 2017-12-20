@@ -48,10 +48,10 @@ class MentorQuestionCard extends Component {
             </section>  
 
             <section className="uq-right-side m10">
-              <button className="topicPill m10 shadowed" style={{borderColor:`${question.color}`, background: `radial-gradient(at top left, ${question.color},${question.color}, black)`}} key={index}>
+              <button className="topicPill m10" style={{borderColor:`${question.color}`, background: `radial-gradient(at top left, ${question.color},${question.color}, black)`}} key={index}>
              {question.topic}
              </button>
-             <button className="bigCircle"><i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
+             <button className="bigCircle shadowed" ><i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
              </button>
             </section>
 

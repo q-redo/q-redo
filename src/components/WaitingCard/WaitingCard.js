@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './WaitingCard.css';
 import axios from 'axios';
+import hourglass from './3b7ea1bc-a337-4ca1-8ae2-616f2a9427cc.svg';
 import { relative } from 'path';
 import {connect} from 'react-redux';
 import {toggleAction} from '../../redux/reducer'
@@ -15,19 +16,9 @@ class WaitingCard extends Component {
   render() {
     return (
       <div className="waiting-card-main-container m10 curved shadowed">
-        <div className="secondBox">
-          <button
-            
-            style={{marginLeft: '50px'}}
-            className="bigCircle animated flexed"
-          >
-            
-            <i className="fa fa-lg fa-paper-plane" aria-hidden="true"></i>
-          </button>
-          <div style={{position: 'relative', width: '10px', height: '100px'}}>
+            <img style={{width: '90px'}} src={hourglass} alt="hourglass spinning"/>
+          
             <i onClick={()=>this.props.toggleAction("action")} class="fa fa-lg fa-times" aria-hidden="true"></i>
-          </div>  
-        </div>
       </div>
     );
   }
