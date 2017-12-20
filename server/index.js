@@ -122,7 +122,7 @@ io.sockets.on("connection", socket => {
   })
 })
 
-const getInfoAndEmit = async socket => {
+const getInfoAndEmit = async(socket) => {
   console.log("yay", userList)
   try {
     const res = await axios.get("http://localhost:3001/api/questions")
@@ -174,11 +174,5 @@ app.get('/api/me', function(req, res) {
 });
 
 
-<<<<<<< HEAD
-app.listen(port, () => {
-  console.log(`Server is listening on port: ${port}`);
-});
-=======
 
 server.listen(port, () => console.log(`Listening on port ${port}`))
->>>>>>> master
