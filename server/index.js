@@ -121,8 +121,10 @@ const getInfoAndEmit = async socket => {
   var db = app.get("db")
   try {
     const userres = await db.run(`SELECT * FROM users WHERE logged_in = true AND rank = 3;`)
+    const mentorres = await db.run(`select * FROM users WHERE logged_in = true AND rank = 2`)
     const res = await db.run(`SELECT * FROM questions`)
     console.log(res)
+    socket.emit("MentorList", mentorres)
     socket.emit("UserList", userres)
     socket.emit("FromMe", socket.handshake.session.user)
     socket.emit("FromAPI", res) // Emitting a new message. It will be consumed by the client
