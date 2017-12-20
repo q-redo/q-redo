@@ -45,7 +45,7 @@ export function reqUser(data){
 }
 
 export function getUserList(data){
-  console.log("I'm userList", data)
+  // console.log("I'm userList", data)
   return {
     type: SOCKET_USERLIST,
     payload: data
@@ -53,7 +53,7 @@ export function getUserList(data){
 }
 
 export function getQuestionList(data){
-  console.log("hi, I'm data", data)
+  // console.log("hi, I'm data", data)
   return {
     type: SOCKET_QUESTIONLIST,
     payload: data

@@ -1,6 +1,6 @@
 .recentQuestions{
     width: 250px;
-    background-color: #222222;
+    background-color: var(--main-box-color);
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -14,14 +14,18 @@
     color: white;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding:3px;
+    padding:7.5px;
     padding-left: 6px;
     width: 190px;
     min-height: 40px;
-    font-size: 2em;
+    font-size: 1.6em;
     display: flex;
     border-radius: 22px;
     border-width: 4px;
     align-items: center;
     align-content: center;
+}
+
+.topicPill:hover{
+    cursor: pointer;
 }

@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './QuestionForm.css';
 import axios from 'axios';
+import { relative } from 'path';
+import {connect} from 'react-redux';
+import {toggleAction} from '../../redux/reducer'
 
 class QuestionForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       text: "",
@@ -75,12 +78,12 @@ class QuestionForm extends Component {
           />
           <button
             onClick={this.handleCodeClick}
-            className="circle m10"
+            className="circle m10 shadowed"
               
           ><i style={{marginLeft: '-1px'}}className="fa fa-code"></i></button>
           <button
             onClick={this.handleCategoryClick}
-            className="circle m10"
+            className="circle m10 shadowed"
             
           ><i className="fa fa-hashtag"></i></button>
           {this.state.topic_name}
@@ -103,14 +106,22 @@ class QuestionForm extends Component {
         </div>
         <div className="secondBox">
           <button
-            onClick={() => this.submitQuestion()}
-            className="bigCircle flexed"
+            
+            style={{marginLeft: '50px'}}
+            onClick={() => {this.submitQuestion(); this.props.toggleAction("action")}}
+            className="bigCircle animated  shadowed flexed"
           >
+            
             <i className="fa fa-lg fa-paper-plane" aria-hidden="true"></i>
           </button>
+          <div style={{position: 'relative', width: '10px', height: '100px'}}>
+            <i onClick={()=>this.props.toggleAction("action")} class="fa fa-lg fa-times" aria-hidden="true"></i>
+          </div>  
         </div>
       </div>
     );
   }
 }
-export default QuestionForm;
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps ,{toggleAction})(QuestionForm);

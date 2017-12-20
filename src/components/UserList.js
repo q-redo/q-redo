@@ -22,6 +22,7 @@ class UserList extends Component {
   }
 
   render() {
+    console.log('userlist', this.state.userList)
     const users = this.state.userList.map((user, index) => {
       console.log(user)
       return (
@@ -40,7 +41,7 @@ class UserList extends Component {
     });
     return <div className="userlist-main-container m10 shadowed">
     <h4 style={{margin: '5px 0 0 0', color: 'white'}}>STUDENTS</h4>
-    {users}
+    {this.state.userList.length?users:<h6 style={{ color: 'white'}}>ROOM IS EMPTY</h6>}
     </div>;
   }
 }

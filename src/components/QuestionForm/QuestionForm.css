@@ -1,6 +1,6 @@
 .questionForm-main-container{
   width: 500px;
-  background: #222222;
+  background: var(--main-box-color);
   color: white;
   padding: 10px;
   display: flex;
@@ -18,8 +18,8 @@
   width: 40%;
   display: flex;
   align-items: center;
-  align-content: center;
-  justify-content: center;
+  align-content: space-between;
+  justify-content: space-between;
 }
 .flexed{
   display: flex;
@@ -42,7 +42,7 @@
 
 .bigCircle:hover{
   transition: all ease 0.3s;
-  background: #333;
+  background: var(--main-bg-color);
   color: #2AABE2;
 }
 
@@ -107,4 +107,24 @@ input{
 }
 :-moz-placeholder { /* Firefox 18- */
   color: rgb(255, 255, 255);
+}
+
+.fa-times{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.fa-handshake-o{
+  font-size: 1.7em;
+}
+.fa-times:hover{
+  cursor: pointer;
+  color: rgb(115, 159, 189)
+}
+.bigCircle:hover{
+  cursor: pointer;
+}
+.circle:hover{
+  cursor: pointer;
 }
