@@ -6,7 +6,6 @@ module.exports = {
       .then(users => res.status(200).json(users))
       .catch(console.log);
   },
-
   postQuestion: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance
@@ -52,6 +51,7 @@ module.exports = {
       .then(response => res.status(200).json(response))
       .catch(console.log);
   },
+<<<<<<< HEAD
   updateWaitingType: (req, res, next) => {
     console.log(req.body.val, req.params.id)
     const dbInstance = req.app.get('db');
@@ -64,4 +64,36 @@ module.exports = {
    
   
   
+=======
+  getQuestion: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.get_question_by_id([req.params.id])
+    .then(question=> res.status(200).json(question))
+    .catch(console.log);
+  },
+  getAnswers: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.get_answers([req.params.id])
+    .then(answers=> res.status(200).json(answers))
+    .catch(console.log)
+  },
+  downvote: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.downvote_answer([req.params.id])
+    .then(score=> res.status(200).json(score))
+    .catch(console.log);
+  },
+  upvote: (req,res,next)=>{
+  const dbInstance= req.app.get('db');
+  dbInstance.upvote_answer([req.params.id])
+  .then(score=> res.status(200).json(score))
+  .catch(console.log);
+},
+  toggleVerify: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.toggle_verify([req.params.id])
+    .then(response=> res.status(200).json(200))
+    .catch(console.log);
+  }
+>>>>>>> master
 };

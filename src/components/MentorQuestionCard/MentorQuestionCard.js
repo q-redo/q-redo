@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Moment from 'react-moment';
+// import Moment from 'react-moment'; 
 import axios from 'axios';
 import hourglass from '../WaitingCard/hourglass.svg'
 

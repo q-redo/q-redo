@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './MentorCard.css';
+<<<<<<< HEAD
 import travolta from './travolta.gif';
+=======
+import {connect} from 'react-redux'
+>>>>>>> master
 
 class MentorCard extends Component {
   constructor() {
@@ -13,14 +17,10 @@ class MentorCard extends Component {
   }
 
   //CWM get ALL active mentors
-  componentWillMount() {
-    axios.get('/api/mentors').then(response => {
-      this.setState({ mentorList: response.data });
-    });
-  }
+ 
 
   render() {
-    const mentors = this.state.mentorList.map((mentor, index) => {
+    const mentors = this.props.mentorList.map((mentor, index) => {
       console.log(mentor.name)
       return (
         <div className="user-card" style={{width: '45%'}} key={index}>
@@ -51,4 +51,12 @@ class MentorCard extends Component {
   }
 }
 
-export default MentorCard;
+
+const mapStateToProps = state => state;
+// const mapStateToProps = (state) => {
+//  return {
+//    actionAskOrGetHelp: actionAskOrGetHelp
+//  }
+// }
+
+export default connect(mapStateToProps)(MentorCard);
