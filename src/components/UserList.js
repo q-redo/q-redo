@@ -22,7 +22,7 @@ class UserList extends Component {
     const users = this.props.userList.map((user, index) => {
       console.log(user)
       return (
-        <Avatar user={user} />
+        <Avatar av_user={user} />
         // <div className="user-card" key={index}>
 
         //   <div className="user-card-left" style={{}}>

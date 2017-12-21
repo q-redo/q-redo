@@ -95,6 +95,8 @@ class QuestionForm extends Component {
           >
             {topics}
           </div>
+          <div onClick={() => this.handleCategoryClick()} className="invis-div"
+            style={{ display: `${this.state.showCategory}` }}/>
           {this.state.showCode ? (
             <input
               placeholder="< code_here />"
