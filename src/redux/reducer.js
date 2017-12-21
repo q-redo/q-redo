@@ -67,5 +67,3 @@ export function toggleAction(val){
     payload: val
   }
 }
-
-
