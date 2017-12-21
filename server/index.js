@@ -72,7 +72,7 @@ passport.deserializeUser(function(obj, done) {
  done(null, obj)
 })
 
-let you = []
+let you;
 app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
 
   you = req.user
@@ -106,20 +106,20 @@ var db = app.get("db")
 socket.handshake.session.user = you
 console.log("Client connected!")
 
-socket.handshake.session.user.user_id ? db.run(`UPDATE users SET logged_in = true WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No one signed in")
+socket.handshake.session.user ? db.run(`UPDATE users SET logged_in = true WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No one signed in")
 
 var intervalId = setInterval(() => getInfoAndEmit(socket, socket.handshake.session.user), 5000)
 socket.on("disconnect", () => {
-console.log(socket.handshake.session.user.user_id)
 console.log("Client disconnected!")
-
-socket.handshake.session.user.user_id ?  db.run(`UPDATE users SET logged_in = false WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No user signed in!") })})
+clearInterval(intervalId);
+socket.handshake.session.user ?  db.run(`UPDATE users SET logged_in = false WHERE user_id =${socket.handshake.session.user.user_id}`) && console.log(socket.handshake.session.user.user_id)
+: console.log("No user signed in!") })})
 
 
 const getInfoAndEmit = async (socket, usr)=> {
-console.log("yay someone is connected still")
+console.log( "User still connected")
 var db = app.get("db");
-try {
+  try {
   const userres = await db.run(`SELECT * FROM users WHERE logged_in = true AND rank = 3 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
    const mentorres = await db.run(`select * FROM users WHERE logged_in = true AND rank = 2 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
   const res = await db.run(`SELECT * FROM questions WHERE cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
@@ -130,7 +130,7 @@ try {
   socket.emit("FromAPI", res) // Emitting a new message. It will be consumed by the client
 } catch (error) {
   console.error(`Error: ${error}`)
-}
+} 
 }
 app.get("/api/questions", (req, res, next) => {
 req.app
