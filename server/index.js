@@ -74,16 +74,10 @@ passport.deserializeUser(function(obj, done) {
 
 let you = []
 app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
-<<<<<<< HEAD
+
   you = req.user
   req.user.rank > 2 ? res.redirect("http://localhost:3000/student") : res.redirect("http://localhost:3000/mentorview")
-
-=======
- you = req.user
- res.redirect("http://localhost:3000/student")
->>>>>>> 236db939917dad11865ebba98cf43c6ba4c570b8
 })
-
 const sharedsession = require("express-socket.io-session")
 
 app.use(session) // ATTACH SESSION
