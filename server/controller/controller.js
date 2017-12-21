@@ -51,7 +51,6 @@ module.exports = {
       .then(response => res.status(200).json(response))
       .catch(console.log);
   },
-<<<<<<< HEAD
   updateWaitingType: (req, res, next) => {
     console.log(req.body.val, req.params.id)
     const dbInstance = req.app.get('db');
@@ -59,12 +58,7 @@ module.exports = {
       .put_waiting_type([req.body.val, req.params.id])
       .then(response => res.status(200).json(response))
       .catch(console.log);
-  }
-
-   
-  
-  
-=======
+  },
   getQuestion: (req, res, next)=> {
     const dbInstance= req.app.get('db');
     dbInstance.get_question_by_id([req.params.id])
@@ -95,5 +89,4 @@ module.exports = {
     .then(response=> res.status(200).json(200))
     .catch(console.log);
   }
->>>>>>> master
 };

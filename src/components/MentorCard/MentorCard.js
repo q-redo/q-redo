@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './MentorCard.css';
-<<<<<<< HEAD
 import travolta from './travolta.gif';
-=======
 import {connect} from 'react-redux'
->>>>>>> master
 
 class MentorCard extends Component {
   constructor() {

@@ -1,8 +1,7 @@
 .topBar-main-container{
-  position: fixed;
+  position: absolute;
   top:0;
-  margin-bottom: 10px;
-  background-color: #222222;
+  background-color: var(--main-box-color);
   color: #EEE;
   height: 80px;
   width: 100vw;
@@ -10,6 +9,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  z-index: 3;
 }
 
 .topBar-left{
