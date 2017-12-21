@@ -157,6 +157,7 @@ app.get("/api/users/:id", (req, res, next) => {
 })
 //change answer to true //
 app.put("/api/questions/:id", controller.answeredQuestion)
+app.put('/api/waiting_type/:id', controller.updateWaitingType)
 
 app.get("/api/users", controller.getActiveUsers)
 app.get("/api/mentors", controller.getActiveMentors)

@@ -11,8 +11,11 @@ import {toggleAction} from '../../redux/reducer'
 class WaitingCard extends Component {
   constructor(props) {
     super(props);
-
+    this.handleWaitingType= this.handleWaitingType.bind(this);
   }
+  handleWaitingType(val){
+    axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => response);
+  } 
 
   render() {
     return (
@@ -22,7 +25,7 @@ class WaitingCard extends Component {
             <span style={{fontSize: '1.5em'}}>STAND BY</span>
             <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
             </div>
-            <i onClick={()=>this.props.toggleAction("action")} class="fa fa-lg fa-times" aria-hidden="true"></i>
+            <i onClick={()=> {this.props.toggleAction("action"); this.handleWaitingType('none')}} class="fa fa-lg fa-times" aria-hidden="true"></i>
       </div>
     );
   }

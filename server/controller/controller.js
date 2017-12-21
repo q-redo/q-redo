@@ -52,6 +52,14 @@ module.exports = {
       .then(response => res.status(200).json(response))
       .catch(console.log);
   },
+  updateWaitingType: (req, res, next) => {
+    console.log(req.body.val, req.params.id)
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .put_waiting_type([req.body.val, req.params.id])
+      .then(response => res.status(200).json(response))
+      .catch(console.log);
+  }
 
    
   

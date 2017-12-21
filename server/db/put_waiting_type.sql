@@ -1,0 +1,1 @@
+UPDATE users SET waiting_type=$1 WHERE user_id=$2;

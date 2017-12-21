@@ -9,9 +9,11 @@ import axios from 'axios';
 class ActionCard extends Component {
   constructor(props){
     super(props);
-
-  }
-
+    this.handleWaitingType= this.handleWaitingType.bind(this);
+}
+handleWaitingType(val){
+  axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => response);
+} 
   render() {
     return (
       <div className="actionForm-main-container m10 curved shadowed flexed">
@@ -28,7 +30,7 @@ class ActionCard extends Component {
         <span style={{marginTop: '10px'}}>OFFER HELP</span>
         </div>
         <div className="big-circle-card">
-        <button onClick={()=>this.props.toggleAction('waiting')} className="bigCircle shadowed jump flexed">
+        <button onClick={()=>{this.props.toggleAction('waiting'); this.handleWaitingType('help')}} className="bigCircle shadowed jump flexed">
           <i className="fa fa-2x fa-exclamation"></i>
         </button>
         <span style={{marginTop: '10px'}}>GET HELP</span>
