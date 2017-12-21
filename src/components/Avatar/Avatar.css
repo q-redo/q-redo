@@ -7,6 +7,9 @@
     flex-direction: row;
     justify-content: space-around;
   }
+  .user-card :hover {
+    cursor: help;
+  }
   
   .user-card-left,
   .user-card-right {
@@ -26,7 +29,7 @@
     height: 36px;
     width: 36px;
     border-style: solid;
-    border-color: #2aabe2;
+    border-color: var(--main-blue-color);
     border-width: 3px;
     border-radius: 50%;
     opacity: 0.9;

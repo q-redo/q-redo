@@ -22,7 +22,7 @@ class RecentQuestions extends Component {
     const recentQuestions = this.state.recentQuestionsList.map(
       (question, index) => {
         return (
-          <button className="topicPill m10" style={{borderColor:`${question.color}`, background: `radial-gradient(at top left, ${question.color},${question.color}, black)`}} key={index}>
+          <button className="topicPill jump m10" style={{borderColor:`${question.color}`, background: `radial-gradient(at top left, ${question.color},${question.color}, black)`}} key={index}>
             {question.topic}
           </button>
         );
