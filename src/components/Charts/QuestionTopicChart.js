@@ -9,11 +9,11 @@ class QuestionTopicChart extends Component {
       topics: [],
       chartData: {
         labels: [
-          'Javascript',
           'CSS',
           'Angular',
           'Redux',
           'React',
+          'Javascript',
           'Node',
           'Other'
         ],
@@ -23,67 +23,128 @@ class QuestionTopicChart extends Component {
             data: [],
             backgroundColor: []
           }
-        ]
-      }
-    };
-  }
+        ],
+        options: {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                  stepSize: 1.0
+                }
+              }
+            ]
+          }
+        }
+    }
+  }};
 
   componentWillMount() {
     axios.get('/api/questions').then(response => {
       console.log(response.data);
-      let questionTopics = [];
-      let css = [];
-      let react = [];
-      let js = [];
-      let angular = [];
-      let node = [];
-      let other = [];
-      let data = [];
+      let topics= [];
+      let other= [];
+      let css= [];
+      let angular= [];
+      let redux= [];
+      let react= [];
+      let js= [];
+      let node= [];
+      let data= [];
 
-      response.data.map(question => questionTopics.push(question.topic_id));
-      response.data.map(question => {
-        question.topic_id === 5
-          ? react.push(question.topic_id)
-          : question.topic_id === 1
-            ? js.push(question.topic_id)
-            : question.topic_id === 3
-              ? angular.push(question.topic_id)
-              : question.topic_id === 6
-                ? node.push(question.topic_id)
-                : question.topic_id === 7
-                  ? css.push
-                  : other.push(question.topic_id);
+      response.data.map(question=> topics.push(question.topic_id));
+      console.log(topics);
+      topics.map(curr=> {
+        curr === 1 ? other.push(curr) :
+        curr === 2 ? css.push(curr) :
+        curr === 3 ? angular.push(curr) :
+        curr === 4 ? redux.push(curr) :
+        curr === 5 ? react.push(curr) :
+        curr === 6 ? js.push(curr) :
+        curr === 7 ? node.push(curr): null;
       });
-      data.push(
-        react.length,
-        js.length,
-        angular.length,
-        angular.length,
-        node.length,
-        css.length,
-        other.length
-      );
-      console.log('data array', data);
+
+
+      data.push(other.length, css.length, angular.length, redux.length, react.length, js.length, node.length);
+      console.log(data);
+
       this.setState({
-        topics: questionTopics,
+        topics: topics,
         chartData: {
           datasets: [
             {
               label: 'Question Topics',
               data: data,
               backgroundColor: [
-                'red',
-                'blue',
-                'green',
-                'aquamarine',
-                'yellow',
-                'purple',
-                'salmon'
+                '#5080f0',
+                '#d82e52',
+                '#7e5eb8',
+                '#32def8',
+                '#f8e258',
+                '#5f9c52',
+                'rgb(255, 168, 249)'
               ]
             }
           ]
         }
       });
+    //   let questionTopics = [];
+    //   let css = [];
+    //   let react = [];
+    //   let redux= [];
+    //   let js = [];
+    //   let angular = [];
+    //   let node = [];
+    //   let other = [];
+    //   let data = [];
+    //
+    //   response.data.map(question => questionTopics.push(question.topic_id));
+    //   response.data.map(question => {
+    //     question.topic_id === 5
+    //       ? react.push(question.topic_id)
+    //       : question.topic_id === 6
+    //         ? js.push(question.topic_id)
+    //         : question.topic_id === 3
+    //           ? angular.push(question.topic_id)
+    //           : question.topic_id === 7
+    //             ? node.push(question.topic_id)
+    //             : question.topic_id === 2
+    //               ? css.push(question.topic_id)
+    //                 : question.topic_id === 4
+    //                   ? redux.push(question.topic_id)
+    //                     : question.topic_id === 1 ? other.push(question.topic_id) : null;
+    //   });
+    //   data.push(
+    //     react.length,
+    //     redux.length,
+    //     js.length,
+    //     angular.length,
+    //     angular.length,
+    //     node.length,
+    //     css.length,
+    //     other.length
+    //   );
+    //
+    //   this.setState({
+    //     topics: questionTopics,
+    //     chartData: {
+    //       datasets: [
+    //         {
+    //           label: 'Question Topics',
+    //           data: data,
+    //           backgroundColor: [
+    //             'red',
+    //             'blue',
+    //             'green',
+    //             'aquamarine',
+    //             'yellow',
+    //             'purple',
+    //             'salmon'
+    //           ]
+    //         }
+    //       ]
+    //     }
+    //   });
     });
   }
 

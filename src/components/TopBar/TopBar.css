@@ -1,11 +1,40 @@
 .topBar-main-container{
-    position: absolute;
-    top:0;
-    margin-bottom: 10px;
-    background-color: var(--main-box-color);
-    color: white;
-    height: 80px;
-    width: 100vw;
-    justify-content: space-around;
-    z-index: 4;
+  position: fixed;
+  top:0;
+  margin-bottom: 10px;
+  background-color: #222222;
+  color: #EEE;
+  height: 80px;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topBar-left{
+  margin-left: 5%;
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.topBar-left img{
+  margin-right: 10px;
+}
+
+.fa-circle{
+  font-size: 8px;
+}
+
+.topBar-right{
+  margin-right: 5%;
+}
+
+.topBar-right:hover{
+  transition: all ease 0.5s;
+  cursor: pointer;
+  color: #2AABE2;
 }

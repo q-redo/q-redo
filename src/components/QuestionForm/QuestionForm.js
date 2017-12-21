@@ -79,12 +79,12 @@ class QuestionForm extends Component {
           />
           <button
             onClick={this.handleCodeClick}
-            className="circle m10 shadowed"
+            className="circle jump m10 shadowed"
               
           ><i style={{marginLeft: '-1px'}}className="fa fa-code"></i></button>
           <button
             onClick={this.handleCategoryClick}
-            className="circle m10 shadowed"
+            className="circle jump m10 shadowed"
             
           ><i className="fa fa-hashtag"></i></button>
           {this.state.topic_name}
@@ -110,7 +110,7 @@ class QuestionForm extends Component {
             
             style={{marginLeft: '50px'}}
             onClick={() => {this.submitQuestion(); this.props.toggleAction("action")}}
-            className="bigCircle animated  shadowed flexed"
+            className="bigCircle jump  shadowed flexed"
           >
             
             <i className="fa fa-lg fa-paper-plane" aria-hidden="true"></i>
