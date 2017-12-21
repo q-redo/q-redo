@@ -5,6 +5,8 @@
     flex-wrap: wrap !important;
     align-items: center !important;
     align-content: center !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .activeMentorsTitle {
   color: #d4d4d4;

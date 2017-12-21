@@ -55,7 +55,7 @@ class MentorQuestionCard extends Component {
               <button className="topicPill m10" style={{borderColor:`${question.color}`, background: `radial-gradient(at top left, ${question.color},${question.color}, black)`}} key={index}>
              {question.topic}
              </button>
-             <button className="bigCircle animated shadowed" ><i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
+             <button className="bigCircle jump shadowed" ><i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
              </button>
             </section>
 

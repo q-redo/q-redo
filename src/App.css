@@ -1,6 +1,7 @@
 .App{
   flex-direction: column;
   overflow: scroll;
+  --main-blue-color: #2aabe2;
   --main-bg-color: #222222;
   --main-box-color: #333333;
 }
@@ -20,9 +21,7 @@ body {
 
 .shadowed{
   z-index: 1;
-  -webkit-box-shadow: 5px 4px 14px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 5px 4px 14px 0px rgba(0,0,0,0.75);
-box-shadow: 5px 4px 14px 0px rgba(0,0,0,0.75);
+box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
 }
 
 .inner-shadow{
@@ -45,6 +44,6 @@ box-shadow: 5px 4px 14px 0px rgba(0,0,0,0.75);
   transform: rotate(7deg);
 }
 .jump:hover{
-  transition: all ease 0.3s;
-  transform: rotate(7deg);
+  transition: all ease 0.2s;
+  transform: scale(1.1,1.1);
 }
