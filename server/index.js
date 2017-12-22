@@ -72,10 +72,10 @@ passport.deserializeUser(function(obj, done) {
  done(null, obj)
 })
 
-let you = []
+let you;
 app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
  you = req.user
- res.redirect("http://localhost:3000/student")
+ req.user.rank === 3 ? res.redirect("http://localhost:3000/student") : res.redirect("http://localhost:3000/mentorview")
 })
 
 const sharedsession = require("express-socket.io-session")
@@ -106,23 +106,24 @@ var db = app.get("db")
 socket.handshake.session.user = you
 console.log("Client connected!")
 
-socket.handshake.session.user.user_id ? db.run(`UPDATE users SET logged_in = true WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No one signed in")
+socket.handshake.session.user ? db.run(`UPDATE users SET logged_in = true WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No one signed in")
 
-var intervalId = setInterval(() => getInfoAndEmit(socket), 5000)
+var intervalId = setInterval(() => getInfoAndEmit(socket, socket.handshake.session.user), 5000)
 socket.on("disconnect", () => {
-console.log(socket.handshake.session.user.user_id)
 console.log("Client disconnected!")
+clearInterval(intervalId);
+socket.handshake.session.user ?  db.run(`UPDATE users SET logged_in = false WHERE user_id =${socket.handshake.session.user.user_id}`) && console.log(socket.handshake.session.user.user_id)
+: console.log("No user signed in!") })})
 
-socket.handshake.session.user.user_id ?  db.run(`UPDATE users SET logged_in = false WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No user signed in!") })})
 
+const getInfoAndEmit = async (socket, usr)=> {
+console.log( "User still connected")
+var db = app.get("db");
+  try {
+  const userres = await db.run(`SELECT * FROM users WHERE logged_in = true AND rank = 3 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
+   const mentorres = await db.run(`select * FROM users WHERE logged_in = true AND rank = 2 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
+  const res = await db.run(`SELECT * FROM questions WHERE cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
 
-const getInfoAndEmit = async socket => {
-console.log("yay someone is connected still")
-var db = app.get("db")
-try {
-  const userres = await db.run(`SELECT * FROM users WHERE logged_in = true AND rank = 3;`)
-  const mentorres = await db.run(`select * FROM users WHERE logged_in = true AND rank = 2`)
-  const res = await db.run(`SELECT * FROM questions`)
 
   socket.emit("MentorList", mentorres)
   socket.emit("UserList", userres)
@@ -130,7 +131,7 @@ try {
   socket.emit("FromAPI", res) // Emitting a new message. It will be consumed by the client
 } catch (error) {
   console.error(`Error: ${error}`)
-}
+} 
 }
 app.get("/api/questions", (req, res, next) => {
 req.app
@@ -158,7 +159,10 @@ app.get("/api/users/:id", (req, res, next) => {
    .catch(console.log)
 })
 //change answer to true //
+app.delete('/api/questions/:id', controller.deleteQuestion)
+
 app.put("/api/questions/:id", controller.answeredQuestion)
+app.put('/api/waiting_type/:id', controller.updateWaitingType)
 
 
 app.get("/api/users", controller.getActiveUsers)
