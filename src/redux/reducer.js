@@ -8,13 +8,15 @@ const initialState= {
   userList: [],
   questionList: [],
   endpoint: "127.0.0.1:3001",
-  mentorList: []
+  mentorList: [],
+  questionWaiting: false
 }
 
 
 //ACTION TYPES
 const REQ_USER= 'REQ_USER';
 const TOGGLE_ACTION= 'TOGGLE_ACTION';
+const TOGGLE_QUESTION_WAITING="TOGGLE_QUESTION_WAITING"; 
 const SOCKET_USERLIST = "SOCKET_USERLIST";
 const SOCKET_QUESTIONLIST = "SOCKET_QUESTIONLIST"
 const SOCKET_MENTORLIST = "SOCKET_MENTORLIST"
@@ -33,6 +35,8 @@ export default function reducer(state= initialState, action){
       return Object.assign({}, state, {mentorList: action.payload})
     case TOGGLE_ACTION:
       return Object.assign({}, state, {actionAskOrGetHelp: action.payload});
+    case TOGGLE_QUESTION_WAITING:
+      return  Object.assign({}, state, {questionWaiting: action.payload}); 
     default:
      return state;
   }
@@ -74,6 +78,13 @@ export function getQuestionList(data){
 export function toggleAction(val){
   return {
     type: TOGGLE_ACTION,
+    payload: val
+  }
+}
+
+export function toggleQuestionWaiting(val){
+  return {
+    type: TOGGLE_QUESTION_WAITING,
     payload: val
   }
 }

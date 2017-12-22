@@ -44,6 +44,13 @@ module.exports = {
       .then(questions => res.status(200).json(questions))
       .catch(console.log);
   },
+  deleteQuestion: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .delete_question([req.params.id])
+      .then(response => res.status(200).json(response))
+      .catch(console.log);
+  },
   answeredQuestion: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance

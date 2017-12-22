@@ -4,7 +4,8 @@ import './QuestionForm.css';
 import axios from 'axios';
 import { relative } from 'path';
 import {connect} from 'react-redux';
-import {toggleAction} from '../../redux/reducer'
+import {toggleAction,toggleQuestionWaiting} from '../../redux/reducer'
+import QuestionWaitingCard from '../QuestionWaitingCard/QuestionWaitingCard';
 
 class QuestionForm extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class QuestionForm extends Component {
       topic_name: "",
       topicList: [],
       showCode: false,
-      showCategory: 'none'
+      showCategory: 'none',
+      question_id: ''
     };
     this.handleQuestionChange = this.handleQuestionChange.bind(this);
     this.handleCodeChange = this.handleCodeChange.bind(this);
@@ -57,7 +59,9 @@ class QuestionForm extends Component {
     let { user_id } = this.props.user
     axios
       .post("/api/questions", { text, code, topic_id, user_id })
-      .then(response => console.log(response.data));
+      .then(response => {
+        this.setState({question_id: response.data[0].q_id})
+        this.props.toggleQuestionWaiting(true)});  
   }
 
   render() {
@@ -70,6 +74,9 @@ class QuestionForm extends Component {
     })
   
     return (
+      this.props.questionWaiting?
+      <QuestionWaitingCard question_id={this.state.question_id}/>
+      :
       <div className="questionForm-main-container m10 curved shadowed">
         <div className="firstQBox">
           <input
@@ -111,7 +118,7 @@ class QuestionForm extends Component {
           <button
             
             style={{marginLeft: '50px'}}
-            onClick={() => {this.submitQuestion(); this.props.toggleAction("action")}}
+            onClick={() => {this.submitQuestion()}}
             className="bigCircle jump  shadowed flexed"
           >
             
@@ -127,4 +134,4 @@ class QuestionForm extends Component {
 }
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps ,{toggleAction})(QuestionForm);
+export default connect(mapStateToProps ,{toggleAction, toggleQuestionWaiting})(QuestionForm);
