@@ -32,7 +32,7 @@ class QuestionThread extends Component{
       this.setState({ answersList: answers.data });
     });
   }
-
+ 
   upvote(id){
     axios.put(`/api/upvote/answers/${id}`);
   }

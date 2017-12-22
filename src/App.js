@@ -42,7 +42,7 @@ class App extends Component {
   render() {
   
     return (
-      <div  className="App flexed">
+      <div className="App flexed">
         <TopBar/>
         <section style={{marginTop: '100px', width: '720px'}}>
         {Router}

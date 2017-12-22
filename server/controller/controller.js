@@ -37,6 +37,13 @@ module.exports = {
       .then(questions => res.status(200).json(questions))
       .catch(console.log);
   },
+  getArchivedQuestions: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance
+      .get_archived_questions()
+      .then(questions=> res.status(200).json(questions))
+      .catch(console.log);
+  },
   getTopics: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance
@@ -78,7 +85,13 @@ module.exports = {
   toggleVerify: (req, res, next)=> {
     const dbInstance= req.app.get('db');
     dbInstance.toggle_verify([req.params.id])
-    .then(response=> res.status(200).json(200))
+    .then(response=> res.status(200).json(response))
     .catch(console.log);
+  },
+  postAnswer: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.post_answer([req.body.answer, req.body.user_id, req.body.q_id])
+      .then(response=> res.status(200).json(response))
+      .catch(console.log);
   }
 };
