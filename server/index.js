@@ -75,7 +75,7 @@ passport.deserializeUser(function(obj, done) {
 let you;
 app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
  you = req.user
- res.redirect("http://localhost:3000/student")
+ req.user.rank === 3 ? res.redirect("http://localhost:3000/student") : res.redirect("http://localhost:3000/mentorview")
 })
 
 const sharedsession = require("express-socket.io-session")
@@ -108,7 +108,7 @@ console.log("Client connected!")
 
 socket.handshake.session.user ? db.run(`UPDATE users SET logged_in = true WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No one signed in")
 
-var intervalId = setInterval(() => getInfoAndEmit(socket), 5000)
+var intervalId = setInterval(() => getInfoAndEmit(socket, socket.handshake.session.user), 5000)
 socket.on("disconnect", () => {
 console.log("Client disconnected!")
 clearInterval(intervalId);
