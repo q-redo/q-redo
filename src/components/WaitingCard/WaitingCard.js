@@ -17,7 +17,7 @@ class WaitingCard extends Component {
     return (
       <div className="waiting-card-main-container m10 curved shadowed">
             <img style={{width: '90px'}} src={hourglass} alt="hourglass spinning"/>
-          
+        
             <i onClick={()=>this.props.toggleAction("action")} class="fa fa-lg fa-times" aria-hidden="true"></i>
       </div>
     );

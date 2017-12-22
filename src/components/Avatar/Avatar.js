@@ -29,7 +29,7 @@ class Avatar extends Component {
           </div>
 
           <div className="user-card-right">
-            <small>{this.props.user.name.split(' ')[0]}</small>
+            {/* <small>{this.props.user.name.split(' ')[0]}</small> */}
           </div>
         </div>     
     )
