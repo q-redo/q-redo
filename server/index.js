@@ -147,6 +147,7 @@ req.app
 
 app.get('/api/archived/questions', controller.getArchivedQuestions)
 app.post("/api/questions", controller.postQuestion)
+app.get("/api/questions/:id", controller.getQuestionById)
 
 app.get("/api/users/:id", (req, res, next) => {
  const dbInstance = req.app.get("db")
@@ -171,6 +172,11 @@ app.get("/api/activeQuestions", controller.getActiveQuestions)
 app.get("/api/topics", controller.getTopics)
 
 app.post('/api/answers', controller.postAnswer)
+app.get('/api/answers/:id', controller.getAnswers);
+
+app.put('/api/verify/answers/:id', controller.toggleVerify);
+app.put('/api/upvote/answers/:id', controller.upvote);
+app.put('/api/downvote/answers/:id', controller.downvote);
 
 app.get("/api/me", function(req, res) {
  if (!req.user) {

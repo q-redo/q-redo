@@ -49,7 +49,9 @@ class Avatar extends Component {
             <div className="user-avatar shadowed" style={{marginLeft: '25px', backgroundImage:`url('${this.state.paired_user.image_url}')`}}/>
             </div>
             :
-            <small>{this.props.av_user.name.split(' ')[0]}</small>}
+            ''
+            // <small>{this.props.av_user.name.split(' ')[0]}</small>
+            }
           </div>
         </div>     
     )

@@ -14,7 +14,8 @@ class MentorQuestionCard extends Component {
 
     this.state = {
       activeQuestionsList: [],
-      id: 0
+      id: 0,
+      voted: false
     };
     this.answeredQuestion = this.answeredQuestion.bind(this);
   }
