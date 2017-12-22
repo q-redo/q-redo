@@ -34,7 +34,6 @@ class MentorQuestionCard extends Component {
   }
 
   render() {
-    console.log('MENTOR QUESTION', this.props.questionId);
     const activeQuestions = this.state.activeQuestionsList.map(
       (question, index) => {
         return (
