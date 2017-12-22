@@ -4,7 +4,8 @@ import './QuestionForm.css';
 import axios from 'axios';
 import { relative } from 'path';
 import {connect} from 'react-redux';
-import {toggleAction} from '../../redux/reducer'
+import {toggleAction,toggleQuestionWaiting} from '../../redux/reducer'
+import QuestionWaitingCard from '../QuestionWaitingCard/QuestionWaitingCard';
 
 class QuestionForm extends Component {
   constructor(props) {
@@ -17,13 +18,15 @@ class QuestionForm extends Component {
       topic_name: "",
       topicList: [],
       showCode: false,
-      showCategory: 'none'
+      showCategory: 'none',
+      question_id: ''
     };
     this.handleQuestionChange = this.handleQuestionChange.bind(this);
     this.handleCodeChange = this.handleCodeChange.bind(this);
     this.handleCodeClick = this.handleCodeClick.bind(this);
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
     this.handleChooseCategory = this.handleChooseCategory.bind(this);
+    this.handleWaitingType = this.handleWaitingType.bind(this);
   }
 
   componentDidMount() {
@@ -52,16 +55,20 @@ class QuestionForm extends Component {
       this.setState({ showCategory: 'none' });
     }
   }
+  handleWaitingType(val){
+    axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => {console.log('this is the response', response), response});
+  } 
   submitQuestion() {
     let { text, code, topic_id } = this.state;
     let { user_id } = this.props.user
     axios
       .post("/api/questions", { text, code, topic_id, user_id })
-      .then(response => console.log(response.data));
+      .then(response => {
+        this.setState({question_id: response.data[0].q_id})
+        this.props.toggleQuestionWaiting(true)});  
   }
 
   render() {
-    console.log(this.state)
     const method = this.handleChooseCategory;
     const topics = this.state.topicList.map(function(thing){
       return (<a onClick={() => method(thing)} href="#">
@@ -70,6 +77,9 @@ class QuestionForm extends Component {
     })
   
     return (
+      this.props.questionWaiting?
+      <QuestionWaitingCard question_id={this.state.question_id}/>
+      :
       <div className="questionForm-main-container m10 curved shadowed">
         <div className="firstQBox">
           <input
@@ -95,6 +105,8 @@ class QuestionForm extends Component {
           >
             {topics}
           </div>
+          <div onClick={() => this.handleCategoryClick()} className="invis-div"
+            style={{ display: `${this.state.showCategory}` }}/>
           {this.state.showCode ? (
             <input
               placeholder="< code_here />"
@@ -109,7 +121,7 @@ class QuestionForm extends Component {
           <button
             
             style={{marginLeft: '50px'}}
-            onClick={() => {this.submitQuestion(); this.props.toggleAction("action")}}
+            onClick={() => { this.handleWaitingType('question'), this.submitQuestion()}}
             className="bigCircle jump  shadowed flexed"
           >
             
@@ -125,4 +137,4 @@ class QuestionForm extends Component {
 }
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps ,{toggleAction})(QuestionForm);
+export default connect(mapStateToProps ,{toggleAction, toggleQuestionWaiting})(QuestionForm);

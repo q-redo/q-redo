@@ -5,11 +5,26 @@
   --main-bg-color: #222222;
   --main-box-color: #333333;
 }
+/* body {
+  --main-bg-color: #222222;
+background-image: url('http://www.heathrowe.com/tuts/gridimages/8.gif');
+background-size: fill;
+
+
+animation: AnimationName 10s  infinite;
+
+
+background-color: var(--main-bg-color);
+}
+    @keyframes AnimationName { 
+        0%{background-position:0% 0%}
+        100%{background-position:100% 0%}
+    } */
 
 body {
   --main-bg-color: #222222;
   background-color: var(--main-bg-color);
-}
+}    
 
 .m10{
   margin: 10px;

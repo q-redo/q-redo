@@ -158,7 +158,10 @@ app.get("/api/users/:id", (req, res, next) => {
    .catch(console.log)
 })
 //change answer to true //
+app.delete('/api/questions/:id', controller.deleteQuestion)
+
 app.put("/api/questions/:id", controller.answeredQuestion)
+app.put('/api/waiting_type/:id', controller.updateWaitingType)
 
 
 app.get("/api/users", controller.getActiveUsers)

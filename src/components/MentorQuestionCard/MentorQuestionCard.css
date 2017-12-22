@@ -70,6 +70,11 @@ position: relative;
   font-size: 2em;
   color: white;
 }
+.user-question-card .bigCircle:hover{
+  transition: all ease 0.3s;
+  background: var(--main-bg-color);
+  color: var(--main-blue-color);
+}
 .user-question-card .topicPill{
   margin-top: 0px !important;
     padding-left: 10px !important;

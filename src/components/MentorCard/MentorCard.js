@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './MentorCard.css';
+import travolta from './travolta.gif';
 import {connect} from 'react-redux'
 
 class MentorCard extends Component {
@@ -17,7 +18,6 @@ class MentorCard extends Component {
 
   render() {
     const mentors = this.props.mentorList.map((mentor, index) => {
-      console.log(mentor.name)
       return (
         <div className="user-card" style={{width: '45%'}} key={index}>
         
@@ -34,7 +34,14 @@ class MentorCard extends Component {
     return (
         <div style={{display: 'inline-block'}}>
         <div className="mentorCard curved m10 shadowed">
-        {mentors}</div>
+        {this.state.mentorList.length?
+        mentors:<div style={{margin: 'auto'}}>
+          <h4 >NO MENTORS AVAILABLE</h4>
+          <img className="travolta" src={travolta}/>
+          <div className="hider"/>
+          </div>
+        }
+        </div>
         </div>
     );
   }
