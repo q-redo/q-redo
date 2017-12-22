@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import linked from './linked.svg';
+import default_user_icon from './default-user-icon.png';
 import './Avatar.css';
 
 class Avatar extends Component {
   constructor(props) {
     super(props);
     this.state ={
-      paired_user: {}
+      paired_user: {image_url: default_user_icon}
 
     }
   }
   componentWillReceiveProps(){
     let paired_id = this.props.av_user.paired;
-    let thing;
+    let thing = {image_url: default_user_icon};
     this.props.mentorList.forEach(function(mentor){
       if(mentor.user_id === paired_id){
         thing = mentor;
@@ -32,7 +33,7 @@ class Avatar extends Component {
         {this.props.av_user.name}
         </div>
           <div className="user-card-left" style={{}}>
-            <div className="user-avatar shadowed" style={{backgroundImage:`url('${this.props.av_user.image_url}')`}}/>
+            <div className="user-avatar shadowed" style={{backgroundImage:`url('${this.props.av_user.image_url === null? default_user_icon: this.props.av_user.image_url}')`}}/>
             {
             this.props.av_user.paired?'':  
             this.props.av_user.waiting_type === 'question'?
