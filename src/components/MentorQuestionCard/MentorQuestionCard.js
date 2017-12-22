@@ -38,7 +38,7 @@ class MentorQuestionCard extends Component {
           <div className="user-question-card curved shadowed m10" key={index}>
             <section className="uq-left-side m10">
               <section className="uq-top-left">
-              <Avatar user={{name: question.name, image_url: question.image_url}}/>
+              <Avatar av_user={{name: question.name, image_url: question.image_url}}/>
               <span style={{display: 'inline-block'}}>0:00 <img style={{width: '25px'}} src={hourglass} alt="hourglass spinning"/></span>
               </section>
               <p>{question.question}</p>

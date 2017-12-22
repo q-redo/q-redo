@@ -8,13 +8,20 @@ class Avatar extends Component {
   constructor(props) {
     super(props);
     this.state ={
-      paired_user: {user_id: 27, name: "Devin Jackson", image_url: 'https://78.media.tumblr.com/avatar_e4652bb57c78_128.png'}
+      paired_user: {}
 
     }
   }
-
-
-
+  componentWillReceiveProps(){
+    let paired_id = this.props.av_user.paired;
+    let thing;
+    this.props.mentorList.forEach(function(mentor){
+      if(mentor.user_id === paired_id){
+        thing = mentor;
+      }
+    })
+    this.setState({paired_user: thing})
+  }
 
   render() {
     console.log('avatar props', this.props)

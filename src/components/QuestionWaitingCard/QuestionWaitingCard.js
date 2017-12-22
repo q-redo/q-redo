@@ -6,7 +6,7 @@ import hourglass from '../WaitingCard/hourglass.svg';
 import ellipsis from '../WaitingCard/ellipsis.svg';
 import { relative } from 'path';
 import {connect} from 'react-redux';
-import {toggleAction} from '../../redux/reducer'
+import {toggleAction, toggleQuestionWaiting} from '../../redux/reducer'
 
 class QuestionWaitingCard extends Component {
   constructor(props) {
@@ -31,11 +31,11 @@ class QuestionWaitingCard extends Component {
             <span style={{fontSize: '1.5em'}}>STAND BY</span>
             <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
             </div>
-            <i onClick={()=> {this.props.toggleAction("action");this.props.toggleQuestionWaiting(true); this.handleWaitingType('none');this.handleCancelQuestion(this.props.question_id)}} class="fa fa-lg fa-times" aria-hidden="true"></i>
+            <i onClick={()=> {this.props.toggleAction("action");this.props.toggleQuestionWaiting(false); this.handleWaitingType('none');this.handleCancelQuestion(this.props.question_id)}} class="fa fa-lg fa-times" aria-hidden="true"></i>
       </div>
     );
   }
 }
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps ,{toggleAction})(QuestionWaitingCard);
+export default connect(mapStateToProps ,{toggleAction, toggleQuestionWaiting})(QuestionWaitingCard);
