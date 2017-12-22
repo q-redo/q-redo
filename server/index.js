@@ -144,6 +144,7 @@ req.app
 ///////////////// I DELETED SOME ENDPOINTS FOR THE ABOVE SOCKET.IO TO WORK//////////
 //Endpoints
 
+app.get('/api/archived/questions', controller.getArchivedQuestions)
 app.post("/api/questions", controller.postQuestion)
 
 app.get("/api/users/:id", (req, res, next) => {
@@ -163,6 +164,8 @@ app.get("/api/mentors", controller.getActiveMentors)
 app.get("/api/recentQuestions", controller.getRecentQuestions)
 app.get("/api/activeQuestions", controller.getActiveQuestions)
 app.get("/api/topics", controller.getTopics)
+
+app.post('/api/answers', controller.postAnswer)
 
 app.get("/api/me", function(req, res) {
  if (!req.user) {
