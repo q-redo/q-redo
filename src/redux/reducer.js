@@ -10,6 +10,7 @@ const initialState= {
   userList: [],
   questionList: [],
   endpoint: "127.0.0.1:3001",
+  mentorList: []
 }
 
 
@@ -20,6 +21,7 @@ const SOCKET_USERLIST = "SOCKET_USERLIST";
 const SOCKET_QUESTIONLIST = "SOCKET_QUESTIONLIST";
 const TOGGLE_MODAL = "TOGGLE_MODAL";
 const SET_MODAL_ID = "SET_MODAL_ID";
+const SOCKET_MENTORLIST = "SOCKET_MENTORLIST"
 
 
 //REDUCER
@@ -31,6 +33,8 @@ export default function reducer(state= initialState, action){
       return Object.assign({}, state, {userList: action.payload});
     case SOCKET_QUESTIONLIST:
       return Object.assign({}, state, {questionList: action.payload})
+    case SOCKET_MENTORLIST:
+      return Object.assign({}, state, {mentorList: action.payload})
     case TOGGLE_ACTION:
       return Object.assign({}, state, {actionAskOrGetHelp: action.payload});
     case TOGGLE_MODAL:
@@ -47,6 +51,13 @@ export default function reducer(state= initialState, action){
 export function reqUser(data){
   return {
     type: REQ_USER,
+    payload: data
+  }
+}
+
+export function getMentorList(data){
+  return{
+    type: SOCKET_MENTORLIST,
     payload: data
   }
 }
