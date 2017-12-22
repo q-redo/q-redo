@@ -1,5 +1,5 @@
 .topBar-main-container{
-  position: fixed;
+  position: relative;
   top:0;
   margin-bottom: 10px;
   background-color: #222222;
