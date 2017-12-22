@@ -26,7 +26,7 @@ class Notifications extends Component {
   }
   componentWillReceiveProps(props) {
     const clear = () => this.clearAnimation()
-    if (this.comparison()) {
+    if (this.comparison() & this.props.user.rank < 3) {
       setTimeout(clear, 10000)
       this.setState({
         audiostate: [

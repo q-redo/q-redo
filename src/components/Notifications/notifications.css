@@ -8,16 +8,16 @@
   z-index: 50;
   color: white;
 }
-.hideit{
-    display: none;
+.hideit {
+  display: none;
 }
 
 .notifyUp {
   animation-name: slideUp;
-  animation-duration: 10s;
+  animation-duration: 11s;
   animation-fill-mode: forwards;
   -webkit-animation-name: slideUp;
-  -webkit-animation-duration: 10s;
+  -webkit-animation-duration: 11s;
   -webkit-animation-fill-mode: forwards;
 }
 @keyframes slideUp {

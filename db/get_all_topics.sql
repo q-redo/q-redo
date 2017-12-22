@@ -1,1 +1,0 @@
-SELECT * FROM topics ORDER BY id ASC;
