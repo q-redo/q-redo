@@ -25,7 +25,8 @@ class Notifications extends Component {
     this.setState({ slidingState: "notificationbox curved shadowed hideit m10" })
   }
   componentWillReceiveProps(props) {
-    const clear = () => this.clearAnimation()
+    const clear = () => this.clearAnimation();
+    let ql = this.state.questionList;
     if (this.comparison() & this.props.user.rank < 3) {
       setTimeout(clear, 10000)
       this.setState({
@@ -46,6 +47,12 @@ class Notifications extends Component {
       this.setState({ questionList: this.props.questionList })
     }
     this.setState({ questionList: this.props.questionList })
+    this.state.questionList.length > 0 ? 
+    document.title = this.state.questionList.length + (" open questions!") :
+    document.title = "No questions."
+
+
+
   }
 
  
