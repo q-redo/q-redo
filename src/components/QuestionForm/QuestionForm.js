@@ -26,6 +26,7 @@ class QuestionForm extends Component {
     this.handleCodeClick = this.handleCodeClick.bind(this);
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
     this.handleChooseCategory = this.handleChooseCategory.bind(this);
+    this.handleWaitingType = this.handleWaitingType.bind(this);
   }
 
   componentDidMount() {
@@ -54,6 +55,9 @@ class QuestionForm extends Component {
       this.setState({ showCategory: 'none' });
     }
   }
+  handleWaitingType(val){
+    axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => {console.log('this is the response', response), response});
+  } 
   submitQuestion() {
     let { text, code, topic_id } = this.state;
     let { user_id } = this.props.user
@@ -65,7 +69,6 @@ class QuestionForm extends Component {
   }
 
   render() {
-    console.log(this.state)
     const method = this.handleChooseCategory;
     const topics = this.state.topicList.map(function(thing){
       return (<a onClick={() => method(thing)} href="#">
@@ -118,7 +121,7 @@ class QuestionForm extends Component {
           <button
             
             style={{marginLeft: '50px'}}
-            onClick={() => {this.submitQuestion()}}
+            onClick={() => { this.handleWaitingType('question'), this.submitQuestion()}}
             className="bigCircle jump  shadowed flexed"
           >
             

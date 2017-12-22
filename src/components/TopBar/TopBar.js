@@ -24,7 +24,6 @@ class TopBar extends Component {
   // }
 
   render() {
-    console.log(this.props.user);
     return (
     <div className="topBar-main-container flexed">
       <div className='topBar-left'>

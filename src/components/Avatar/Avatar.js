@@ -25,7 +25,6 @@ class Avatar extends Component {
   }
 
   render() {
-    console.log('avatar props', this.props)
     return (
        
         <div className="user-card" >

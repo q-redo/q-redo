@@ -18,7 +18,6 @@ class MentorCard extends Component {
 
   render() {
     const mentors = this.props.mentorList.map((mentor, index) => {
-      console.log(mentor.name)
       return (
         <div className="user-card" style={{width: '45%'}} key={index}>
         

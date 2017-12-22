@@ -16,7 +16,6 @@ class StudentView extends Component {
   }
 
   render() {
-    console.log("the current user is this",this.props.user)
     return (
       <div id="StudentView">
         <section style={{display: 'inline-block'}}>
