@@ -105,7 +105,13 @@ module.exports = {
   },
   postAnswer: (req, res, next)=> {
     const dbInstance= req.app.get('db');
-    dbInstance.post_answer([req.body.answer, req.body.user_id, req.body.q_id])
+    dbInstance.post_answer([req.body.answer, req.body.code_block, req.body.user_id, req.body.q_id])
+      .then(response=> res.status(200).json(response))
+      .catch(console.log);
+  },
+  getQuestionById: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.get_question_by_id([req.params.id])
       .then(response=> res.status(200).json(response))
       .catch(console.log);
   }
