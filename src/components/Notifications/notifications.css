@@ -1,0 +1,56 @@
+.notificationbox {
+  background-color: var(--main-blue-color);
+  width: 10%;
+  padding: 5px;
+  right: 0%;
+  top: 110%;
+  position: fixed;
+  z-index: 50;
+  color: white;
+}
+.hideit {
+  display: none;
+}
+
+.notifyUp {
+  animation-name: slideUp;
+  animation-duration: 11s;
+  animation-fill-mode: forwards;
+  -webkit-animation-name: slideUp;
+  -webkit-animation-duration: 11s;
+  -webkit-animation-fill-mode: forwards;
+}
+@keyframes slideUp {
+  0% {
+    top: 100%;
+  }
+  5% {
+    top: 20%;
+  }
+  75% {
+    background-color: red;
+    right: 0%;
+  }
+  100% {
+    top: 20%;
+    right: -20%;
+    background-color: red;
+  }
+}
+@-webkit-keyframes slideUp {
+  0% {
+    top: 100%;
+  }
+  5% {
+    top: 20%;
+  }
+  75% {
+    background-color: red;
+    right: 0%;
+  }
+  100% {
+    top: 20%;
+    right: -20%;
+    background-color: red;
+  }
+}
