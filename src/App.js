@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Router from './router';
 import TopBar from './components/TopBar/TopBar';
+import Notifications from './components/Notifications/Notifications'
 import axios from 'axios';
 import {getUserList, getQuestionList, reqUser, getMentorList} from "./redux/reducer"
 import {connect} from "react-redux"
@@ -42,7 +43,10 @@ class App extends Component {
   render() {
   
     return (
+
       <div  className="App flexed">
+      <Notifications />
+
         <TopBar/>
         <section style={{marginTop: '100px', width: '720px'}}>
         {Router}

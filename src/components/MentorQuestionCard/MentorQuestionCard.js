@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 // import Moment from 'react-moment'; 
 import axios from 'axios';
 import hourglass from '../WaitingCard/hourglass.svg'
-
 import Avatar from '../Avatar/Avatar'
+import AnswerModal from '../AnswerModal/AnswerModal.js';
+import { connect } from 'react-redux';
+import { toggleModal, setModalId } from '../../redux/reducer.js';
 import './MentorQuestionCard.css';
 
 class MentorQuestionCard extends Component {
@@ -32,6 +34,7 @@ class MentorQuestionCard extends Component {
   }
 
   render() {
+    console.log('MENTOR QUESTION', this.props.questionId);
     const activeQuestions = this.state.activeQuestionsList.map(
       (question, index) => {
         return (
@@ -55,10 +58,13 @@ class MentorQuestionCard extends Component {
               <button className="topicPill m10" style={{borderColor:`${question.color}`, background: `radial-gradient(at top left, ${question.color},${question.color}, black)`}} key={index}>
              {question.topic}
              </button>
-             <button className="bigCircle jump shadowed" ><i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
+             <button className="bigCircle jump shadowed" onClick={()=> {
+               this.props.toggleModal(); 
+               this.props.setModalId(question.q_id);
+              }}>
+              <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
              </button>
             </section>
-
           </div>
         );
       }
@@ -71,4 +77,5 @@ class MentorQuestionCard extends Component {
   }
 }
 
-export default MentorQuestionCard;
+const mapStateToProps= state=> state;
+export default connect(mapStateToProps, { toggleModal, setModalId })(MentorQuestionCard);

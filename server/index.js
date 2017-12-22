@@ -72,12 +72,12 @@ passport.deserializeUser(function(obj, done) {
  done(null, obj)
 })
 
-let you = []
+let you;
 app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
-
-  you = req.user
-  req.user.rank > 2 ? res.redirect("http://localhost:3000/student") : res.redirect("http://localhost:3000/mentorview")
+ you = req.user
+ req.user.rank === 3 ? res.redirect("http://localhost:3000/student") : res.redirect("http://localhost:3000/mentorview")
 })
+
 const sharedsession = require("express-socket.io-session")
 
 app.use(session) // ATTACH SESSION
@@ -106,31 +106,32 @@ var db = app.get("db")
 socket.handshake.session.user = you
 console.log("Client connected!")
 
-socket.handshake.session.user.user_id ? db.run(`UPDATE users SET logged_in = true WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No one signed in")
+socket.handshake.session.user ? db.run(`UPDATE users SET logged_in = true WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No one signed in")
 
 var intervalId = setInterval(() => getInfoAndEmit(socket, socket.handshake.session.user), 5000)
 socket.on("disconnect", () => {
-console.log(socket.handshake.session.user.user_id)
 console.log("Client disconnected!")
-
-socket.handshake.session.user.user_id ?  db.run(`UPDATE users SET logged_in = false WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No user signed in!") })})
+clearInterval(intervalId);
+socket.handshake.session.user ?  db.run(`UPDATE users SET logged_in = false WHERE user_id =${socket.handshake.session.user.user_id}`) && console.log(socket.handshake.session.user.user_id)
+: console.log("No user signed in!") })})
 
 
 const getInfoAndEmit = async (socket, usr)=> {
-console.log("yay someone is connected still")
+console.log( "User still connected")
 var db = app.get("db");
-try {
+  try {
   const userres = await db.run(`SELECT * FROM users WHERE logged_in = true AND rank = 3 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
    const mentorres = await db.run(`select * FROM users WHERE logged_in = true AND rank = 2 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
   const res = await db.run(`SELECT * FROM questions WHERE cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
 
+
   socket.emit("MentorList", mentorres)
   socket.emit("UserList", userres)
-  socket.emit("FromMe", usr)
+  socket.emit("FromMe", socket.handshake.session.user)
   socket.emit("FromAPI", res) // Emitting a new message. It will be consumed by the client
 } catch (error) {
   console.error(`Error: ${error}`)
-}
+} 
 }
 app.get("/api/questions", (req, res, next) => {
 req.app
@@ -144,6 +145,7 @@ req.app
 ///////////////// I DELETED SOME ENDPOINTS FOR THE ABOVE SOCKET.IO TO WORK//////////
 //Endpoints
 
+app.get('/api/archived/questions', controller.getArchivedQuestions)
 app.post("/api/questions", controller.postQuestion)
 
 app.get("/api/users/:id", (req, res, next) => {
@@ -161,11 +163,14 @@ app.delete('/api/questions/:id', controller.deleteQuestion)
 app.put("/api/questions/:id", controller.answeredQuestion)
 app.put('/api/waiting_type/:id', controller.updateWaitingType)
 
+
 app.get("/api/users", controller.getActiveUsers)
 app.get("/api/mentors", controller.getActiveMentors)
 app.get("/api/recentQuestions", controller.getRecentQuestions)
 app.get("/api/activeQuestions", controller.getActiveQuestions)
 app.get("/api/topics", controller.getTopics)
+
+app.post('/api/answers', controller.postAnswer)
 
 app.get("/api/me", function(req, res) {
  if (!req.user) {

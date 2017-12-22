@@ -5,6 +5,8 @@ import axios from 'axios';
 const initialState= {
   user: {},
   actionAskOrGetHelp: "action",
+  isOpen: false,
+  questionId: 1,
   userList: [],
   questionList: [],
   endpoint: "127.0.0.1:3001",
@@ -18,7 +20,9 @@ const REQ_USER= 'REQ_USER';
 const TOGGLE_ACTION= 'TOGGLE_ACTION';
 const TOGGLE_QUESTION_WAITING="TOGGLE_QUESTION_WAITING"; 
 const SOCKET_USERLIST = "SOCKET_USERLIST";
-const SOCKET_QUESTIONLIST = "SOCKET_QUESTIONLIST"
+const SOCKET_QUESTIONLIST = "SOCKET_QUESTIONLIST";
+const TOGGLE_MODAL = "TOGGLE_MODAL";
+const SET_MODAL_ID = "SET_MODAL_ID";
 const SOCKET_MENTORLIST = "SOCKET_MENTORLIST"
 
 
@@ -37,6 +41,10 @@ export default function reducer(state= initialState, action){
       return Object.assign({}, state, {actionAskOrGetHelp: action.payload});
     case TOGGLE_QUESTION_WAITING:
       return  Object.assign({}, state, {questionWaiting: action.payload}); 
+    case TOGGLE_MODAL:
+      return Object.assign({}, state, {isOpen: !state.isOpen});
+    case SET_MODAL_ID:
+      return Object.assign({}, state, {questionId: action.payload})
     default:
      return state;
   }
@@ -74,7 +82,6 @@ export function getQuestionList(data){
   }
 }
 
-
 export function toggleAction(val){
   return {
     type: TOGGLE_ACTION,
@@ -86,5 +93,17 @@ export function toggleQuestionWaiting(val){
   return {
     type: TOGGLE_QUESTION_WAITING,
     payload: val
+  }
+}
+export function toggleModal(){
+  return {
+    type: TOGGLE_MODAL
+  }
+}
+
+export function setModalId(id){
+  return {
+    type: SET_MODAL_ID,
+    payload: id
   }
 }
