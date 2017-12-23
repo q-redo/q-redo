@@ -41,6 +41,7 @@ passport.use(
      callbackURL: "/login"
    },
    function(accessToken, refreshToken, extraParams, profile, done) {
+     console.log('PROFILE', profile._json.email)
      app
        .get("db")
        .getUserByAuthId([profile.id])
@@ -51,7 +52,8 @@ passport.use(
              .createUserByAuth([
                profile.id,
                profile.displayName,
-               profile.picture
+               profile.picture,
+               profile._json.email
              ])
              .then(created => {
                return done(null, created[0])
