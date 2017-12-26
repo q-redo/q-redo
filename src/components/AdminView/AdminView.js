@@ -1,5 +1,16 @@
 import React, {Component} from 'react'
 
+import ArchiveQuestions from './AdminCards/ArchiveQuestions'
+import CohortAssignment from './AdminCards/CohortAssignment'
+import CreateCampus from './AdminCards/CreateCampus'
+import CreateCohort from './AdminCards/CreateCohort'
+import DeleteQuestions from './AdminCards/DeleteQuestions'
+import RankChange from './AdminCards/RankChange'
+import SearchActiveQuestions from './AdminCards/SearchActiveQuestions'
+import SearchArchiveQuestions from './AdminCards/SearchArchiveQuestions'
+import TopicCharts from './AdminCards/TopicCharts'
+
+
 import './adminview.css'
 
 class AdminView extends Component {
@@ -13,23 +24,23 @@ class AdminView extends Component {
             <div className="admin-mainbox-flex">
             <div className="admin-group-box-by-row">
                 <div className="admin-main-boxes curved shadowed m10">
-                    Make mentors / admins
+                    <RankChange />
                     </div>
-                    <div className="admin-main-boxes curved shadowed m10"> Create campuses</div>
+                    <div className="admin-main-boxes curved shadowed m10"> <CreateCampus /></div>
                     <div className="admin-main-boxes curved shadowed m10">
-                   create cohorts
+                   <CreateCohort />
                     </div>
-              <div className="admin-main-boxes curved shadowed m10"> archive all questions button </div>
+              <div className="admin-main-boxes curved shadowed m10"> <ArchiveQuestions /> </div>
               <div className="admin-main-boxes curved shadowed m10">
-                  assign students to cohort
+                  <CohortAssignment />
                   </div>
                   <div className="admin-main-boxes curved shadowed m10">
-                      delete questions
+                      <DeleteQuestions />
                       </div>
-                      <div className="admin-main-boxes curved shadowed m10"> Search active questions by: all, cohort, campus
+                      <div className="admin-main-boxes curved shadowed m10"> <SearchActiveQuestions />
                           </div>
-                          <div  className="admin-main-boxes curved shadowed m10"> link to topic chart(s)</div>
-                          <div className="admin-main-boxes curved shadowed m10">search archived questions</div>
+                          <div  className="admin-main-boxes curved shadowed m10"> <TopicCharts /></div>
+                          <div className="admin-main-boxes curved shadowed m10"><SearchArchiveQuestions /></div>
 </div>
 
 
