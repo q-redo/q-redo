@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import '../adminview.css'
+import './admincards.css'
 
 class ArchiveQuestions extends Component {
 

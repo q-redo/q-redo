@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import '../adminview.css'
+import './admincards.css'
 
 class CreateCohort extends Component {
 
