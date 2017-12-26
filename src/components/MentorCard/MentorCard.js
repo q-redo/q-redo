@@ -11,10 +11,18 @@ class MentorCard extends Component {
   }
 
   render() {
+    let paired_ids=[];
+    this.props.userList.forEach(student => {
+      student.paired?
+      paired_ids.push(student.paired)
+      :'';
+    })
+    console.log(paired_ids)
     const mentors = this.props.mentorList.map((mentor, index) => {
+      if(!paired_ids.includes(mentor.user_id)){
       return (
         <Avatar av_user={mentor}/>
-      );
+      )};
     });
     return (
         <div style={{display: 'inline-block'}}>
