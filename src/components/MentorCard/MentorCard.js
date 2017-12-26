@@ -17,7 +17,6 @@ class MentorCard extends Component {
       paired_ids.push(student.paired)
       :'';
     })
-    console.log(paired_ids)
     const mentors = this.props.mentorList.map((mentor, index) => {
       if(!paired_ids.includes(mentor.user_id)){
       return (
