@@ -182,6 +182,9 @@ app.put('/api/downvote/answers/:id', controller.downvote);
 app.post('/api/studentsearch', controller.searchForStudent);
 app.put('/api/changeuserrank', controller.changeRank);
 app.get('/api/getcampusandcohort', controller.getCandC);
+app.put('/api/changeusercohort', controller.changeCohort);
+app.put('/api/changeusercampus', controller.changeCampus);
+app.post('/api/createcampus', controller.campusCreation);
 //End of AdminView endpoints.
 
 app.get("/api/me", function(req, res) {

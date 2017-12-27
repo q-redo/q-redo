@@ -3,10 +3,13 @@ import './admincards.css'
 
 class SearchArchiveQuestions extends Component {
 
+
+
+    
     render(){
         return(
             <div>
-                Create Campus.
+               Search Archived Questions
                 </div>
         )
     }

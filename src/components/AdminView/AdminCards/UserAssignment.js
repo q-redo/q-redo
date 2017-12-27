@@ -11,9 +11,13 @@ class CohortAssignment extends Component {
             searchText: "",
             searchedStudents: [],
             campusAndCohorts: [],
+
           
         }
     }
+
+  
+
 
     showBox(){
         this.state.displayBox === true ?
@@ -33,74 +37,90 @@ class CohortAssignment extends Component {
            this.setState({searchedStudents: response.data})
         })
     }
-    getcohortandcampus(){
-        axios.get("/api/getcampusandcohort")
-        .then(response=> {
-            this.setState({campusAndCohorts: response.data})
+    
+    campusChange(id, val){
+        axios.put("/api/changeusercampus", {
+            user_id: id,
+            campus_id: val
         })
+        .then(response => console.log(response))
+    }
+    cohortChange(id, val){
+        axios.put("/api/changeusercohort", {
+            user_id: id,
+            cohort_id: val
+        })
+        .then(response => console.log(response))
+    }
+    handleRank(id, val){
+        axios.put("/api/changeuserrank", {
+            user_id: id,
+            rank: val
+        })
+        .then(response => console.log(response))
+    
     }
 
     render(){
     const {searchedStudents} = this.state
-    const {searchedStudents} = this.state
-    const campuslist = this.state.campusAndCohorts.map((camp, i) => (
-        <tr>
-            <td>{camp.campus_id}</td>
-            <td>{camp.name}</td>
-            <td>{camp.cohort_id}</td>
-            <td>{camp.formal_name}</td>
-
-            </tr>
-    ))
-    const list = searchedStudents.map((student, i) => (
-            <tr>
+   
+    const studentlist = searchedStudents.map((student, i) => (
+            <tr key={i}>
             <td>{student.user_id}</td>
             <td>{student.name}</td>
             <td>{student.email}</td>
             <td>{student.logged_in ? "True" : "False"}</td>
-            <td><select defaultValue={student.rank} onChange={(e)=> this.handleChange(student.user_id, e.target.value)}>
+            <td><select defaultValue={student.rank} onChange={(e)=> this.handleRank(student.user_id, e.target.value)}>
   <option value="3">Student</option>
   <option value="2">Mentor</option>
   <option value="1">Admin</option>
   
 </select></td>
+            <td><select defaultValue={student.campus_id} onChange={(e)=> this.campusChange(student.user_id, e.target.value)}>
+                <option value="4">DALLAS</option>
+                <option value="1">PROVO</option>
+                <option value="2">SALT_LAKE</option>
+                <option value="3">PHOENIX</option></select></td>
+            <td><select defaultValue={student.cohort_id} onChange={(e)=> this.cohortChange(student.user_id, e.target.value)}>
+                <option value="1">Cohort 1</option>
+                <option value="2">Cohort 2</option>
+                <option value="3">Cohort 3</option>
+                <option value="4">Cohort 4</option></select></td>
+                
+            
+            
             </tr>
+            
             ))
     return(
    
         <div>
-            <div onClick={()=> this.showBox() & this.getcohortandcampus()}>Assign students to cohort. </div>
+            <div onClick={()=> this.showBox()}>Assign students to cohort. </div>
 { this.state.displayBox === false ?
 
 <div className="curved shadowed m10 adminpopupbox">
 
 <div className="admincenterboxcontent">     
 <div>
-    <center>{campuslist.length > 0? 
-    <table>
-  <tr>
-    <th>Campus ID:</th>
-    <th>Campus Name:</th> 
-    <th>Cohort ID:</th>
-    <th>Cohort Name: </th>
-  </tr>
-{campuslist}
-</table> :
-<div />}
+    <center>
 
 
     <input onChange={(e) => this.searchTextHandler(e.target.value)} /><button onClick={() => this.searchForStudent(this.state.searchText)}>Search for student</button>
    
-   {list.length > 0? 
+   {studentlist.length > 0? 
     <table>
+        <tbody>
   <tr>
     <th>ID:</th>
     <th>Name:</th> 
     <th>Email:</th>
     <th>Logged in: </th>
     <th>Rank: </th>
+    <th>Campus:</th>
+    <th>Cohort:</th>
   </tr>
-{list}
+{studentlist}
+</tbody>
 </table> :
 <div />}
 

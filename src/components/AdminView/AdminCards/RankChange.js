@@ -14,20 +14,9 @@ class RankChange extends Component {
         }
     }
 
-handleChange(id, val){
-    axios.put("/api/changeuserrank", {
-        user_id: id,
-        rank: val
-    })
-    .then(resposne => {})
 
-}
 
-showBox(){
-    this.state.displayBox === true ?
-    this.setState({displayBox: false}) :
-    this.setState({displayBox: true})
-}
+
 
 searchTextHandler(val){
     this.setState({searchText: val})

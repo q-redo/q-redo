@@ -140,5 +140,32 @@ getCandC: (req, res, next) => {
     .get_campus_and_cohort()
     .then(response => res.status(200).send(response))
     .catch(console.log);
+},
+changeCampus: (req, res, next) => {
+  const dbInstance = req.app.get('db')
+  const {user_id, campus_id} = req.body
+
+  dbInstance
+  .change_user_campus(user_id, campus_id)
+  .then(response => res.status(200).send(response))
+  .catch(console.log);
+},
+changeCohort: (req, res, next) => {
+  const dbInstance = req.app.get('db')
+  const {user_id, cohort_id} = req.body
+
+  dbInstance
+  .change_user_cohort(user_id, cohort_id)
+  .then(response => res.status(200).send(response))
+  .catch(console.log);
+},
+campusCreation: (req, res, next) => {
+  const dbInstance = req.app.get('db')
+  const {campus_name} = req.body
+
+  dbInstance
+  .create_new_campus(campus_name)
+  .then(response => res.status(200).send(response))
+  .catch(console.log)
 }
 };
