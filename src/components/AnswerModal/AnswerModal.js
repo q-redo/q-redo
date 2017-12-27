@@ -41,9 +41,6 @@ class AnswerModal extends Component{
         return(
         <div className='modal-background'>
             <div className='modal-main-container curved'>
-                <h1>Sexy Modal</h1>
-                <hr />
-                <p>Question ID: {this.props.questionId}</p>
                 <p>{this.state.question.question}</p>
                 <code>
                     <pre>
@@ -53,15 +50,18 @@ class AnswerModal extends Component{
                     </pre>
               </code>
 
-                Answer: <input type='text' onChange={ (e)=> this.handleAnswer(e.target.value)}></input>
+             <input placeholder="Answer Here" type='text' onChange={ (e)=> this.handleAnswer(e.target.value)}/>
                 
                 <i onClick={()=>this.props.toggleModal()} className="fa fa-lg fa-times" aria-hidden="true"></i>
-                <button onClick={()=> {
-                    this.submitAnswer();
-                    this.props.toggleModal();
-                    }}>
-                    Submit Answer
-                </button>
+                <button
+            style={{marginLeft: '50px'}}
+            onClick={()=> {
+                this.submitAnswer();
+                this.props.toggleModal();
+                }}
+            className="bigCircle jump  shadowed flexed">
+         <i className="fa fa-lg fa-paper-plane" aria-hidden="true"></i>
+          </button>
             </div>
         </div>
         )
