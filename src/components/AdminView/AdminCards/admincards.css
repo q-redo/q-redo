@@ -1,0 +1,29 @@
+.adminpopupbox{
+width: 95vw;
+height: 80%;
+z-index: 5;
+left: 1.5%;
+top: 0%;
+background-color: var(--main-box-color);
+position: absolute;
+}
+
+.admincenterboxcontent{
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+    align-content: stretch;
+    width: 100%;
+
+}
+table, th, td {
+    color: white;
+    border: 1px solid black;
+}
+
+adminSearchTableWidthSpecs{
+min-width: 80%;
+position: absolute;
+}

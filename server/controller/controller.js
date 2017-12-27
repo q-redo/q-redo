@@ -114,5 +114,31 @@ module.exports = {
     dbInstance.get_question_by_id([req.params.id])
       .then(response=> res.status(200).json(response))
       .catch(console.log);
-  }
+  },
+  searchForStudent: (req, res, next)=> {
+    const dbInstance = req.app.get('db');
+    console.log(req.body)
+    const {searchText} = req.body
+
+    dbInstance.search_for_students(searchText)
+    .then(response => res.status(200).send(response))
+    .catch(() => res.status(500).send())
+  },
+  changeRank: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    const {user_id, rank} = req.body
+
+    dbInstance
+    .change_user_rank(user_id, rank)
+    .then(response => res.status(200).json(response))
+    .catch(console.log);
+},
+getCandC: (req, res, next) => {
+    const dbInstance = req.app.get('db')
+
+    dbInstance
+    .get_campus_and_cohort()
+    .then(response => res.status(200).send(response))
+    .catch(console.log);
+}
 };

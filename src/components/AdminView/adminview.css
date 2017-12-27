@@ -5,11 +5,17 @@
   justify-content: flex-start;
   align-items: center;
   align-content: stretch;
+  width: 100%;
+  height: 100%;
+ 
+}
+
+.admin-position{
   width: 100vw;
   height: 100vh;
   left: 0%;
   position: absolute;
-  z-index: 1;
+ 
 }
 
 .admin-group-box-by-row {
@@ -25,9 +31,17 @@
 
 .admin-main-boxes {
   padding: 10px;
-  z-index: 1;
+
   width: 20%;
   height: 30%;
-  display: block;
+
   background-color: var(--main-box-color);
+}
+
+.adminshadowed{
+box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
+}
+
+.admin-display-none{
+  display: none;
 }

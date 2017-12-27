@@ -1,0 +1,1 @@
+SELECT * FROM users WHERE name ~* $1 or email ~* $1

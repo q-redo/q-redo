@@ -159,24 +159,30 @@ app.get("/api/users/:id", (req, res, next) => {
    .catch(console.log)
 })
 //change answer to true //
-app.delete('/api/questions/:id', controller.deleteQuestion)
+app.delete('/api/questions/:id', controller.deleteQuestion);
 
-app.put("/api/questions/:id", controller.answeredQuestion)
-app.put('/api/waiting_type/:id', controller.updateWaitingType)
+app.put("/api/questions/:id", controller.answeredQuestion);
+app.put('/api/waiting_type/:id', controller.updateWaitingType);
 
 
-app.get("/api/users", controller.getActiveUsers)
-app.get("/api/mentors", controller.getActiveMentors)
-app.get("/api/recentQuestions", controller.getRecentQuestions)
-app.get("/api/activeQuestions", controller.getActiveQuestions)
-app.get("/api/topics", controller.getTopics)
+app.get("/api/users", controller.getActiveUsers);
+app.get("/api/mentors", controller.getActiveMentors);
+app.get("/api/recentQuestions", controller.getRecentQuestions);
+app.get("/api/activeQuestions", controller.getActiveQuestions);
+app.get("/api/topics", controller.getTopics);
 
-app.post('/api/answers', controller.postAnswer)
+app.post('/api/answers', controller.postAnswer);
 app.get('/api/answers/:id', controller.getAnswers);
 
 app.put('/api/verify/answers/:id', controller.toggleVerify);
 app.put('/api/upvote/answers/:id', controller.upvote);
 app.put('/api/downvote/answers/:id', controller.downvote);
+
+//AdminView Endpoints//
+app.post('/api/studentsearch', controller.searchForStudent);
+app.put('/api/changeuserrank', controller.changeRank);
+app.get('/api/getcampusandcohort', controller.getCandC);
+//End of AdminView endpoints.
 
 app.get("/api/me", function(req, res) {
  if (!req.user) {

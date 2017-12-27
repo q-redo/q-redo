@@ -21,29 +21,30 @@ class AdminView extends Component {
 
     render(){
         return(
+            <div className="admin-position">
             <div className="admin-mainbox-flex">
             <div className="admin-group-box-by-row">
-                <div className="admin-main-boxes curved shadowed m10">
+                <div className="admin-main-boxes curved adminshadowed m10">
                     <RankChange />
                     </div>
-                    <div className="admin-main-boxes curved shadowed m10"> <CreateCampus /></div>
-                    <div className="admin-main-boxes curved shadowed m10">
+                    <div className="admin-main-boxes curved adminshadowed m10"> <CreateCampus /></div>
+                    <div className="admin-main-boxes curved adminshadowed m10">
                    <CreateCohort />
                     </div>
-              <div className="admin-main-boxes curved shadowed m10"> <ArchiveQuestions /> </div>
-              <div className="admin-main-boxes curved shadowed m10">
+              <div className="admin-main-boxes curved adminshadowed m10"> <ArchiveQuestions /> </div>
+              <div className="admin-main-boxes curved adminshadowed m10">
                   <CohortAssignment />
                   </div>
-                  <div className="admin-main-boxes curved shadowed m10">
+                  <div className="admin-main-boxes curved adminshadowed m10">
                       <DeleteQuestions />
                       </div>
-                      <div className="admin-main-boxes curved shadowed m10"> <SearchActiveQuestions />
+                      <div className="admin-main-boxes curved adminshadowed m10"> <SearchActiveQuestions />
                           </div>
-                          <div  className="admin-main-boxes curved shadowed m10"> <TopicCharts /></div>
-                          <div className="admin-main-boxes curved shadowed m10"><SearchArchiveQuestions /></div>
+                          <div  className="admin-main-boxes curved adminshadowed m10"> <TopicCharts /></div>
+                          <div className="admin-main-boxes curved adminshadowed m10"><SearchArchiveQuestions /></div>
 </div>
 
-
+</div>
 
 
                 </div>
