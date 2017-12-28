@@ -19,7 +19,7 @@ export default (
       <Route component={MentorCard} exact path="/mentorCard" />
       <Route component={MentorQuestionCard} exact path="/mentorQuestionCard" />
       <Route component={QuestionTopicChart} exact path="/topicChart" />
-      <Route component={QuestionThread} path='/question/:id' />
+      <Route component={QuestionThread} path="/question/:id" />
     </div>
   </BrowserRouter>
 );

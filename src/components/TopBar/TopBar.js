@@ -8,10 +8,10 @@ class TopBar extends Component {
   constructor() {
     super();
 
-    this.state= {
+    this.state = {
       cohort: 'DM9',
       campus: 'DALLAS'
-    }
+    };
   }
 
   // componentWillMount(){
@@ -24,24 +24,28 @@ class TopBar extends Component {
   // }
 
   render() {
-    console.log(this.props.user);
     return (
-    <div className="topBar-main-container flexed">
-      <div className='topBar-left'>
-        <img width='60px' src={`http://192.241.205.79/wp-content/uploads/2017/06/cropped-cropped-cropped-devmountain_logo-1-1.png`}/>
-        <span children={`${this.state.cohort}`}/><i className="fa fa-circle"></i><span children={`${this.state.campus}`}/>
-      </div>
+      <div className="topBar-main-container flexed">
+        <div className="topBar-left">
+          <img
+            width="60px"
+            src={`http://192.241.205.79/wp-content/uploads/2017/06/cropped-cropped-cropped-devmountain_logo-1-1.png`}
+          />
+          <span children={`${this.state.cohort}`} />
+          <i className="fa fa-circle" />
+          <span children={`${this.state.campus}`} />
+        </div>
 
-      <div className='topBar-right'>
-        <span children='LOGOUT'/>
+        <div className="topBar-right">
+          <span children="LOGOUT" />
+        </div>
       </div>
-    </div>
-    )
+    );
   }
 }
 
-const mapStateToProps= state=> {
-  const { user }= state;
+const mapStateToProps = state => {
+  const { user } = state;
   return {
     user
   };

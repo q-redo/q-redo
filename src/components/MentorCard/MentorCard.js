@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+//import Moment from 'react-moment';
 import './MentorCard.css';
 
 class MentorCard extends Component {
@@ -19,13 +20,19 @@ class MentorCard extends Component {
   }
 
   render() {
+    ////////////////////////////////
+
+    ///------------------------------------------------------------
+    //
     const mentors = this.state.mentorList.map((mentor, index) => {
-      console.log(mentor.name)
+      console.log(mentor.name);
       return (
-        <div className="user-card" style={{width: '45%'}} key={index}>
-        
+        <div className="user-card" style={{ width: '45%' }} key={index}>
           <div className="user-card-left">
-            <div className="user-avatar shadowed" style={{backgroundImage:`url('${mentor.image_url}')`}}/>
+            <div
+              className="user-avatar shadowed"
+              style={{ backgroundImage: `url('${mentor.image_url}')` }}
+            />
           </div>
 
           <div className="user-card-right">
@@ -35,10 +42,9 @@ class MentorCard extends Component {
       );
     });
     return (
-        <div style={{display: 'inline-block'}}>
-        <div className="mentorCard curved m10 shadowed">
-        {mentors}</div>
-        </div>
+      <div style={{ display: 'inline-block' }}>
+        <div className="mentorCard curved m10 shadowed">{mentors}</div>
+      </div>
     );
   }
 }

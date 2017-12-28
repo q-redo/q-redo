@@ -9,7 +9,12 @@ module.exports = {
   postQuestion: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance
-      .post_question([req.body.text, req.body.code, req.body.topic_id, req.body.user_id])
+      .post_question([
+        req.body.text,
+        req.body.code,
+        req.body.topic_id,
+        req.body.user_id
+      ])
       .then(question => res.status(200).json(question))
       .catch(console.log);
   },
@@ -51,34 +56,53 @@ module.exports = {
       .then(response => res.status(200).json(response))
       .catch(console.log);
   },
-  getQuestion: (req, res, next)=> {
-    const dbInstance= req.app.get('db');
-    dbInstance.get_question_by_id([req.params.id])
-    .then(question=> res.status(200).json(question))
-    .catch(console.log);
+  userAnswered: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .put_user_answered([req.params.id])
+      .then(response => res.status(200).json(response))
+      .catch(console.log);
   },
-  getAnswers: (req, res, next)=> {
-    const dbInstance= req.app.get('db');
-    dbInstance.get_answers([req.params.id])
-    .then(answers=> res.status(200).json(answers))
-    .catch(console.log)
+  getQuestion: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .get_question_by_id([req.params.id])
+      .then(question => res.status(200).json(question))
+      .catch(console.log);
   },
-  downvote: (req, res, next)=> {
-    const dbInstance= req.app.get('db');
-    dbInstance.downvote_answer([req.params.id])
-    .then(score=> res.status(200).json(score))
-    .catch(console.log);
+  getAnswers: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .get_answers([req.params.id])
+      .then(answers => res.status(200).json(answers))
+      .catch(console.log);
   },
-  upvote: (req,res,next)=>{
-  const dbInstance= req.app.get('db');
-  dbInstance.upvote_answer([req.params.id])
-  .then(score=> res.status(200).json(score))
-  .catch(console.log);
-},
-  toggleVerify: (req, res, next)=> {
-    const dbInstance= req.app.get('db');
-    dbInstance.toggle_verify([req.params.id])
-    .then(response=> res.status(200).json(200))
-    .catch(console.log);
+  downvote: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .downvote_answer([req.params.id])
+      .then(score => res.status(200).json(score))
+      .catch(console.log);
+  },
+  upvote: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .upvote_answer([req.params.id])
+      .then(score => res.status(200).json(score))
+      .catch(console.log);
+  },
+  toggleVerify: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .toggle_verify([req.params.id])
+      .then(response => res.status(200).json(200))
+      .catch(console.log);
+  },
+  getTimeAsked: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .get_time_asked()
+      .then(response => res.status(200).json(200))
+      .catch(console.log);
   }
 };
