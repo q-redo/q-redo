@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Router from './router';
 import TopBar from './components/TopBar/TopBar';
+import Notifications from './components/Notifications/Notifications'
 import axios from 'axios';
-import {getUserList, getQuestionList, reqUser} from "./redux/reducer"
+import {getUserList, getQuestionList, reqUser, getMentorList} from "./redux/reducer"
 import {connect} from "react-redux"
 import socketIOClient from 'socket.io-client'
 
@@ -15,7 +16,8 @@ class App extends Component {
     response: [],
     endpoint: "127.0.0.1:3001",
     user: [],
-    userList: []
+    userList: [],
+    mentorList: []
     }
     }
 
@@ -26,6 +28,7 @@ class App extends Component {
       socket.on("FromAPI", data =>  this.props.getQuestionList(data) && this.setState({response: data}))
       socket.on("FromMe", data => this.props.reqUser(data) && this.setState({user: data}))
       socket.on("UserList", data => this.props.getUserList(data) && this.setState({userList: data}))
+      socket.on("MentorList", data => this.props.getMentorList(data) && this.setState({mentorList: data}))
     }
 
 
@@ -40,7 +43,10 @@ class App extends Component {
   render() {
   
     return (
+
       <div  className="App flexed">
+      <Notifications />
+
         <TopBar/>
         <section style={{marginTop: '100px', width: '720px'}}>
         {Router}
@@ -52,5 +58,5 @@ class App extends Component {
 }
 
 const mapStateToProps = state => state
-export default connect(mapStateToProps, { getUserList, getQuestionList, reqUser})(App)
+export default connect(mapStateToProps, { getUserList, getQuestionList, reqUser, getMentorList})(App)
 

@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 // import Moment from 'react-moment';
 import axios from 'axios';
 import hourglass from '../WaitingCard/hourglass.svg';
-
 import Avatar from '../Avatar/Avatar';
+import AnswerModal from '../AnswerModal/AnswerModal.js';
+import { connect } from 'react-redux';
+import { toggleModal, setModalId } from '../../redux/reducer.js';
 import './MentorQuestionCard.css';
 
 class MentorQuestionCard extends Component {
@@ -12,7 +14,8 @@ class MentorQuestionCard extends Component {
 
     this.state = {
       activeQuestionsList: [],
-      id: 0
+      id: 0,
+      voted: false
     };
     this.answeredQuestion = this.answeredQuestion.bind(this);
     this.getTimeFromQuestion = this.getTimeFromQuestion.bind(this);
@@ -101,7 +104,13 @@ class MentorQuestionCard extends Component {
               >
                 {question.topic}
               </button>
-              <button className="bigCircle jump shadowed">
+              <button
+                className="bigCircle jump shadowed"
+                onClick={() => {
+                  this.props.toggleModal();
+                  this.props.setModalId(question.q_id);
+                }}
+              >
                 <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true" />
               </button>
             </section>
@@ -113,4 +122,7 @@ class MentorQuestionCard extends Component {
   }
 }
 
-export default MentorQuestionCard;
+const mapStateToProps = state => state;
+export default connect(mapStateToProps, { toggleModal, setModalId })(
+  MentorQuestionCard
+);

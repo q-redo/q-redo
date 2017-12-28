@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 //import Moment from 'react-moment';
 import './MentorCard.css';
+import travolta from './travolta.gif';
+import { connect } from 'react-redux';
 
 class MentorCard extends Component {
   constructor() {
@@ -13,19 +15,9 @@ class MentorCard extends Component {
   }
 
   //CWM get ALL active mentors
-  componentWillMount() {
-    axios.get('/api/mentors').then(response => {
-      this.setState({ mentorList: response.data });
-    });
-  }
 
   render() {
-    ////////////////////////////////
-
-    ///------------------------------------------------------------
-    //
-    const mentors = this.state.mentorList.map((mentor, index) => {
-      console.log(mentor.name);
+    const mentors = this.props.mentorList.map((mentor, index) => {
       return (
         <div className="user-card" style={{ width: '45%' }} key={index}>
           <div className="user-card-left">
@@ -43,10 +35,27 @@ class MentorCard extends Component {
     });
     return (
       <div style={{ display: 'inline-block' }}>
-        <div className="mentorCard curved m10 shadowed">{mentors}</div>
+        <div className="mentorCard curved m10 shadowed">
+          {this.state.mentorList.length ? (
+            mentors
+          ) : (
+            <div style={{ margin: 'auto' }}>
+              <h4>NO MENTORS AVAILABLE</h4>
+              <img className="travolta" src={travolta} />
+              <div className="hider" />
+            </div>
+          )}
+        </div>
       </div>
     );
   }
 }
 
-export default MentorCard;
+const mapStateToProps = state => state;
+// const mapStateToProps = (state) => {
+//  return {
+//    actionAskOrGetHelp: actionAskOrGetHelp
+//  }
+// }
+
+export default connect(mapStateToProps)(MentorCard);
