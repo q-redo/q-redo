@@ -185,6 +185,8 @@ app.get('/api/getcampusandcohort', controller.getCandC);
 app.put('/api/changeusercohort', controller.changeCohort);
 app.put('/api/changeusercampus', controller.changeCampus);
 app.post('/api/createcampus', controller.campusCreation);
+app.post('/api/createcohort', controller.cohortCreation);
+app.post('/api/archiveallquestions', controller.archiveAllQuestions)
 //End of AdminView endpoints.
 
 app.get("/api/me", function(req, res) {

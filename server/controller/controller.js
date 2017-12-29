@@ -167,5 +167,23 @@ campusCreation: (req, res, next) => {
   .create_new_campus(campus_name)
   .then(response => res.status(200).send(response))
   .catch(console.log)
+},
+cohortCreation: (req, res, next) => {
+  const dbInstance = req.app.get('db')
+  const {campus_id, formal_name} = req.body
+
+  dbInstance
+  .create_new_cohort(campus_id, formal_name)
+  .then(response => res.status(200).send(response))
+  .catch(console.log)
+},
+archiveAllQuestions: (req, res, next) => {
+  const dbInstance = req.app.get('db')
+  
+  dbInstance
+  .archive_questions()
+  .then(response => res.status(200).send(response))
+  .catch(console.log)
 }
+
 };
