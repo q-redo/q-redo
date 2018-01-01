@@ -28,7 +28,7 @@ class MentorCard extends Component {
         <div className="mentorCard curved m10 shadowed">
         {this.props.mentorList.length?
         mentors:<div style={{margin: 'auto'}}>
-          <h4 >NO MENTORS AVAILABLE</h4>
+          <h4>NO MENTORS AVAILABLE</h4>
           <img className="travolta" src={travolta}/>
           <div className="hider"/>
           </div>

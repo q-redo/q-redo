@@ -1,0 +1,45 @@
+.answer-container-bot{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .answer-container-bot-right{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .answer-container-bot-left{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .answer-container{
+      z-index: 10;
+    color: white;
+    background: var(--main-box-color);
+    padding: 10px;
+    width:100%;
+  }
+  
+  .answer-code-box{
+    min-height: 30%;
+    padding: 10px;
+  }
+  
+  .downvote:hover{
+    transition: all ease 0.5s;
+    cursor: pointer !important;
+    color: rgb(113,166,255) !important;
+  }
+  
+  .upvote:hover{
+    transition: all ease 0.5s;
+    cursor: pointer !important;
+    color: darkorange !important;
+  }
