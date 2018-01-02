@@ -22,9 +22,12 @@ class QuestionThread extends Component{
       this.setState({ answersList: answers.data });
     });
   }
-
+  componentWillUpdate(){
+    axios.get(`/api/answers/${this.props.questionId}`).then(answers=> {
+      this.setState({ answersList: answers.data });
+    });
+  }
   render(){
-    console.log(this.state.answersList)
     const answers= this.state.answersList.map((answer, i)=> {
       return <ThreadAnswer answer={answer} key={i}/>
     });

@@ -23,6 +23,7 @@
     background: var(--main-box-color);
     color: white;
     padding: 10px;
+    display:flex;
 }
 
 .modal-main-container input{
@@ -58,4 +59,18 @@
     width: 100vw;
     height: 200%;
     z-index: 1;
+}
+
+.modal-main-container-left{
+    display:inline-flex;
+    flex-direction: column;
+    width:70%;
+}
+.modal-main-container-right{
+    display:inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 30%;
 }

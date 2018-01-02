@@ -57,6 +57,7 @@ class AnswerModal extends Component {
         <div onClick={() => this.props.toggleModal()} className="invis-div2"/>
         <section className="modals-holder">
           <div className="modal-main-container curved">
+          <div className="modal-main-container-left">
             <p>{this.state.question.question}</p>
             <input
               placeholder="< code_here />"
@@ -76,8 +77,9 @@ class AnswerModal extends Component {
               className="fa fa-lg fa-times"
               aria-hidden="true"
             />
+            </div>
+            <div className="modal-main-container-right">
             <button
-              style={{ marginLeft: "50px" }}
               onClick={() => {
                 this.submitAnswer();
                 this.props.toggleModal();
@@ -86,6 +88,8 @@ class AnswerModal extends Component {
             >
               <i className="fa fa-lg fa-paper-plane" aria-hidden="true" />
             </button>
+            <span style={{marginTop: '10px'}}>SUBMIT ANSWER</span>
+            </div>
           </div>
           <QuestionThread question={this.state.question} />
         </section>
