@@ -71,7 +71,6 @@ class Notifications extends Component {
   }
 
   render() {
-    // console.log("state: ", this.state)
     return (
       <div>
         <div className={this.state.slidingState}>
