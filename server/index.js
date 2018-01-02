@@ -121,15 +121,15 @@ socket.handshake.session.user ?  db.run(`UPDATE users SET logged_in = false WHER
 const getInfoAndEmit = async (socket, usr)=> {
 console.log( "User still connected")
 var db = app.get("db");
-  try {
+  try {  
   const userres = await db.run(`SELECT * FROM users WHERE logged_in = true AND rank = 3 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
    const mentorres = await db.run(`select * FROM users WHERE logged_in = true AND rank = 2 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
   const res = await db.run(`SELECT * FROM questions WHERE cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
-
+  const currentUser = await db.run(`SELECT * FROM users WHERE user_id = ${usr.user_id}`)
 
   socket.emit("MentorList", mentorres)
   socket.emit("UserList", userres)
-  socket.emit("FromMe", socket.handshake.session.user)
+  socket.emit("FromMe", currentUser)
   socket.emit("FromAPI", res) // Emitting a new message. It will be consumed by the client
 } catch (error) {
   console.error(`Error: ${error}`)

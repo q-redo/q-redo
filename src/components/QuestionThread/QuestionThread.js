@@ -17,13 +17,12 @@ class QuestionThread extends Component{
 
   componentDidMount(){
     this.setState({ question: this.props.question});
-    console.log(this.props.question)
-    axios.get(`/api/answers/${this.props.questionId}`).then(answers=> {
+    axios.get(`/api/answers/${this.props.question.q_id}`).then(answers=> {
       this.setState({ answersList: answers.data });
     });
   }
   componentWillUpdate(){
-    axios.get(`/api/answers/${this.props.questionId}`).then(answers=> {
+    axios.get(`/api/answers/${this.props.question.q_id}`).then(answers=> {
       this.setState({ answersList: answers.data });
     });
   }

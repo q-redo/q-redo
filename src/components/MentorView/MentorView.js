@@ -9,6 +9,7 @@ import QuestionForm from '../QuestionForm/QuestionForm';
 import ActionCard from '../ActionCard/ActionCard';
 import { connect } from 'react-redux';
 import { toggleModal } from '../../redux/reducer.js';
+import LoadingScreen from '../LoadingScreen/LoadingScreen.js';
 import './MentorView.css';
 
 const black= {
@@ -20,6 +21,7 @@ class MentorView extends Component {
   render() {
     return (
       <div id="MentorView">
+      {!this.props.user.name? <LoadingScreen />:''}
         <section style={{display: 'inline-block'}}>
         <MentorQuestionCard/>
         </section>
