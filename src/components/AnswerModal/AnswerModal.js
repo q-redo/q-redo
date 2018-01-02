@@ -59,13 +59,17 @@ class AnswerModal extends Component {
           <div className="modal-main-container curved">
           <div className="modal-main-container-left">
             <p>{this.state.question.question}</p>
-            <input
+            <code>
+            <pre>
+            <textarea
               placeholder="< code_here />"
               onChange={e => this.handleCode(e.target.value)}
               id="code-col"
               className="code inner-shadow"
               value={this.state.code}
             />
+            </pre>
+            </code>
             <input
               placeholder="Answer Here"
               type="text"

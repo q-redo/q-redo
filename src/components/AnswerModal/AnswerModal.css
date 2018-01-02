@@ -36,6 +36,16 @@
      box-sizing: border-box;
      margin: 10px 0 10px 0;
  }
+ .modal-main-container textarea{
+
+    height: 4em;
+    border: none;
+     border-radius: 6px;
+     width: 100%;
+     display: inline-block;
+     box-sizing: border-box;
+     margin: 10px 0 10px 0;
+ }
 .modal-main-container .fa-times{
     position: absolute;
     top: 10px;
