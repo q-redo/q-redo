@@ -50,10 +50,4 @@ class MentorCard extends Component {
 
 
 const mapStateToProps = state => state;
-// const mapStateToProps = (state) => {
-//  return {
-//    actionAskOrGetHelp: actionAskOrGetHelp
-//  }
-// }
-
 export default connect(mapStateToProps)(MentorCard);
