@@ -13,6 +13,7 @@ class QuestionWaitingCard extends Component {
     super(props);
 
     this.handleWaitingType= this.handleWaitingType.bind(this);
+    this.handleCancelQuestion= this.handleCancelQuestion.bind(this);
   }
 
 
@@ -31,7 +32,7 @@ class QuestionWaitingCard extends Component {
             <span style={{fontSize: '1.5em'}}>STAND BY</span>
             <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
             </div>
-            <i onClick={()=> {this.props.toggleAction("action");this.props.toggleQuestionWaiting(false); this.handleWaitingType('none');this.handleCancelQuestion(this.props.question_id)}} class="fa fa-lg fa-times" aria-hidden="true"></i>
+            <i onClick={()=> {this.props.toggleAction("action"); this.props.toggleQuestionWaiting(false); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.question_id)}} class="fa fa-lg fa-times" aria-hidden="true"></i>
       </div>
     );
   }

@@ -6,6 +6,7 @@ import Avatar from '../Avatar/Avatar'
 import AnswerModal from '../AnswerModal/AnswerModal.js';
 import { connect } from 'react-redux';
 import { toggleModal, setModalId } from '../../redux/reducer.js';
+import linked from '../Avatar/linked.svg';
 import './MentorQuestionCard.css';
 
 class MentorQuestionCard extends Component {
@@ -15,29 +16,91 @@ class MentorQuestionCard extends Component {
     this.state = {
       activeQuestionsList: [],
       id: 0,
-      voted: false
+      voted: false,
+      helping: false,
+      studentId: 0
     };
     this.answeredQuestion = this.answeredQuestion.bind(this);
+    this.setHelp= this.setHelp.bind(this);
+    this.clearHelp= this.clearHelp.bind(this);
+    this.linkToStudent= this.linkToStudent.bind(this);
   }
 
   //CWM get three most recent questions
-  componentWillMount() {
+  componentWillMount(){
     axios.get('/api/activeQuestions').then(response => {
-      console.log(response.data);
       this.setState({ activeQuestionsList: response.data });
     });
   }
 
-  answeredQuestion(id) {
+  componentWillUpdate(){
+    axios.get('/api/activeQuestions').then(response => {
+      this.setState({ activeQuestionsList: response.data });
+    });
+  }
+
+  answeredQuestion(id){
     axios.put(`/api/questions/${id}`).then(response => {
       return response.data;
     });
   }
 
+  setHelp(){
+    this.setState({ helping: !this.state.helping });
+  }
+
+  linkToStudent(id){
+    this.setState({ studentId: id });
+    console.log(id);
+  }
+
+  clearHelp(id){
+    // axios.delete(`/api/help/${id}`)
+    // .then(response=>{
+    //   this.setState({ activeQuestionsList: response.data });
+    // });
+  }
+
+//We used conditional rendering in the map method to render different cards depending on the type of help/question the student needs.
   render() {
-    const activeQuestions = this.state.activeQuestionsList.map(
+    const activeQuestions = this.state.activeQuestionsList.map(          
       (question, index) => {
         return (
+          question.question === 'HELP' ?
+          this.state.helping === false ? 
+          <div className="user-help-card curved shadowed m10" key={index}>
+              <div className='qh-avatar'>
+                <Avatar av_user={{name: question.name, image_url: question.image_url}}/>         
+              </div>
+
+              <span style={{display: 'inline-block'}}>0:00 <img style={{width: '25px'}} src={hourglass} alt="hourglass spinning"/></span>
+
+            <section className="uq-right-side m10">
+             <button className="bigCircle jump shadowed" onClick={()=> {
+               this.setHelp();
+               this.linkToStudent(question.user_id);
+              }}>
+              <i className="fa fa-handshake-o" aria-hidden="true"></i>
+             </button>
+            </section>
+          </div>
+          :
+          <div className="user-help-card curved shadowed m10" key={index}>
+            <div>
+            <button value={question.q_id} className="cancel-help-btn" onClick={(e)=> {
+               this.clearHelp(e.target.value);
+               this.setHelp();
+              }}>X</button>
+
+            </div>
+
+            <div className='qh-avatar'>
+              <Avatar av_user={{name: question.name, image_url: question.image_url}}/>
+              <img style={{ marginRight: '75px', width: '50px'}} src={linked}/>  
+              <Avatar av_user={{name: this.props.user.name, image_url: this.props.user.image_url}}/>
+            </div>
+          </div>              
+          :
           <div className="user-question-card curved shadowed m10" key={index}>
             <section className="uq-left-side m10">
               <section className="uq-top-left">
