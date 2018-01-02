@@ -46,7 +46,7 @@ class ThreadAnswer extends Component{
       const answer = this.props.answer
       return(
         answer.best_answer === true ?
-        <div className='answer-container best-answer curved m10' key={answer.id}>
+        <div className='answer-container best-answer curved m10 shadowed' key={answer.id}>
           <h1>Answer:</h1>
           <p>{answer.answer}</p>
           <hr />
