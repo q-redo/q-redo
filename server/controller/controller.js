@@ -8,8 +8,9 @@ module.exports = {
   },
   postQuestion: (req, res, next) => {
     const dbInstance = req.app.get('db');
+    // console.log('***************** REQ BODY: *****************', req.body);
     dbInstance
-      .post_question([req.body.text, req.body.code, req.body.topic_id, req.body.user_id])
+      .post_question([req.body.campus_id, req.body.cohort_id, req.body.text, req.body.code, req.body.topic_id, req.body.user_id])
       .then(question => res.status(200).json(question))
       .catch(console.log);
   },
@@ -112,6 +113,19 @@ module.exports = {
   getQuestionById: (req, res, next)=> {
     const dbInstance= req.app.get('db');
     dbInstance.get_question_by_id([req.params.id])
+      .then(response=> res.status(200).json(response))
+      .catch(console.log);
+  },
+  clearHelp: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.clear_help([req.params.id])
+      .then(response=> res.status(200).json(response))
+      .catch(console.log);
+  },
+  linkUsers: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    console.log('params: ', req.params, 'body: ', req.body)
+    dbInstance.link_users([req.params.id, req.body.paired])
       .then(response=> res.status(200).json(response))
       .catch(console.log);
   }

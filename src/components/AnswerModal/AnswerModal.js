@@ -11,17 +11,18 @@ class AnswerModal extends Component{
         this.state={
             question: {},
             answer: '',
-            code: ''
+            code: '',
+            edit: false
         }
         this.handleAnswer= this.handleAnswer.bind(this);
         this.handleCode= this.handleCode.bind(this);
         this.submitAnswer= this.submitAnswer.bind(this);
+        this.toggleEdit= this.toggleEdit.bind(this);
     }
 
     componentDidMount(){
         axios.get(`/api/questions/${this.props.questionId}`).then(response=> {
             this.setState({ question: response.data[0], code: response.data[0].code_block });
-            console.log(response.data[0].code_block);
         })
     }
 
@@ -33,6 +34,10 @@ class AnswerModal extends Component{
         this.setState({ code: input });
     }
 
+    toggleEdit(){
+        this.setState({ edit: !this.state.edit });
+    }
+
     submitAnswer(){
         axios.post('/api/answers', { answer: this.state.answer, code_block: this.state.code, user_id: this.props.user.user_id, q_id: this.props.questionId })
     }
@@ -41,27 +46,46 @@ class AnswerModal extends Component{
         return(
         <div className='modal-background'>
             <div className='modal-main-container curved'>
-                <h1>Sexy Modal</h1>
-                <hr />
                 <p>Question ID: {this.props.questionId}</p>
-                <p>{this.state.question.question}</p>
-                <code>
-                    <pre>
-                    <textarea id='code-col' type='text' value={this.state.code} onChange={ (e)=> this.handleCode(e.target.value)}>
-                        
-                    </textarea>
-                    </pre>
-              </code>
+                <h1>{this.state.question.question}</h1>
+                <hr />
 
-                Answer: <input type='text' onChange={ (e)=> this.handleAnswer(e.target.value)}></input>
+                <div className='modal-code-section'>
+                {
+                    this.state.edit === true ? 
+                    <code>
+                        <pre>
+                            <textarea id='code-col' class='modal-textarea' type='text' value={this.state.code} onChange={ (e)=> this.handleCode(e.target.value)}></textarea>
+                        </pre>
+                    </code>
+                    :
+                    <code>
+                        <pre>
+                            <textarea disabled id='code-col' class='modal-textarea' type='text' value={this.state.code} onChange={ (e)=> this.handleCode(e.target.value)}></textarea>
+                        </pre>
+                    </code>
+                }
+                {
+                    this.state.edit === false ?
+                    <button className='modal-btn edit-btn' onClick={()=> this.toggleEdit()}>Edit Code</button>
+                    :
+                    <button className='modal-btn edit-btn' onClick={()=> this.toggleEdit()}>Done</button>
+                }
+            
+                </div>
                 
-                <i onClick={()=>this.props.toggleModal()} className="fa fa-lg fa-times" aria-hidden="true"></i>
-                <button onClick={()=> {
-                    this.submitAnswer();
-                    this.props.toggleModal();
-                    }}>
-                    Submit Answer
-                </button>
+                <div className='modal-answer-section'>
+                    <p>Answer:</p> 
+                    <textarea class='modal-textarea modal-answer' type='text' onChange={ (e)=> this.handleAnswer(e.target.value)}></textarea>
+
+                    <i onClick={()=>this.props.toggleModal()} className="fa fa-lg fa-times" aria-hidden="true"></i>
+                    <button className='modal-btn submit-btn' onClick={()=> {
+                        this.submitAnswer();
+                        this.props.toggleModal();
+                        }}>
+                        Submit Answer
+                    </button>
+                </div>
             </div>
         </div>
         )

@@ -28,7 +28,6 @@ class StudentView extends Component {
         }
         <RecentQuestions />
         <MentorCard />
-
         </section>
         <UserList />
       </div>
@@ -37,10 +36,4 @@ class StudentView extends Component {
 }
 
 const mapStateToProps = state => state;
-// const mapStateToProps = (state) => {
-//  return {
-//    actionAskOrGetHelp: actionAskOrGetHelp
-//  }
-// }
-
 export default connect(mapStateToProps)(StudentView);

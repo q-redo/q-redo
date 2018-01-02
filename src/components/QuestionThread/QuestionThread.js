@@ -20,13 +20,11 @@ class QuestionThread extends Component{
 
   componentWillMount(){
     axios.get(`/api/questions/${this.props.match.params.id}`).then(response=> {
-      console.log(response.data[0].code_block);
       this.setState({ question: response.data[0] });
     });
 
     axios.get(`/api/answers/${this.props.match.params.id}`).then(answers=> {
       this.setState({ answersList: answers.data });
-      console.log(answers.data);
     });
   }
 
