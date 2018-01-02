@@ -9,6 +9,7 @@ class AnswerModal extends Component {
   constructor(props) {
     super(props);
 
+<<<<<<< HEAD
     this.state = {
       question: {},
       answer: "",
@@ -33,6 +34,25 @@ class AnswerModal extends Component {
       this.setState({ answersList: answers.data });
     });
   }
+=======
+        this.state={
+            question: {},
+            answer: '',
+            code: '',
+            edit: false
+        }
+        this.handleAnswer= this.handleAnswer.bind(this);
+        this.handleCode= this.handleCode.bind(this);
+        this.submitAnswer= this.submitAnswer.bind(this);
+        this.toggleEdit= this.toggleEdit.bind(this);
+    }
+
+    componentDidMount(){
+        axios.get(`/api/questions/${this.props.questionId}`).then(response=> {
+            this.setState({ question: response.data[0], code: response.data[0].code_block });
+        })
+    }
+>>>>>>> master
 
   handleAnswer(input) {
     this.setState({ answer: input });
@@ -42,6 +62,7 @@ class AnswerModal extends Component {
     this.setState({ code: input });
   }
 
+<<<<<<< HEAD
   submitAnswer() {
     axios.post("/api/answers", {
       answer: this.state.answer,
@@ -93,6 +114,60 @@ class AnswerModal extends Component {
               <i className="fa fa-lg fa-paper-plane" aria-hidden="true" />
             </button>
             <span style={{marginTop: '10px'}}>SUBMIT ANSWER</span>
+=======
+    toggleEdit(){
+        this.setState({ edit: !this.state.edit });
+    }
+
+    submitAnswer(){
+        axios.post('/api/answers', { answer: this.state.answer, code_block: this.state.code, user_id: this.props.user.user_id, q_id: this.props.questionId })
+    }
+
+    render(){
+        return(
+        <div className='modal-background'>
+            <div className='modal-main-container curved'>
+                <p>Question ID: {this.props.questionId}</p>
+                <h1>{this.state.question.question}</h1>
+                <hr />
+
+                <div className='modal-code-section'>
+                {
+                    this.state.edit === true ? 
+                    <code>
+                        <pre>
+                            <textarea id='code-col' class='modal-textarea' type='text' value={this.state.code} onChange={ (e)=> this.handleCode(e.target.value)}></textarea>
+                        </pre>
+                    </code>
+                    :
+                    <code>
+                        <pre>
+                            <textarea disabled id='code-col' class='modal-textarea' type='text' value={this.state.code} onChange={ (e)=> this.handleCode(e.target.value)}></textarea>
+                        </pre>
+                    </code>
+                }
+                {
+                    this.state.edit === false ?
+                    <button className='modal-btn edit-btn' onClick={()=> this.toggleEdit()}>Edit Code</button>
+                    :
+                    <button className='modal-btn edit-btn' onClick={()=> this.toggleEdit()}>Done</button>
+                }
+            
+                </div>
+                
+                <div className='modal-answer-section'>
+                    <p>Answer:</p> 
+                    <textarea class='modal-textarea modal-answer' type='text' onChange={ (e)=> this.handleAnswer(e.target.value)}></textarea>
+
+                    <i onClick={()=>this.props.toggleModal()} className="fa fa-lg fa-times" aria-hidden="true"></i>
+                    <button className='modal-btn submit-btn' onClick={()=> {
+                        this.submitAnswer();
+                        this.props.toggleModal();
+                        }}>
+                        Submit Answer
+                    </button>
+                </div>
+>>>>>>> master
             </div>
           </div>
           <QuestionThread question={this.state.question} />

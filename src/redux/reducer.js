@@ -7,6 +7,7 @@ const initialState= {
   actionAskOrGetHelp: "action",
   isOpen: false,
   questionId: 1,
+  cancelId: 1,
   userList: [],
   questionList: [],
   endpoint: "127.0.0.1:3001",
@@ -23,14 +24,15 @@ const SOCKET_USERLIST = "SOCKET_USERLIST";
 const SOCKET_QUESTIONLIST = "SOCKET_QUESTIONLIST";
 const TOGGLE_MODAL = "TOGGLE_MODAL";
 const SET_MODAL_ID = "SET_MODAL_ID";
-const SOCKET_MENTORLIST = "SOCKET_MENTORLIST"
+const SOCKET_MENTORLIST = "SOCKET_MENTORLIST";
+const POST_QUESTION= "POST_QUESTION";
 
 
 //REDUCER
 export default function reducer(state= initialState, action){
   switch(action.type){
     case REQ_USER:
-    return Object.assign({}, state, {user: action.payload});
+      return Object.assign({}, state, {user: action.payload});
     case SOCKET_USERLIST:
       return Object.assign({}, state, {userList: action.payload});
     case SOCKET_QUESTIONLIST:
@@ -44,7 +46,11 @@ export default function reducer(state= initialState, action){
     case TOGGLE_MODAL:
       return Object.assign({}, state, {isOpen: !state.isOpen});
     case SET_MODAL_ID:
-      return Object.assign({}, state, {questionId: action.payload})
+      return Object.assign({}, state, {questionId: action.payload});
+    case POST_QUESTION + "_PENDING":
+      return Object.assign({}, state);
+    case POST_QUESTION + "_FULFILLED":
+      return Object.assign({}, state, { cancelId: action.payload });      
     default:
      return state;
   }
@@ -105,5 +111,15 @@ export function setModalId(id){
   return {
     type: SET_MODAL_ID,
     payload: id
+  }
+}
+
+export function postQuestion(obj){
+  return{
+    type: POST_QUESTION,
+    payload: axios.post('/api/questions', obj)
+    .then(response=> {
+      return response.data[0].q_id;
+    })
   }
 }

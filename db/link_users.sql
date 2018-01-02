@@ -1,0 +1,1 @@
+UPDATE users SET paired= $2 WHERE user_id= $1;

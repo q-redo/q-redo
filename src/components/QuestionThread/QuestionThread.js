@@ -15,10 +15,19 @@ class QuestionThread extends Component{
     }
   }
 
+<<<<<<< HEAD
   componentDidMount(){
     this.setState({ question: this.props.question});
     console.log(this.props.question)
     axios.get(`/api/answers/${this.props.questionId}`).then(answers=> {
+=======
+  componentWillMount(){
+    axios.get(`/api/questions/${this.props.match.params.id}`).then(response=> {
+      this.setState({ question: response.data[0] });
+    });
+
+    axios.get(`/api/answers/${this.props.match.params.id}`).then(answers=> {
+>>>>>>> master
       this.setState({ answersList: answers.data });
     });
   }
