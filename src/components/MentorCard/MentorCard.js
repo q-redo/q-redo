@@ -11,6 +11,7 @@ class MentorCard extends Component {
   }
 
   render() {
+    console.log("mentor list", this.props.mentorList)
     let paired_ids=[];
     this.props.userList.forEach(student => {
       student.paired?
@@ -20,18 +21,26 @@ class MentorCard extends Component {
     const mentors = this.props.mentorList.map((mentor, index) => {
       if(!paired_ids.includes(mentor.user_id)){
       return (
-        <Avatar av_user={mentor}/>
-      )};
+        <Avatar av_user={mentor} index={index}/>
+      )}else return 0;
     });
+    console.log("mentors",mentors)
     return (
         <div style={{display: 'inline-block'}}>
         <div className="mentorCard curved m10 shadowed">
-        {this.props.mentorList.length > 0 ?
-        mentors:<div style={{margin: 'auto'}}>
-          <h4 >NO MENTORS AVAILABLE</h4>
+        {mentors[0] === 0?
+          <div style={{margin: 'auto'}}>
+          <h4>NO MENTORS AVAILABLE</h4>
           <img className="travolta" src={travolta}/>
           <div className="hider"/>
           </div>
+          :!mentors.length?
+          <div style={{margin: 'auto'}}>
+          <h4>NO MENTORS AVAILABLE</h4>
+          <img className="travolta" src={travolta}/>
+          <div className="hider"/>
+          </div>:
+          mentors
         }
         </div>
         </div>

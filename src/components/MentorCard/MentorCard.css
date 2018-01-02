@@ -18,7 +18,7 @@
 .hider{
   transition: all ease 0.3s;
   position: absolute;
-  margin-top: -100px;
+  margin-top: -104px;
   width:100px;
   height: 100px;
   opacity: 1 ;
@@ -31,6 +31,3 @@
   cursor: help;
 }
 
-.activeMentorsTitle {
-  color: #d4d4d4;
-}
