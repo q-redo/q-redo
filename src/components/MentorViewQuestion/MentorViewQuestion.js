@@ -101,6 +101,7 @@ class MentorViewQuestion extends Component {
                <button className="bigCircle jump shadowed" onClick={()=> {
                  this.props.toggleModal(); 
                  this.props.setModalId(question.q_id);
+                 this.linkToStudent(question.user_id);
                 }}>
                 <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
                </button>

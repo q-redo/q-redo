@@ -18,6 +18,7 @@ class AnswerModal extends Component{
         this.handleCode= this.handleCode.bind(this);
         this.submitAnswer= this.submitAnswer.bind(this);
         this.toggleEdit= this.toggleEdit.bind(this);
+        this.unlinkUsers= this.unlinkUsers.bind(this);
     }
 
     componentDidMount(){
@@ -40,6 +41,13 @@ class AnswerModal extends Component{
 
     submitAnswer(){
         axios.post('/api/answers', { answer: this.state.answer, code_block: this.state.code, user_id: this.props.user.user_id, q_id: this.props.questionId })
+    }
+
+    unlinkUsers(id){
+        this.setState({ studentId: id });
+        axios.put(`/api/users/${id}`, { paired: null }).then(response => {
+            return response.data;
+          });
     }
 
     render(){
@@ -78,10 +86,11 @@ class AnswerModal extends Component{
                     <p>Answer:</p> 
                     <textarea class='modal-textarea modal-answer' type='text' onChange={ (e)=> this.handleAnswer(e.target.value)}></textarea>
 
-                    <i onClick={()=>this.props.toggleModal()} className="fa fa-lg fa-times" aria-hidden="true"></i>
+                    <i onClick={()=> {this.props.toggleModal(); this.unlinkUsers(this.state.question.user_id);}} className="fa fa-lg fa-times" aria-hidden="true"></i>
                     <button className='modal-btn submit-btn' onClick={()=> {
                         this.submitAnswer();
                         this.props.toggleModal();
+                        this.unlinkUsers(this.state.question.user_id);
                         }}>
                         Submit Answer
                     </button>

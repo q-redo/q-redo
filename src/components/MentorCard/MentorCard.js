@@ -26,7 +26,7 @@ class MentorCard extends Component {
     return (
         <div style={{display: 'inline-block'}}>
         <div className="mentorCard curved m10 shadowed">
-        {this.props.mentorList.length?
+        {this.props.mentorList.length > 0 ?
         mentors:<div style={{margin: 'auto'}}>
           <h4 >NO MENTORS AVAILABLE</h4>
           <img className="travolta" src={travolta}/>
