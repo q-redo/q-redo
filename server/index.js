@@ -166,6 +166,7 @@ app.delete('/api/help/:id', controller.clearHelp)
 
 app.put("/api/questions/:id", controller.answeredQuestion)
 app.put('/api/waiting_type/:id', controller.updateWaitingType)
+app.put('/api/users/:id', controller.linkUsers)
 
 
 app.get("/api/users", controller.getActiveUsers)

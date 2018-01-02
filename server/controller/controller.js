@@ -118,8 +118,14 @@ module.exports = {
   },
   clearHelp: (req, res, next)=> {
     const dbInstance= req.app.get('db');
-    console.log('************* REQ BODY *************', req.params);
     dbInstance.clear_help([req.params.id])
+      .then(response=> res.status(200).json(response))
+      .catch(console.log);
+  },
+  linkUsers: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    console.log('params: ', req.params, 'body: ', req.body)
+    dbInstance.link_users([req.params.id, req.body.paired])
       .then(response=> res.status(200).json(response))
       .catch(console.log);
   }
