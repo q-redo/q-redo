@@ -16,22 +16,12 @@
 }
 
 .modal-main-container{
-<<<<<<< HEAD
     margin: 10px 0 10px 0;
     position: relative;
     width: 100%;
     z-index: 10;
     background: var(--main-box-color);
     color: white;
-=======
-    position: fixed;
-    top: 10%;
-    left: 25%;
-    height: 80%;
-    width: 50%;
-    z-index: 9999;
-    background: #EEE;
->>>>>>> master
     padding: 10px;
     display:flex;
 }
@@ -86,7 +76,6 @@
     flex-direction: column;
     width:70%;
 }
-<<<<<<< HEAD
 .modal-main-container-right{
     display:inline-flex;
     flex-direction: column;
@@ -94,69 +83,4 @@
     align-content: center;
     align-items: center;
     width: 30%;
-=======
-
-.modal-code-section{
-    height: 38%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.modal-answer-section{
-    height: 45%;
-    width: 100%;    
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.modal-answer-section button{
-    margin-top: 10px;
-}
-
-.modal-answer-section p{
-    margin-right: 85%;
-}
-
-.modal-code-section textarea{
-    min-height: 150px;
-    width: 400px;
-}
-
-.modal-textarea{
-    font-size: 14px;
-    padding: 10px;
-    outline: none;
-    resize: none;
-}
-
-.modal-answer{
-    min-height: 60%;
-    width: 80%;  
-}
-
-.edit-btn{
-
-}
-
-.modal-btn{
-    cursor: pointer;
-    outline: none;
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    background: #2AABE2;
-    color: #F2F2F2;
-    text-align: center;
-    border-radius: 3px;
-}
-
-.modal-btn:hover{
-    transition: all ease 0.5s;
-    background: #222;
->>>>>>> master
 }
