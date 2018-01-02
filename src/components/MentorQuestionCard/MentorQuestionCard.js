@@ -35,6 +35,7 @@ class MentorQuestionCard extends Component {
   }
 
   render() {
+    console.log(this.state.id)
     const activeQuestions = this.state.activeQuestionsList.map(
       (question, index) => {
         return (
@@ -72,6 +73,7 @@ class MentorQuestionCard extends Component {
     return (
       <div className="questions-array">
         {activeQuestions}
+        { this.props.isOpen? <div className='modal-background'><AnswerModal question_id={this.state.id}/></div> :''}
       </div>
     );
   }

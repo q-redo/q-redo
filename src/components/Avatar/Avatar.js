@@ -9,7 +9,7 @@ class Avatar extends Component {
   constructor(props) {
     super(props);
     this.state ={
-      paired_user: {image_url: default_user_icon}
+      paired_user: {name: 'Mentor',image_url: default_user_icon}
 
     }
   }
@@ -29,7 +29,7 @@ class Avatar extends Component {
        
         <div className="user-card" >
         <div className="user-tooltip curved shadowed">
-        {this.props.av_user.name}
+        {this.props.av_user.paired?`${this.props.av_user.name} is with ${this.state.paired_user.name}`:this.props.av_user.name}
         </div>
           <div className="user-card-left" style={{}}>
             <div className="user-avatar shadowed" style={{backgroundImage:`url('${this.props.av_user.image_url === null? default_user_icon: this.props.av_user.image_url}')`}}/>
@@ -49,8 +49,8 @@ class Avatar extends Component {
             <div className="user-avatar shadowed" style={{marginLeft: '25px', backgroundImage:`url('${this.state.paired_user.image_url}')`}}/>
             </div>
             :
-            ''
-            // <small>{this.props.av_user.name.split(' ')[0]}</small>
+            
+            <small>{this.props.av_user.name.split(' ')[0]}</small>
             }
           </div>
         </div>     
