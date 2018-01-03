@@ -19,6 +19,7 @@ class MentorQuestionCard extends Component {
     };
     this.answeredQuestion = this.answeredQuestion.bind(this);
     this.getTimeFromQuestion = this.getTimeFromQuestion.bind(this);
+    this.userAnsweredQuestion = this.userAnsweredQuestion.bind(this);
   }
 
   //CWM get three most recent questions
@@ -35,6 +36,12 @@ class MentorQuestionCard extends Component {
     axios.put(`/api/questions/${id}`).then(response => {
       return response.data;
     });
+  }
+  userAnsweredQuestion() {
+    let { user_id } = this.props.user;
+
+    axios.put(`/api/userAnsweredQuestion/${user_id}`);
+    console.log('here it is', user_id);
   }
   getTimeFromQuestion(question) {
     var past = new Date(question).getTime();
@@ -72,7 +79,10 @@ class MentorQuestionCard extends Component {
             <section className="uq-left-side m10">
               <section className="uq-top-left">
                 <Avatar
-                  user={{ name: question.name, image_url: question.image_url }}
+                  av_user={{
+                    name: question.name,
+                    image_url: question.image_url
+                  }}
                 />
                 <span style={{ fontSize: '1.3em', display: 'inline-block' }}>
                   {this.getTimeFromQuestion(question.time)}
@@ -112,6 +122,15 @@ class MentorQuestionCard extends Component {
                 }}
               >
                 <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true" />
+              </button>
+
+              <button //value={users.user_answered}
+                onClick={() => {
+                  this.userAnsweredQuestion;
+                  this.answeredQuestion;
+                }}
+              >
+                I answered this
               </button>
             </section>
           </div>

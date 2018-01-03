@@ -14,7 +14,7 @@ class TopBar extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     // axios.get('/api/cohort').then(response=> {
     //   this.setState({ cohort: response.data });
     // });
@@ -25,14 +25,20 @@ class TopBar extends Component {
 
   render() {
     return (
-    <div className="topBar-main-container flexed">
-      <div className='topBar-left'>
-        <img width='60px' src={`http://192.241.205.79/wp-content/uploads/2017/06/cropped-cropped-cropped-devmountain_logo-1-1.png`}/>
-        <span children={`${this.state.cohort}`}/><i className="fa fa-circle"></i><span children={`${this.state.campus}`}/>
-      </div>
-      {this.props.user ? <h3>Welcome {this.props.user.name}</h3> : null}
-      <div className='topBar-right'>
-        <span children='LOGOUT'/>
+      <div className="topBar-main-container flexed">
+        <div className="topBar-left">
+          <img
+            width="60px"
+            src={`http://192.241.205.79/wp-content/uploads/2017/06/cropped-cropped-cropped-devmountain_logo-1-1.png`}
+          />
+          <span children={`${this.state.cohort}`} />
+          <i className="fa fa-circle" />
+          <span children={`${this.state.campus}`} />
+        </div>
+        {this.props.user ? <h3>Welcome {this.props.user.name}</h3> : null}
+        <div className="topBar-right">
+          <span children="LOGOUT" />
+        </div>
       </div>
     );
   }

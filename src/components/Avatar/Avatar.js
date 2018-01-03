@@ -24,6 +24,7 @@ class Avatar extends Component {
   }
 
   render() {
+    console.log(this.props.av_user, 'av_user');
     return (
       <div className="user-card">
         <div className="user-tooltip curved shadowed">

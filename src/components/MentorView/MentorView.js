@@ -23,9 +23,8 @@ class MentorView extends Component {
     this.state = {
       user: {}
     };
-    // this.userAnsweredQuestion = this.userAnsweredQuestion.bind(this);
   }
-  //
+
   // componentWillMount() {
   //   axios.get(
   //     `/api/users/${this.props.match.params.id}`.then(response => {
@@ -35,9 +34,7 @@ class MentorView extends Component {
   // }
 
   //
-  // userAnsweredQuestion() {
-  //   axios.put(`/api/userAnsweredQuestion/${id}`);
-  // }
+
   render() {
     return (
       <div id="MentorView">
@@ -50,14 +47,7 @@ class MentorView extends Component {
           ) : null}
         </section>
         <UserList />
-        <div>
-          <button
-            //value={users.user_answered}
-            onClick={e => this.userAnsweredQuestion(e.target.value)}
-          >
-            I answered this
-          </button>
-        </div>
+        <div />
       </div>
     );
   }

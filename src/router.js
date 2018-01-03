@@ -10,6 +10,7 @@ import QuestionTopicChart from './components/Charts/QuestionTopicChart';
 import MentorQuestionCard from './components/MentorQuestionCard/MentorQuestionCard';
 import QuestionThread from './components/QuestionThread/QuestionThread.js';
 import QuestionArchive from './components/QuestionArchive/QuestionArchive.js';
+import QuestionsPerMentor from './components/Charts/QuestionsPerMentor';
 
 export default (
   <BrowserRouter>
@@ -22,6 +23,7 @@ export default (
       <Route component={QuestionTopicChart} exact path="/topicChart" />
       <Route component={QuestionThread} path="/question/:id" />
       <Route component={QuestionArchive} path="/archive/questions" />
+      <Route component={QuestionsPerMentor} path="/questionsPerMentor" />
     </div>
   </BrowserRouter>
 );

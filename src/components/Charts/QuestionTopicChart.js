@@ -165,8 +165,8 @@ class QuestionTopicChart extends Component {
   render() {
     return (
       <div className="chart">
-        <h1>Chart Here</h1>
-        <Pie data={this.state.chartData} width={500} height={500} />
+        <h1>Questions by Topic</h1>
+        <Pie data={this.state.chartData} width={400} height={400} />
       </div>
     );
   }

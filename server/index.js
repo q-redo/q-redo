@@ -199,6 +199,7 @@ app.get('/api/mentors', controller.getActiveMentors);
 app.get('/api/recentQuestions', controller.getRecentQuestions);
 app.get('/api/activeQuestions', controller.getActiveQuestions);
 app.get('/api/topics', controller.getTopics);
+app.get('/api/getMentorAnswered/:id', controller.getMentorAnswered);
 
 app.post('/api/answers', controller.postAnswer);
 app.get('/api/answers/:id', controller.getAnswers);
@@ -206,6 +207,7 @@ app.get('/api/answers/:id', controller.getAnswers);
 app.put('/api/verify/answers/:id', controller.toggleVerify);
 app.put('/api/upvote/answers/:id', controller.upvote);
 app.put('/api/downvote/answers/:id', controller.downvote);
+app.put('/api/userAnsweredQuestion/:id', controller.userAnsweredQuestion);
 
 app.get('/api/me', function(req, res) {
   if (!req.user) {
