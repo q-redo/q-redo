@@ -116,7 +116,6 @@ module.exports = {
       .then(response=> res.status(200).json(response))
       .catch(console.log);
   },
-
   searchForStudent: (req, res, next)=> {
     const dbInstance = req.app.get('db');
     console.log(req.body)
