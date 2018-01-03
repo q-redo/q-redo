@@ -1,0 +1,1 @@
+UPDATE users SET rank = $2 WHERE user_id = $1

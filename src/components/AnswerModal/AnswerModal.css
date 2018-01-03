@@ -1,21 +1,86 @@
 .modal-background{
-    position: absolute;
+    position: fixed;
     background: rgba(17,17,17,0.5);
-    height: 5000px;
-    width: 5000px;
+    height: 100vh;
+    width: 100vw;
     left: 0;
     top: 0;
     margin: 0;
-    z-index: 999;
+    z-index: 9;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
 }
 
 .modal-main-container{
-    position: fixed;
-    top: 17%;
-    left: 25%;
-    height: 70%;
-    width: 50%;
-    z-index: 9999;
-    background: #EEE;
+    margin: 10px 0 10px 0;
+    position: relative;
+    width: 100%;
+    z-index: 10;
+    background: var(--main-box-color);
+    color: white;
     padding: 10px;
+    display:flex;
+}
+
+.modal-main-container input{
+
+    height: 4em;
+    border: none;
+     border-radius: 6px;
+     width: 100%;
+     display: inline-block;
+     box-sizing: border-box;
+     margin: 10px 0 10px 0;
+ }
+ .modal-main-container textarea{
+
+    height: 4em;
+    border: none;
+     border-radius: 6px;
+     width: 100%;
+     display: inline-block;
+     box-sizing: border-box;
+     margin: 10px 0 10px 0;
+ }
+.modal-main-container .fa-times{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.modals-holder {
+  padding: 50px;
+  position: absolute;
+  width: 70%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}  
+
+.invis-div2{
+    position: fixed;
+    opacity: .8;
+    width: 100vw;
+    height: 200%;
+    z-index: 1;
+}
+
+.modal-main-container-left{
+    display:inline-flex;
+    flex-direction: column;
+    width:70%;
+}
+.modal-main-container-right{
+    display:inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 30%;
 }

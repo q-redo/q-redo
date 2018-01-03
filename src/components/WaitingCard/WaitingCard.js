@@ -15,8 +15,15 @@ class WaitingCard extends Component {
   }
   handleWaitingType(val){
     axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => response);
-  } 
+  }
 
+  handleCancelQuestion(id){  
+    axios.delete(`/api/questions/${id}`).then(response => {
+      console.log(this.props.cancelId);
+      return response;
+    });
+  }
+  
   render() {
     return (
       <div className="waiting-card-main-container m10 flexed curved shadowed">
@@ -25,7 +32,7 @@ class WaitingCard extends Component {
             <span style={{fontSize: '1.5em'}}>STAND BY</span>
             <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
             </div>
-            <i onClick={()=> {this.props.toggleAction("action"); this.handleWaitingType('none')}} class="fa fa-lg fa-times" aria-hidden="true"></i>
+            <i onClick={()=> {this.props.toggleAction("action"); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.cancelId)}} className="fa fa-lg fa-times" aria-hidden="true"></i>
       </div>
     );
   }

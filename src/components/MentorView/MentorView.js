@@ -6,9 +6,9 @@ import MentorCard from '../MentorCard/MentorCard';
 import RecentQuestions from '../RecentQuestions/RecentQuestions';
 import QuestionForm from '../QuestionForm/QuestionForm';
 import ActionCard from '../ActionCard/ActionCard';
-import AnswerModal from '../AnswerModal/AnswerModal.js';
 import { connect } from 'react-redux';
 import { toggleModal } from '../../redux/reducer.js';
+import LoadingScreen from '../LoadingScreen/LoadingScreen.js';
 import './MentorView.css';
 
 const black = {
@@ -38,13 +38,9 @@ class MentorView extends Component {
   render() {
     return (
       <div id="MentorView">
+        {!this.props.user.name ? <LoadingScreen /> : ''}
         <section style={{ display: 'inline-block' }}>
           <MentorQuestionCard />
-          {this.props.isOpen === true ? (
-            <div className="modal-background">
-              <AnswerModal />
-            </div>
-          ) : null}
         </section>
         <UserList />
         <div />

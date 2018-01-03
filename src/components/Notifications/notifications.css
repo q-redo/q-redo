@@ -4,8 +4,8 @@
   padding: 5px;
   right: 0%;
   top: 110%;
-  position: fixed;
-  z-index: 50;
+  position: absolute;
+  z-index: 9999;
   color: white;
 }
 .hideit {

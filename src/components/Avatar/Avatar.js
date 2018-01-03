@@ -9,7 +9,7 @@ class Avatar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      paired_user: { image_url: default_user_icon }
+      paired_user: { name: 'Mentor', image_url: default_user_icon }
     };
   }
   componentWillReceiveProps() {
@@ -24,11 +24,14 @@ class Avatar extends Component {
   }
 
   render() {
-    console.log(this.props.av_user, 'av_user');
     return (
       <div className="user-card">
         <div className="user-tooltip curved shadowed">
-          {this.props.av_user.name}
+          {this.props.av_user.paired
+            ? `${this.props.av_user.name} is with ${
+                this.state.paired_user.name
+              }`
+            : this.props.av_user.name}
         </div>
         <div className="user-card-left" style={{}}>
           <div
@@ -73,10 +76,8 @@ class Avatar extends Component {
               />
             </div>
           ) : (
-            ''
-          )
-          // <small>{this.props.av_user.name.split(' ')[0]}</small>
-          }
+            <small>{this.props.av_user.name.split(' ')[0]}</small>
+          )}
         </div>
       </div>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import {connect} from 'react-redux';
-import {toggleAction} from '../../redux/reducer'
+import {toggleAction, postQuestion} from '../../redux/reducer'
 
 import './ActionCard.css';
 import axios from 'axios';
@@ -14,6 +14,7 @@ class ActionCard extends Component {
 handleWaitingType(val){
   axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => response);
 } 
+
   render() {
     return (
       <div className="actionForm-main-container m10 curved shadowed flexed">
@@ -30,7 +31,7 @@ handleWaitingType(val){
         <span style={{marginTop: '10px'}}>OFFER HELP</span>
         </div>
         <div className="big-circle-card">
-        <button onClick={()=>{this.props.toggleAction('waiting'); this.handleWaitingType('help')}} className="bigCircle shadowed jump flexed">
+        <button onClick={()=>{this.props.toggleAction('waiting'); this.handleWaitingType('help'); this.props.postQuestion({ campus_id: this.props.user.campus_id, cohort_id: this.props.user.cohort_id, text: 'HELP', code_block: null, topic_id: NaN, user_id: this.props.user.user_id })}} className="bigCircle shadowed jump flexed">
           <i className="fa fa-2x fa-exclamation"/>
         </button>
         <span style={{marginTop: '10px'}}>GET HELP</span>
@@ -42,4 +43,4 @@ handleWaitingType(val){
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps ,{toggleAction})(ActionCard);
+export default connect(mapStateToProps ,{toggleAction, postQuestion})(ActionCard);

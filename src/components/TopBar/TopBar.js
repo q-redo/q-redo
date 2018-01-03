@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { reqUser } from '../../redux/reducer.js';
 import axios from 'axios';
 import './TopBar.css';
+import {Link} from 'react-router-dom'
 
 class TopBar extends Component {
   constructor() {
@@ -40,7 +41,19 @@ class TopBar extends Component {
           <span children="LOGOUT" />
         </div>
       </div>
-    );
+      {this.props.user.rank === 1 ?
+      <Link to="adminview" style={{ textDecoration: 'none'}}><div className="topBar-right topBar-whitetext"><h3>Admin Console</h3></div></Link>
+      : false
+      }
+
+
+      {this.props.user ? <h3>Welcome {this.props.user.name}</h3> : null}
+
+      <div className='topBar-right'>
+        <span children='LOGOUT'/>
+      </div>
+    </div>
+    )
   }
 }
 

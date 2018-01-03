@@ -6,16 +6,16 @@ import Avatar from '../Avatar/Avatar';
 import AnswerModal from '../AnswerModal/AnswerModal.js';
 import { connect } from 'react-redux';
 import { toggleModal, setModalId } from '../../redux/reducer.js';
+import MentorViewQuestion from '../MentorViewQuestion/MentorViewQuestion.js';
+import linked from '../Avatar/linked.svg';
 import './MentorQuestionCard.css';
 
 class MentorQuestionCard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      activeQuestionsList: [],
-      id: 0,
-      voted: false
+      activeQuestionsList: []
     };
     this.answeredQuestion = this.answeredQuestion.bind(this);
     this.getTimeFromQuestion = this.getTimeFromQuestion.bind(this);
@@ -25,10 +25,13 @@ class MentorQuestionCard extends Component {
   //CWM get three most recent questions
   componentWillMount() {
     axios.get('/api/activeQuestions').then(response => {
-      console.log('this is my response.data', response.data);
-      this.setState({
-        activeQuestionsList: response.data
-      });
+      this.setState({ activeQuestionsList: response.data });
+    });
+  }
+
+  componentWillReceiveProps() {
+    axios.get('/api/activeQuestions').then(response => {
+      this.setState({ activeQuestionsList: response.data });
     });
   }
 
@@ -71,73 +74,25 @@ class MentorQuestionCard extends Component {
     return inMinutes;
   }
 
+  //We used conditional rendering in the map method to render different cards depending on the type of help/question the student needs.
   render() {
     const activeQuestions = this.state.activeQuestionsList.map(
       (question, index) => {
-        return (
-          <div className="user-question-card curved shadowed m10" key={index}>
-            <section className="uq-left-side m10">
-              <section className="uq-top-left">
-                <Avatar
-                  av_user={{
-                    name: question.name,
-                    image_url: question.image_url
-                  }}
-                />
-                <span style={{ fontSize: '1.3em', display: 'inline-block' }}>
-                  {this.getTimeFromQuestion(question.time)}
-                  <img
-                    style={{ width: '25px' }}
-                    src={hourglass}
-                    alt="hourglass spinning"
-                  />
-                </span>
-              </section>
-              <p>{question.question}</p>
-              <code>
-                <pre>
-                  <textarea id="code-col">{question.code_block}</textarea>
-                </pre>
-              </code>
-            </section>
-
-            <section className="uq-right-side m10">
-              <button
-                className="topicPill m10"
-                style={{
-                  borderColor: `${question.color}`,
-                  background: `radial-gradient(at top left, ${question.color},${
-                    question.color
-                  }, black)`
-                }}
-                key={index}
-              >
-                {question.topic}
-              </button>
-              <button
-                className="bigCircle jump shadowed"
-                onClick={() => {
-                  this.props.toggleModal();
-                  this.props.setModalId(question.q_id);
-                }}
-              >
-                <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true" />
-              </button>
-
-              <button //value={users.user_answered}
-                onClick={() => {
-                  this.userAnsweredQuestion;
-                  this.answeredQuestion;
-                }}
-              >
-                I answered this
-              </button>
-            </section>
-          </div>
-        );
+        return <MentorViewQuestion question={question} index={index} />;
       }
     );
-    return <div className="questions-array">{activeQuestions}</div>;
+    return (
+      <div className="questions-array">
+        {activeQuestions}
+        {this.props.isOpen ? (
+          <div className="modal-background">
+            <AnswerModal question_id={this.state.id} />
+          </div>
+        ) : (
+          ''
+        )}
+      </div>
+    );
   }
 }
 

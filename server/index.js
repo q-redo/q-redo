@@ -104,71 +104,45 @@ massive(connectionString)
 
 //SOCKET.IO STARTS
 
-let interval;
-io.sockets.on('connection', socket => {
-  var db = app.get('db');
-  socket.handshake.session.user = you;
-  console.log('Client connected!');
+let interval
+io.sockets.on("connection", socket => {
+var db = app.get("db")
+socket.handshake.session.user = you
+console.log("Client connected!")
 
-  socket.handshake.session.user
-    ? db.run(
-        `UPDATE users SET logged_in = true WHERE user_id =${
-          socket.handshake.session.user.user_id
-        }`
-      )
-    : console.log('No one signed in');
+socket.handshake.session.user ? db.run(`UPDATE users SET logged_in = true WHERE user_id =${socket.handshake.session.user.user_id}`) : console.log("No one signed in")
 
-  var intervalId = setInterval(
-    () => getInfoAndEmit(socket, socket.handshake.session.user),
-    5000
-  );
-  socket.on('disconnect', () => {
-    console.log('Client disconnected!');
-    clearInterval(intervalId);
-    socket.handshake.session.user
-      ? db.run(
-          `UPDATE users SET logged_in = false WHERE user_id =${
-            socket.handshake.session.user.user_id
-          }`
-        ) && console.log(socket.handshake.session.user.user_id)
-      : console.log('No user signed in!');
-  });
-});
+var intervalId = setInterval(() => getInfoAndEmit(socket, socket.handshake.session.user), 5000)
+socket.on("disconnect", () => {
+console.log("Client disconnected!")
+clearInterval(intervalId);
+socket.handshake.session.user ?  db.run(`UPDATE users SET logged_in = false WHERE user_id =${socket.handshake.session.user.user_id}`) && console.log(socket.handshake.session.user.user_id)
+: console.log("No user signed in!") })})
 
-const getInfoAndEmit = async (socket, usr) => {
-  console.log('User still connected');
-  var db = app.get('db');
-  try {
-    const userres = await db.run(
-      `SELECT * FROM users WHERE logged_in = true AND rank = 3 AND cohort_id = ${
-        usr.cohort_id
-      } AND campus_id = ${usr.campus_id}`
-    );
-    const mentorres = await db.run(
-      `select * FROM users WHERE logged_in = true AND rank = 2 AND cohort_id = ${
-        usr.cohort_id
-      } AND campus_id = ${usr.campus_id}`
-    );
-    const res = await db.run(
-      `SELECT * FROM questions WHERE cohort_id = ${
-        usr.cohort_id
-      } AND campus_id = ${usr.campus_id}`
-    );
 
-    socket.emit('MentorList', mentorres);
-    socket.emit('UserList', userres);
-    socket.emit('FromMe', socket.handshake.session.user);
-    socket.emit('FromAPI', res); // Emitting a new message. It will be consumed by the client
-  } catch (error) {
-    console.error(`Error: ${error}`);
-  }
-};
-app.get('/api/questions', (req, res, next) => {
-  req.app
-    .get('db')
-    .get_all_questions()
-    .then(response => res.json(response));
-});
+const getInfoAndEmit = async (socket, usr)=> {
+console.log( "User still connected")
+var db = app.get("db");
+  try {  
+  const userres = await db.run(`SELECT * FROM users WHERE logged_in = true AND rank = 3 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
+   const mentorres = await db.run(`select * FROM users WHERE logged_in = true AND rank = 2 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
+  const res = await db.run(`SELECT * FROM questions WHERE cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
+  const currentUser = await db.run(`SELECT * FROM users WHERE user_id = ${usr.user_id}`)
+
+  socket.emit("MentorList", mentorres)
+  socket.emit("UserList", userres)
+  socket.emit("FromMe", currentUser)
+  socket.emit("FromAPI", res) // Emitting a new message. It will be consumed by the client
+} catch (error) {
+  console.error(`Error: ${error}`)
+} 
+}
+app.get("/api/questions", (req, res, next) => {
+req.app
+  .get("db")
+  .get_all_questions()
+  .then(response => res.json(response))
+})
 
 //SOCKET.io ENDS
 
@@ -189,17 +163,34 @@ app.get('/api/users/:id', (req, res, next) => {
     .catch(console.log);
 });
 //change answer to true //
+<<<<<<< HEAD
 app.delete('/api/questions/:id', controller.deleteQuestion);
+=======
+app.delete('/api/questions/:id', controller.deleteQuestion)
+app.delete('/api/help/:id', controller.clearHelp)
+
+app.put("/api/questions/:id", controller.answeredQuestion)
+app.put('/api/waiting_type/:id', controller.updateWaitingType)
+app.put('/api/users/:id', controller.linkUsers)
+>>>>>>> master
 
 app.put('/api/questions/:id', controller.answeredQuestion);
 app.put('/api/waiting_type/:id', controller.updateWaitingType);
 
+<<<<<<< HEAD
 app.get('/api/users', controller.getActiveUsers);
 app.get('/api/mentors', controller.getActiveMentors);
 app.get('/api/recentQuestions', controller.getRecentQuestions);
 app.get('/api/activeQuestions', controller.getActiveQuestions);
 app.get('/api/topics', controller.getTopics);
 app.get('/api/getMentorAnswered/:id', controller.getMentorAnswered);
+=======
+app.get("/api/users", controller.getActiveUsers);
+app.get("/api/mentors", controller.getActiveMentors);
+app.get("/api/recentQuestions", controller.getRecentQuestions);
+app.get("/api/activeQuestions", controller.getActiveQuestions);
+app.get("/api/topics", controller.getTopics);
+>>>>>>> master
 
 app.post('/api/answers', controller.postAnswer);
 app.get('/api/answers/:id', controller.getAnswers);
@@ -209,11 +200,32 @@ app.put('/api/upvote/answers/:id', controller.upvote);
 app.put('/api/downvote/answers/:id', controller.downvote);
 app.put('/api/userAnsweredQuestion/:id', controller.userAnsweredQuestion);
 
+<<<<<<< HEAD
 app.get('/api/me', function(req, res) {
   if (!req.user) {
     return res.status(404);
   }
   res.status(200).json(req.user);
 });
+=======
+//AdminView Endpoints//
+app.post('/api/studentsearch', controller.searchForStudent);
+app.put('/api/changeuserrank', controller.changeRank);
+app.get('/api/getcampusandcohort', controller.getCandC);
+app.put('/api/changeusercohort', controller.changeCohort);
+app.put('/api/changeusercampus', controller.changeCampus);
+app.post('/api/createcampus', controller.campusCreation);
+app.post('/api/createcohort', controller.cohortCreation);
+app.post('/api/archiveallquestions', controller.archiveAllQuestions)
+app.post('/api/searchSpecificQuestions', controller.getSpecificQuestions)
+//End of AdminView endpoints.
+
+app.get("/api/me", function(req, res) {
+ if (!req.user) {
+   return res.status(404)
+ }
+ res.status(200).json(req.user)
+})
+>>>>>>> master
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

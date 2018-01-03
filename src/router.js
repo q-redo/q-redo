@@ -11,12 +11,14 @@ import MentorQuestionCard from './components/MentorQuestionCard/MentorQuestionCa
 import QuestionThread from './components/QuestionThread/QuestionThread.js';
 import QuestionArchive from './components/QuestionArchive/QuestionArchive.js';
 import QuestionsPerMentor from './components/Charts/QuestionsPerMentor';
+import AdminView from './components/AdminView/AdminView';
 
 export default (
   <BrowserRouter>
     <div>
       <Route component={StudentView} exact path="/student" />
       <Route component={MentorView} exact path="/mentorView" />
+      <Route component={AdminView} exact path="/adminview" />
       <Route component={QuestionForm} exact path="/question" />
       <Route component={MentorCard} exact path="/mentorCard" />
       <Route component={MentorQuestionCard} exact path="/mentorQuestionCard" />
