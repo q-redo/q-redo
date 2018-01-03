@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { toggleModal } from "../../redux/reducer.js";
+import { toggleModal, unlinkUsers } from "../../redux/reducer.js";
 import axios from "axios";
 import "./AnswerModal.css";
 import QuestionThread from "../QuestionThread/QuestionThread";
@@ -17,7 +17,6 @@ class AnswerModal extends Component {
     this.handleAnswer = this.handleAnswer.bind(this);
     this.handleCode = this.handleCode.bind(this);
     this.submitAnswer = this.submitAnswer.bind(this);
-    this.unlinkUsers= this.unlinkUsers.bind(this);
   }
 
   componentDidMount() {
@@ -52,10 +51,6 @@ class AnswerModal extends Component {
     });
   }
 
-  unlinkUsers(){
-    axios.put(`/api/unlink/${this.state.question.user_id}`).then(response=> response.data);
-  }
-
   render() {
     return (
       <div className="modal-background">
@@ -83,7 +78,7 @@ class AnswerModal extends Component {
             />
             <i
               onClick={() => { this.props.toggleModal();
-                this.unlinkUsers(this.state.question.user_id);
+                this.props.unlinkUsers(this.state.question.user_id);
             }}
               className="fa fa-lg fa-times"
               aria-hidden="true"
@@ -94,7 +89,7 @@ class AnswerModal extends Component {
               onClick={() => {
                 this.submitAnswer();
                 this.props.toggleModal();
-                this.unlinkUsers(this.state.question.user_id);
+                this.props.unlinkUsers(this.state.question.user_id);
               }}
               className="bigCircle jump  shadowed flexed"
             >

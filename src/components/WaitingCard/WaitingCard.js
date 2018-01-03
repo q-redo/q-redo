@@ -3,7 +3,7 @@ import axios from 'axios';
 import hourglass from './hourglass.svg';
 import ellipsis from './ellipsis.svg';
 import {connect} from 'react-redux';
-import {toggleAction} from '../../redux/reducer';
+import {toggleAction, unlinkUsers} from '../../redux/reducer';
 import './WaitingCard.css';
 
 class WaitingCard extends Component {
@@ -11,7 +11,6 @@ class WaitingCard extends Component {
     super(props);
     this.handleWaitingType= this.handleWaitingType.bind(this);
     this.handleCancelQuestion= this.handleCancelQuestion.bind(this);
-    this.unlinkUsers= this.unlinkUsers.bind(this);
   }
   handleWaitingType(val){
     axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => response);
@@ -23,10 +22,6 @@ class WaitingCard extends Component {
       return response;
     });
   }
-
-  unlinkUsers(id){
-    axios.put(`/api/unlink/${this.props.user.user_id}`).then(response=> response.data);
-  }
   
   render() {
     return (
@@ -36,11 +31,11 @@ class WaitingCard extends Component {
             <span style={{fontSize: '1.5em'}}>Stand By</span>
             <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
             </div>
-            <i onClick={()=> {this.props.toggleAction("action"); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.cancelId); this.unlinkUsers(this.props.user.user_id);}} className="fa fa-lg fa-times" aria-hidden="true"></i>
+            <i onClick={()=> {this.props.toggleAction("action"); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.cancelId); this.props.unlinkUsers(this.props.user.user_id);}} className="fa fa-lg fa-times" aria-hidden="true"></i>
       </div>
     );
   }
 }
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps ,{toggleAction})(WaitingCard);
+export default connect(mapStateToProps ,{toggleAction, unlinkUsers})(WaitingCard);
