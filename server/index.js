@@ -77,6 +77,7 @@ passport.deserializeUser(function(obj, done) {
 let you;
 app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
  you = req.user
+ session.user = req.user
  req.user.rank === 3 ? res.redirect("http://localhost:3000/student") : res.redirect("http://localhost:3000/mentorview")
 })
 
@@ -121,15 +122,15 @@ socket.handshake.session.user ?  db.run(`UPDATE users SET logged_in = false WHER
 const getInfoAndEmit = async (socket, usr)=> {
 console.log( "User still connected")
 var db = app.get("db");
-  try {
+  try {  
   const userres = await db.run(`SELECT * FROM users WHERE logged_in = true AND rank = 3 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
    const mentorres = await db.run(`select * FROM users WHERE logged_in = true AND rank = 2 AND cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
   const res = await db.run(`SELECT * FROM questions WHERE cohort_id = ${usr.cohort_id} AND campus_id = ${usr.campus_id}`)
-
+  const currentUser = await db.run(`SELECT * FROM users WHERE user_id = ${usr.user_id}`)
 
   socket.emit("MentorList", mentorres)
   socket.emit("UserList", userres)
-  socket.emit("FromMe", socket.handshake.session.user)
+  socket.emit("FromMe", currentUser)
   socket.emit("FromAPI", res) // Emitting a new message. It will be consumed by the client
 } catch (error) {
   console.error(`Error: ${error}`)
@@ -169,24 +170,42 @@ app.put('/api/waiting_type/:id', controller.updateWaitingType)
 app.put('/api/users/:id', controller.linkUsers)
 
 
-app.get("/api/users", controller.getActiveUsers)
-app.get("/api/mentors", controller.getActiveMentors)
-app.get("/api/recentQuestions", controller.getRecentQuestions)
-app.get("/api/activeQuestions", controller.getActiveQuestions)
-app.get("/api/topics", controller.getTopics)
+app.get("/api/users", controller.getActiveUsers);
+app.get("/api/mentors", controller.getActiveMentors);
+app.get("/api/recentQuestions", controller.getRecentQuestions);
+app.get("/api/activeQuestions", controller.getActiveQuestions);
+app.get("/api/topics", controller.getTopics);
 
-app.post('/api/answers', controller.postAnswer)
+app.post('/api/answers', controller.postAnswer);
 app.get('/api/answers/:id', controller.getAnswers);
 
 app.put('/api/verify/answers/:id', controller.toggleVerify);
 app.put('/api/upvote/answers/:id', controller.upvote);
 app.put('/api/downvote/answers/:id', controller.downvote);
 
+//AdminView Endpoints//
+app.post('/api/studentsearch', controller.searchForStudent);
+app.put('/api/changeuserrank', controller.changeRank);
+app.get('/api/getcampusandcohort', controller.getCandC);
+app.put('/api/changeusercohort', controller.changeCohort);
+app.put('/api/changeusercampus', controller.changeCampus);
+app.post('/api/createcampus', controller.campusCreation);
+app.post('/api/createcohort', controller.cohortCreation);
+app.post('/api/archiveallquestions', controller.archiveAllQuestions)
+app.post('/api/searchSpecificQuestions', controller.getSpecificQuestions)
+//End of AdminView endpoints.
+
 app.get("/api/me", function(req, res) {
- if (!req.user) {
-   return res.status(404)
+ console.log(session.user)
+ if (!session.user) {
+   return res.status(404).send("no_user")
  }
- res.status(200).json(req.user)
+ res.status(200).json(session.user)
 })
+
+app.get('/api/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 server.listen(port, () => console.log(`Listening on port ${port}`))

@@ -116,6 +116,85 @@ module.exports = {
       .then(response=> res.status(200).json(response))
       .catch(console.log);
   },
+  searchForStudent: (req, res, next)=> {
+    const dbInstance = req.app.get('db');
+    console.log(req.body)
+    const {searchText} = req.body
+
+    dbInstance.search_for_students(searchText)
+    .then(response => res.status(200).send(response))
+    .catch(() => res.status(500).send())
+  },
+  changeRank: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    const {user_id, rank} = req.body
+
+    dbInstance
+    .change_user_rank(user_id, rank)
+    .then(response => res.status(200).json(response))
+    .catch(console.log);
+},
+getCandC: (req, res, next) => {
+    const dbInstance = req.app.get('db')
+
+    dbInstance
+    .get_campus_and_cohort()
+    .then(response => res.status(200).send(response))
+    .catch(console.log);
+},
+changeCampus: (req, res, next) => {
+  const dbInstance = req.app.get('db')
+  const {user_id, campus_id} = req.body
+
+  dbInstance
+  .change_user_campus(user_id, campus_id)
+  .then(response => res.status(200).send(response))
+  .catch(console.log);
+},
+changeCohort: (req, res, next) => {
+  const dbInstance = req.app.get('db')
+  const {user_id, cohort_id} = req.body
+
+  dbInstance
+  .change_user_cohort(user_id, cohort_id)
+  .then(response => res.status(200).send(response))
+  .catch(console.log);
+},
+campusCreation: (req, res, next) => {
+  const dbInstance = req.app.get('db')
+  const {campus_name} = req.body
+
+  dbInstance
+  .create_new_campus(campus_name)
+  .then(response => res.status(200).send(response))
+  .catch(console.log)
+},
+cohortCreation: (req, res, next) => {
+  const dbInstance = req.app.get('db')
+  const {campus_id, formal_name} = req.body
+
+  dbInstance
+  .create_new_cohort(campus_id, formal_name)
+  .then(response => res.status(200).send(response))
+  .catch(console.log)
+},
+archiveAllQuestions: (req, res, next) => {
+  const dbInstance = req.app.get('db')
+  
+  dbInstance
+  .archive_questions()
+  .then(response => res.status(200).send(response))
+  .catch(console.log)
+},
+getSpecificQuestions: (req, res, next) => {
+const dbInstance = req.app.get('db')
+const {table_name} = req.body
+
+    dbInstance.run(`select * from ${table_name}`)
+    .then(response => res.status(200).send(response))
+    .catch(console.log);
+},
+
   clearHelp: (req, res, next)=> {
     const dbInstance= req.app.get('db');
     dbInstance.clear_help([req.params.id])
@@ -129,4 +208,5 @@ module.exports = {
       .then(response=> res.status(200).json(response))
       .catch(console.log);
   }
+
 };

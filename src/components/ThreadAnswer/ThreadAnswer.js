@@ -19,6 +19,10 @@ class ThreadAnswer extends Component{
     this.unUpvote = this.unUpvote.bind(this);
     this.unDownvote= this.unDownvote.bind(this);
   }
+
+  componentWillMount(){
+    console.log(this.props);
+  }
  
   upvote(id){
     axios.put(`/api/upvote/answers/${id}`);
@@ -38,18 +42,20 @@ class ThreadAnswer extends Component{
             this.setState({ downvoted: false, upvoted: false });
           }
 
-  toggleVerify(id){
+  toggleVerify(id){ 
     axios.put(`/api/verify/answers/${id}`);
+    axios.put(`/api/inactive/question/${this.props.question.q_id}`);
   }
+
+
 
   render(){
       const answer = this.props.answer
       return(
         answer.best_answer === true ?
-        <div className='answer-container best-answer curved m10' key={answer.id}>
+        <div className='answer-container best-answer curved m10 shadowed' key={answer.id}>
           <h1>Answer:</h1>
           <p>{answer.answer}</p>
-          <hr />
 
           { answer.code_block ? 
             <div id='code-col' className='answer-code-box curved'>
@@ -59,6 +65,7 @@ class ThreadAnswer extends Component{
                 </pre>
               </code>
             </div> : null }
+            <hr />
           
           <div className='answer-container-bot'>
             <div className='answer-container-bot-left'>
@@ -70,7 +77,10 @@ class ThreadAnswer extends Component{
             </div>
 
             <div className='answer-container-bot-right'>
+            { this.props.user.user_id === this.props.question.user_id ?
               <button onClick={ (e)=> {this.toggleVerify(answer.id)} }>Unverify</button>
+              : null
+            }  
             </div>
           </div>
         </div>
@@ -79,7 +89,6 @@ class ThreadAnswer extends Component{
         <div className='answer-container curved m10' key={answer.id}>
           <h1>Answer:</h1>
           <p>{answer.answer}</p>
-          <hr />
 
           { answer.code_block ? 
             <div id='code-col' className='answer-code-box curved'>
@@ -89,6 +98,7 @@ class ThreadAnswer extends Component{
                 </pre>
               </code>
             </div> : null }
+            <hr />
 
           <div className='answer-container-bot'>
             <div className='answer-container-bot-left'>
@@ -98,7 +108,10 @@ class ThreadAnswer extends Component{
                 {answer.score} points
                 </div>
             </div>
+            { this.props.user.user_id === this.props.question.user_id ?
               <button onClick={ (e)=> {this.toggleVerify(answer.id)} }>Verified Answer</button>
+              : null
+            }
           </div>
         </div>
       )

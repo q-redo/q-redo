@@ -17,19 +17,18 @@ class QuestionThread extends Component{
 
   componentDidMount(){
     this.setState({ question: this.props.question});
-    console.log(this.props.question)
-    axios.get(`/api/answers/${this.props.questionId}`).then(answers=> {
+    axios.get(`/api/answers/${this.props.question.q_id}`).then(answers=> {
       this.setState({ answersList: answers.data });
     });
   }
   componentWillUpdate(){
-    axios.get(`/api/answers/${this.props.questionId}`).then(answers=> {
+    axios.get(`/api/answers/${this.props.question.q_id}`).then(answers=> {
       this.setState({ answersList: answers.data });
     });
   }
   render(){
     const answers= this.state.answersList.map((answer, i)=> {
-      return <ThreadAnswer answer={answer} key={i}/>
+      return <ThreadAnswer question={this.props.question} answer={answer} key={i}/>
     });
 
     if(answers.length){

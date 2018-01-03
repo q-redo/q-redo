@@ -26,6 +26,9 @@ body {
   background-color: var(--main-bg-color);
   font-family: 'Poppins', sans-serif;
 }    
+button{
+  font-family: 'Poppins', sans-serif;
+}
 
 .m10{
   margin: 10px;

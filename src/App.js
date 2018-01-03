@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import Router from './router';
 import TopBar from './components/TopBar/TopBar';
 import Notifications from './components/Notifications/Notifications'
-import axios from 'axios';
 import {getUserList, getQuestionList, reqUser, getMentorList} from "./redux/reducer"
 import {connect} from "react-redux"
-import socketIOClient from 'socket.io-client'
+import socketIOClient from 'socket.io-client';
+import axios from 'axios';
 
 import './App.css';
+import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 
 class App extends Component {
   constructor(){
@@ -26,14 +27,21 @@ class App extends Component {
       const { endpoint } = this.state
       const socket = socketIOClient(endpoint)
       socket.on("FromAPI", data =>  this.props.getQuestionList(data) && this.setState({response: data}))
-      socket.on("FromMe", data => this.props.reqUser(data) && this.setState({user: data}))
+      socket.on("FromMe", data => this.props.reqUser(data[0]) && this.setState({user: data[0]}))
       socket.on("UserList", data => this.props.getUserList(data) && this.setState({userList: data}))
       socket.on("MentorList", data => this.props.getMentorList(data) && this.setState({mentorList: data}))
     }
 
 
   componentWillMount() {
-    
+    console.log("componentWillmount")
+    axios.get('/api/me').then(response => 
+      {response
+  }).catch((error) => {
+      error.response.data === "no_user"? window.location.href = 'http://localhost:3001/login':null;
+    }
+      // window.location.href = 'http://localhost:3001/login'
+    )
   }
 
   handleLogin() {
@@ -45,7 +53,7 @@ class App extends Component {
 
       <div  className="App flexed">
       <Notifications />
-
+        {this.props.isLoading? <LoadingScreen/>:''}
         <TopBar/>
         <section style={{marginTop: '100px', width: '720px'}}>
         {Router}

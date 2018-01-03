@@ -22,11 +22,11 @@ class AnswerModal extends Component {
 
   componentDidMount() {
     axios.get(`/api/questions/${this.props.questionId}`).then(response => {
+      console.log(response.data[0]);
       this.setState({
         question: response.data[0],
         code: response.data[0].code_block
       });
-      console.log(this.state.question);
     });
   }
   componentWillUpdate(){
@@ -52,11 +52,9 @@ class AnswerModal extends Component {
     });
   }
 
-  unlinkUsers(id){
-    axios.put(`/api/users/${id}`, { paired: null }).then(response => {
-        return response.data;
-      });
-}
+  unlinkUsers(){
+    axios.put(`/api/unlink/${this.state.question.user_id}`).then(response=> response.data);
+  }
 
   render() {
     return (
@@ -102,7 +100,7 @@ class AnswerModal extends Component {
             >
               <i className="fa fa-lg fa-paper-plane" aria-hidden="true" />
             </button>
-            <span style={{marginTop: '10px'}}>SUBMIT ANSWER</span>
+            <span style={{marginTop: '10px'}}>Submit Answer</span>
             </div>
           </div>
           <QuestionThread question={this.state.question} />
