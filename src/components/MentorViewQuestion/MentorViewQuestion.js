@@ -46,13 +46,13 @@ class MentorViewQuestion extends Component {
             question.question === 'HELP' ?
             this.state.helping === false ? 
             <div className="user-help-card curved shadowed m10" key={index}>
-                <div className='qh-avatar'>
+                <div className='qh-avatar' style={{width: '160px'}}>
                   <Avatar av_user={{name: question.name, image_url: question.image_url}}/>         
                 </div>
   
-                <span style={{display: 'inline-block'}}>0:00 <img style={{width: '25px'}} src={hourglass} alt="hourglass spinning"/></span>
   
-              <section className="uq-right-side m10">
+                <span style={{display: 'inline-block'}}>0:00 <img style={{width: '25px'}} src={hourglass} alt="hourglass spinning"/></span>
+              <section className="uh-right-side m10">
                <button className="bigCircle jump shadowed" onClick={()=> {
                  this.setHelp();
                  this.linkToStudent(question.user_id);
@@ -65,17 +65,16 @@ class MentorViewQuestion extends Component {
             <div className="user-help-card curved shadowed m10" key={index}>
   
               <div className='qh-avatar'>
-                <div className="user-avatar shadowed" style={{backgroundImage:`url('${question.image_url}')`}}/>
-                <img style={{width: '200px'}} src={linked}/>  
-                <div className="user-avatar shadowed" style={{backgroundImage:`url('${this.props.user.image_url}')`}}/>
+                <div className="user-waiting-avatar shadowed" style={{backgroundImage:`url('${question.image_url}')`}}/>
+                </div>
+                <img style={{width: '200px', margin: '-20px 0 -20px 0'}} src={linked}/>  
+                <div className='qh-avatar'>
+                <div className="user-waiting-avatar shadowed" style={{backgroundImage:`url('${this.props.user.image_url}')`}}/>
               </div>
-              <div>
-              <button value={question.q_id} className="cancel-help-btn" onClick={(e)=> {
-                 this.clearHelp(e.target.value);
-                 this.setHelp();
-                }}><i className="fa fa-times"/></button>
-  
-              </div>
+              <i onClick={(e)=> {
+                  this.clearHelp(e.target.value);
+                  this.setHelp();
+                 }} className="fa fa-lg fa-times m10" style={{color: 'white'}}/>  
             </div>              
             :
             <div className="user-question-card curved shadowed m10" key={index}>

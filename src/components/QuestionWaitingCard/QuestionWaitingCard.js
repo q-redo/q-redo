@@ -44,7 +44,7 @@ class QuestionWaitingCard extends Component {
             <span style={{fontSize: '1.3em'}}>Posted and waiting</span>
             <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
             </div>
-            <i onClick={()=> {this.props.toggleAction("action"); this.props.toggleQuestionWaiting(false); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.question_id)}} class="fa fa-lg fa-times" aria-hidden="true"/>
+            <i onClick={()=> {this.props.toggleAction("action"); this.props.toggleQuestionWaiting(false); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.question_id)}} className="fa fa-lg fa-times" aria-hidden="true"/>
       </div>
           {/* <div className="modal-main-container curved">
           <div className="modal-main-container-left">
