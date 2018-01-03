@@ -11,10 +11,6 @@ import LoadingScreen from './LoadingScreen/LoadingScreen';
 
 
 class StudentView extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return (
       <div id="StudentView">

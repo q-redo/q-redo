@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './MentorCard.css';
 import Avatar from '../Avatar/Avatar';
 import travolta from './travolta.gif';
 import {connect} from 'react-redux'
 
 class MentorCard extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     let paired_ids=[];
     this.props.userList.forEach(student => {
@@ -20,7 +15,7 @@ class MentorCard extends Component {
     const mentors = this.props.mentorList.map((mentor, index) => {
       if(!paired_ids.includes(mentor.user_id)){
       return (
-        <Avatar av_user={mentor} index={index}/>
+        <Avatar av_user={mentor} key={index}/>
       )}else return null;
     });
     return (
@@ -29,13 +24,13 @@ class MentorCard extends Component {
         {mentors[0] === null?
           <div style={{margin: 'auto'}}>
           <h4>NO MENTORS AVAILABLE</h4>
-          <img className="travolta" src={travolta}/>
+          <img className="travolta" src={travolta} alt="travolta-gif"/>
           <div className="hider"/>
           </div>
           :!mentors.length?
           <div style={{margin: 'auto'}}>
           <h4>NO MENTORS AVAILABLE</h4>
-          <img className="travolta" src={travolta}/>
+          <img className="travolta" src={travolta} alt="travolta-gif"/>
           <div className="hider"/>
           </div>:
           mentors

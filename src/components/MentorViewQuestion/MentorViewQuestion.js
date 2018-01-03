@@ -20,6 +20,7 @@ class MentorViewQuestion extends Component {
         this.setHelp= this.setHelp.bind(this);
         this.clearHelp= this.clearHelp.bind(this);
         this.linkToStudent= this.linkToStudent.bind(this);
+        this.unlinkUsers = this.unlinkUsers.bind(this);
     }
 
     setHelp(){
@@ -31,6 +32,10 @@ class MentorViewQuestion extends Component {
         axios.put(`/api/users/${id}`, { paired: this.props.user.user_id }).then(response => {
             return response.data;
           });
+      }
+
+      unlinkUsers(id){
+        axios.put(`/api/unlink/${id}`).then(response=> response.data);
       }
     
       clearHelp(id){
@@ -65,6 +70,7 @@ class MentorViewQuestion extends Component {
             <div className="user-help-card curved shadowed m10" key={index}>
               <div>
               <button value={question.q_id} className="cancel-help-btn" onClick={(e)=> {
+                 this.unlinkUsers(question.user_id);
                  this.clearHelp(e.target.value);
                  this.setHelp();
                 }}>X</button>
@@ -87,9 +93,9 @@ class MentorViewQuestion extends Component {
                 <p>{question.question}</p>
                     <code>
                       <pre>
-                        <textarea id='code-col'>
+                        <div id='code-col' style={{maxWidth: "100%", overflowY: "scroll", wordWrap: "normal"}}>
                           {question.code_block}
-                        </textarea>
+                        </div>
                       </pre>
                     </code>
               </section>  
@@ -101,6 +107,7 @@ class MentorViewQuestion extends Component {
                <button className="bigCircle jump shadowed" onClick={()=> {
                  this.props.toggleModal(); 
                  this.props.setModalId(question.q_id);
+                 this.linkToStudent(question.user_id);
                 }}>
                 <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
                </button>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reqUser } from '../../redux/reducer.js';
-import axios from 'axios';
+// import axios from 'axios';
 import './TopBar.css';
 import {Link} from 'react-router-dom'
 
@@ -28,7 +28,7 @@ class TopBar extends Component {
     return (
     <div className="topBar-main-container flexed">
       <div className='topBar-left'>
-        <img width='60px' src={`http://192.241.205.79/wp-content/uploads/2017/06/cropped-cropped-cropped-devmountain_logo-1-1.png`}/>
+        <img width='60px' src={`http://192.241.205.79/wp-content/uploads/2017/06/cropped-cropped-cropped-devmountain_logo-1-1.png`} alt="devmtn-logo"/>
         <span children={`${this.state.cohort}`}/><i className="fa fa-circle"></i><span children={`${this.state.campus}`}/>
       </div>
       {this.props.user.rank === 1 ?

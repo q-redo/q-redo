@@ -17,15 +17,16 @@ class AnswerModal extends Component {
     this.handleAnswer = this.handleAnswer.bind(this);
     this.handleCode = this.handleCode.bind(this);
     this.submitAnswer = this.submitAnswer.bind(this);
+    this.unlinkUsers = this.unlinkUsers.bind(this);
   }
 
   componentDidMount() {
     axios.get(`/api/questions/${this.props.questionId}`).then(response => {
+      console.log(response.data[0]);
       this.setState({
         question: response.data[0],
         code: response.data[0].code_block
       });
-      console.log(this.state.question);
     });
   }
   componentWillUpdate(){
@@ -49,6 +50,10 @@ class AnswerModal extends Component {
       user_id: this.props.user.user_id,
       q_id: this.props.questionId
     });
+  }
+
+  unlinkUsers(){
+    axios.put(`/api/unlink/${this.state.question.user_id}`).then(response=> response.data);
   }
 
   render() {
@@ -77,7 +82,10 @@ class AnswerModal extends Component {
               className="questionInput inner-shadow"
             />
             <i
-              onClick={() => this.props.toggleModal()}
+              onClick={() => {
+                this.props.toggleModal();
+                this.unlinkUsers();
+              }}
               className="fa fa-lg fa-times"
               aria-hidden="true"
             />
@@ -87,6 +95,7 @@ class AnswerModal extends Component {
               onClick={() => {
                 this.submitAnswer();
                 this.props.toggleModal();
+                this.unlinkUsers();
               }}
               className="bigCircle jump  shadowed flexed"
             >

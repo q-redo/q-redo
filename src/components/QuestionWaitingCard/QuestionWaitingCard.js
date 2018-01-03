@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import './QuestionWaitingCard.css';
 import axios from 'axios';
 import hourglass from '../WaitingCard/hourglass.svg';
 import ellipsis from '../WaitingCard/ellipsis.svg';
 import QuestionThread from '../QuestionThread/QuestionThread.js';
-import { relative } from 'path';
 import {connect} from 'react-redux';
-import {toggleAction, toggleQuestionWaiting} from '../../redux/reducer'
+import {toggleAction, toggleQuestionWaiting} from '../../redux/reducer';
+import './QuestionWaitingCard.css';
 
 class QuestionWaitingCard extends Component {
   constructor(props) {
@@ -44,7 +42,7 @@ class QuestionWaitingCard extends Component {
             <span style={{fontSize: '1.5em'}}>POSTED</span>
             <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
             </div>
-            <i onClick={()=> {this.props.toggleAction("action"); this.props.toggleQuestionWaiting(false); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.question_id)}} class="fa fa-lg fa-times" aria-hidden="true"></i>
+            <i onClick={()=> {this.props.toggleAction("action"); this.props.toggleQuestionWaiting(false); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.question_id)}} className="fa fa-lg fa-times" aria-hidden="true"></i>
       </div>
       <div className="question-waiting-question m10 flexed curved shadowed">
         {this.state.question.question}

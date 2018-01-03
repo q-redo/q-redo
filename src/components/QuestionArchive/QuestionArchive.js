@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import './QuestionArchive.css';
 
 class QuestionArchive extends Component{
@@ -17,8 +16,7 @@ class QuestionArchive extends Component{
         axios.get('/api/archived/questions').then(questions=> {
             console.log(questions.data);
             this.setState({ questionsList: questions.data });
-        })
-        axios
+        });
     }
 
     render(){
