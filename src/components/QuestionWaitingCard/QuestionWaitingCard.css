@@ -1,4 +1,18 @@
 .question-waiting-question{
     background-color: var(--main-box-color);
     color: white;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    max-width: 520px;
 } 
+.question-waiting-question h3{
+    margin-bottom:5px;
+}
+
+.fa-times:hover {
+    transition: all ease 0.5s;
+}

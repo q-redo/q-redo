@@ -12,7 +12,8 @@ const initialState= {
   questionList: [],
   endpoint: "127.0.0.1:3001",
   mentorList: [],
-  questionWaiting: false
+  questionWaiting: false,
+  isLoading:false
 }
 
 
@@ -48,9 +49,9 @@ export default function reducer(state= initialState, action){
     case SET_MODAL_ID:
       return Object.assign({}, state, {questionId: action.payload});
     case POST_QUESTION + "_PENDING":
-      return Object.assign({}, state);
+      return Object.assign({}, state, {isLoading: true});
     case POST_QUESTION + "_FULFILLED":
-      return Object.assign({}, state, { cancelId: action.payload });      
+      return Object.assign({}, state, { cancelId: action.payload, isLoading: false });      
     default:
      return state;
   }

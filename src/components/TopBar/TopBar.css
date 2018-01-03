@@ -36,5 +36,5 @@
 .topBar-right:hover{
   transition: all ease 0.5s;
   cursor: pointer;
-  color: #2AABE2;
+  color: var(--main-blue-color);
 }

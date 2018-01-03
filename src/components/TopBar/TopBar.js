@@ -32,7 +32,7 @@ class TopBar extends Component {
       </div>
       {this.props.user ? <h3>Welcome {this.props.user.name}</h3> : null}
       <div className='topBar-right'>
-        <span children='LOGOUT'/>
+        <span children='Logout'/>
       </div>
     </div>
     )
