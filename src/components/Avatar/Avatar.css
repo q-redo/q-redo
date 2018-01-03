@@ -8,6 +8,16 @@
     justify-content: space-around;
   }
 
+  .mentorCard .user-card {
+    color: #d4d4d4;
+    width: 45%;
+    height: 40px;
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
   .user-card .fa {
     transform: rotate(7deg);
     color: var(--main-blue-color)

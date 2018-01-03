@@ -6,8 +6,8 @@ import CreateCampus from './AdminCards/CreateCampus'
 import CreateCohort from './AdminCards/CreateCohort'
 import DeleteQuestions from './AdminCards/DeleteQuestions'
 
-import SearchActiveQuestions from './AdminCards/SearchActiveQuestions'
-import SearchArchiveQuestions from './AdminCards/SearchArchiveQuestions'
+import SearchQuestions from './AdminCards/SearchQuestions'
+
 import TopicCharts from './AdminCards/TopicCharts'
 
 
@@ -36,9 +36,9 @@ class AdminView extends Component {
                       <DeleteQuestions />
                       </div>
                       <div  className="admin-main-boxes curved adminshadowed m10"> <TopicCharts /></div>
-                      <div className="admin-main-boxes curved adminshadowed m10"> <SearchActiveQuestions />
+                      <div className="admin-main-boxes curved adminshadowed m10"> <SearchQuestions />
                           </div>
-                          <div className="admin-main-boxes curved adminshadowed m10"><SearchArchiveQuestions /></div>
+                          
 </div>
 </div>
 </div>

@@ -6,7 +6,7 @@ class CohortAssignment extends Component {
     constructor(){
         super()
         this.state = {
-            displayBox: 0,
+            displayBox: false,
             optionsValue: 2,
             searchText: "",
             searchedStudents: [],
@@ -95,8 +95,8 @@ class CohortAssignment extends Component {
     return(
    
         <div>
-            <div onClick={()=> this.showBox()}>Assign students to cohort. </div>
-{ this.state.displayBox === false ?
+            <div onClick={()=> this.showBox()}> User assignment </div>
+{ this.state.displayBox === true ?
 
 <div className="curved shadowed m10 adminpopupbox">
 

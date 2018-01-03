@@ -108,7 +108,7 @@ class QuestionForm extends Component {
           <div onClick={() => this.handleCategoryClick()} className="invis-div"
             style={{ display: `${this.state.showCategory}` }}/>
           {this.state.showCode ? (
-            <input
+            <textarea
               placeholder="< code_here />"
               onChange={e => this.handleCodeChange(e.target.value)}
               className="code inner-shadow"

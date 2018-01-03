@@ -3,6 +3,7 @@
     background-color: var(--main-box-color);
     position: relative;
     color: white;
+    width: 500px;
 }
 .waiting-card-main-container .fa-times{
     position: absolute;

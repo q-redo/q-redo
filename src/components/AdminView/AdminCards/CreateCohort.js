@@ -64,10 +64,10 @@ class CreateCohort extends Component {
         const {campusAndCohorts, nodup} = this.state
         const campuslist = campusAndCohorts.map((campo, i) => (
             <tr key={i}>
-                <td>{campo.campus_id}</td>
-                <td>{campo.campus_name}</td>
-                <td>{campo.cohort_id}</td>
-                <td>{campo.formal_name}</td>
+                <td >{campo.campus_name}</td>
+                <td >{campo.cohort_id}</td>
+                <td >{campo.campus_id}</td>
+                <td >{campo.formal_name}</td>
                 </tr>
         ))
       
@@ -89,8 +89,10 @@ class CreateCohort extends Component {
     <center>
 
     {campuslist.length > 0? 
+    <div>
     <table>
         <tbody>
+        
   <tr>
     <th>Campus ID:</th>
     <th>Campus Name:</th> 
@@ -99,7 +101,7 @@ class CreateCohort extends Component {
       </tr>
 {campuslist}
 </tbody>
-</table> :
+</table></div> :
 <div />}
 
 <p> Assign the cohort to this campus: </p>

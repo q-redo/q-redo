@@ -26,7 +26,7 @@ class App extends Component {
       const { endpoint } = this.state
       const socket = socketIOClient(endpoint)
       socket.on("FromAPI", data =>  this.props.getQuestionList(data) && this.setState({response: data}))
-      socket.on("FromMe", data => this.props.reqUser(data) && this.setState({user: data}))
+      socket.on("FromMe", data => this.props.reqUser(data[0]) && this.setState({user: data[0]}))
       socket.on("UserList", data => this.props.getUserList(data) && this.setState({userList: data}))
       socket.on("MentorList", data => this.props.getMentorList(data) && this.setState({mentorList: data}))
     }

@@ -7,17 +7,18 @@ import {connect} from 'react-redux';
 import QuestionForm from './QuestionForm/QuestionForm';
 import ActionCard from './ActionCard/ActionCard';
 import WaitingCard from './WaitingCard/WaitingCard';
+import LoadingScreen from './LoadingScreen/LoadingScreen';
 
 
 class StudentView extends Component {
-  constructor(){
-    super();
-
+  constructor(props){
+    super(props);
   }
 
   render() {
     return (
       <div id="StudentView">
+        {!this.props.user.name? <LoadingScreen />:''}
         <section style={{display: 'inline-block'}}>
         {this.props.actionAskOrGetHelp === 'action'?
         <ActionCard/>:
@@ -26,9 +27,8 @@ class StudentView extends Component {
         this.props.actionAskOrGetHelp === "waiting"?
         <WaitingCard/>:''
         }
-        <RecentQuestions />
+        {this.props.user.waiting_type !== "question" ?<RecentQuestions />:''}
         <MentorCard />
-
         </section>
         <UserList />
       </div>
@@ -37,10 +37,4 @@ class StudentView extends Component {
 }
 
 const mapStateToProps = state => state;
-// const mapStateToProps = (state) => {
-//  return {
-//    actionAskOrGetHelp: actionAskOrGetHelp
-//  }
-// }
-
 export default connect(mapStateToProps)(StudentView);
