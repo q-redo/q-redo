@@ -8,9 +8,22 @@ import QuestionForm from './QuestionForm/QuestionForm';
 import ActionCard from './ActionCard/ActionCard';
 import WaitingCard from './WaitingCard/WaitingCard';
 import LoadingScreen from './LoadingScreen/LoadingScreen';
+import axios from 'axios';
 
 
 class StudentView extends Component {
+  constructor(props){
+    super(props);
+  }
+  componentWillMount(){
+    axios.get('/api/me').then(response => {if(response.data.rank === 2){
+      window.location.href = 'http://localhost:3000/mentorview'
+    }}).catch((error) => {
+      error.response.data === "no_user"? window.location.href = 'http://localhost:3001/login':null;
+    }
+    )
+  }
+
   render() {
     return (
       <div id="StudentView">

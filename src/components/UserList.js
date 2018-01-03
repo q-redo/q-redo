@@ -24,7 +24,7 @@ class UserList extends Component {
         return true
       }
     }).sort(function(a,b){
-      return (Date.parse(b.ask_time) - Date.parse(a.ask_time));
+      return (Date.parse(a.ask_time) - Date.parse(b.ask_time));
     })
     const waiting = sorted_waiting.map((user, index) => {
       return <Avatar av_user={user} />
@@ -37,8 +37,8 @@ class UserList extends Component {
     const list= paired.concat(waiting.concat(not_waiting));
     return (
     <div className="userlist-main-container m10 shadowed">
-      <h4 style={{margin: '5px 0 0 0', color: 'white'}}>STUDENTS</h4>
-      {this.props.userList.length?list:<h6 style={{ color: 'white'}}>ROOM IS EMPTY</h6>}
+      <h4 style={{margin: '5px 0 0 0', color: 'white'}}>Students</h4>
+      {this.props.userList.length?list:<h6 style={{ color: 'white'}}>Room Is Empty</h6>}
     </div>
     )
   }

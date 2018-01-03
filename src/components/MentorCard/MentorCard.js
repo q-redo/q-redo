@@ -23,14 +23,14 @@ class MentorCard extends Component {
         <div className="mentorCard curved m10 shadowed">
         {mentors[0] === null?
           <div style={{margin: 'auto'}}>
-          <h4>NO MENTORS AVAILABLE</h4>
-          <img className="travolta" src={travolta} alt="travolta-gif"/>
+          <h4>No Mentors Available</h4>
+          <img className="travolta" src={travolta}/>
           <div className="hider"/>
           </div>
           :!mentors.length?
           <div style={{margin: 'auto'}}>
-          <h4>NO MENTORS AVAILABLE</h4>
-          <img className="travolta" src={travolta} alt="travolta-gif"/>
+          <h4>No Mentors Available</h4>
+          <img className="travolta" src={travolta}/>
           <div className="hider"/>
           </div>:
           mentors

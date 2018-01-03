@@ -10,10 +10,24 @@ import UserList from '../UserList';
 import { connect } from 'react-redux';
 import { toggleModal } from '../../redux/reducer.js';
 import LoadingScreen from '../LoadingScreen/LoadingScreen.js';
+import axios from 'axios';
 import './MentorView.css';
 
 
+
 class MentorView extends Component {
+
+  componentWillMount(){
+    axios.get('/api/me').then(response => {if(response.data.rank === 3){
+      window.location.href = 'http://localhost:3000/student'
+    }}).catch((error) => {
+      error.response.data === "no_user"? window.location.href = 'http://localhost:3001/login':null;
+    }
+      // window.location.href = 'http://localhost:3001/login'
+    )
+  }
+
+
   render() {
     return (
       <div id="MentorView">
