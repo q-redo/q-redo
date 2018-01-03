@@ -33,6 +33,10 @@
   margin-right: 5%;
 }
 
+.topBar-whitetext{
+  color:white;
+}
+
 .topBar-right:hover{
   transition: all ease 0.5s;
   cursor: pointer;
