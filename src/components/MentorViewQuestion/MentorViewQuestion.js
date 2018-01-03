@@ -63,18 +63,18 @@ class MentorViewQuestion extends Component {
             </div>
             :
             <div className="user-help-card curved shadowed m10" key={index}>
+  
+              <div className='qh-avatar'>
+                <div className="user-avatar shadowed" style={{backgroundImage:`url('${question.image_url}')`}}/>
+                <img style={{width: '200px'}} src={linked}/>  
+                <div className="user-avatar shadowed" style={{backgroundImage:`url('${this.props.user.image_url}')`}}/>
+              </div>
               <div>
               <button value={question.q_id} className="cancel-help-btn" onClick={(e)=> {
                  this.clearHelp(e.target.value);
                  this.setHelp();
-                }}>X</button>
+                }}><i className="fa fa-times"/></button>
   
-              </div>
-  
-              <div className='qh-avatar'>
-                <Avatar av_user={{name: question.name, image_url: question.image_url}}/>
-                <img style={{ marginRight: '75px', width: '50px'}} src={linked}/>  
-                <Avatar av_user={{name: this.props.user.name, image_url: this.props.user.image_url}}/>
               </div>
             </div>              
             :

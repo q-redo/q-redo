@@ -13,6 +13,11 @@ class TopBar extends Component {
       cohort: 'DM9',
       campus: 'DALLAS'
     }
+    this.handleLogout= this.handleLogout.bind(this)
+  }
+
+  handleLogout(){
+    axios.get('/api/logout').then(res=>res)
   }
 
   componentDidMount(){
@@ -40,7 +45,7 @@ class TopBar extends Component {
       {this.props.user ? <h3>Welcome {this.props.user.name}</h3> : null}
 
       <div className='topBar-right'>
-        <span children='Logout'/>
+        <span onClick={this.handleLogout} children='Logout'/>
       </div>
     </div>
     )
