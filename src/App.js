@@ -5,6 +5,7 @@ import Notifications from './components/Notifications/Notifications'
 import {getUserList, getQuestionList, reqUser, getMentorList} from "./redux/reducer"
 import {connect} from "react-redux"
 import socketIOClient from 'socket.io-client'
+import axios from 'axios';
 
 import './App.css';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
