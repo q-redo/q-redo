@@ -13,7 +13,10 @@ const initialState= {
   endpoint: "127.0.0.1:3001",
   mentorList: [],
   questionWaiting: false,
-  isLoading:false
+  isLoading:false,
+  mainBlueColor: '#2aabe2',
+  mainBoxColor: '#333333',
+  mainBgColor: '#222222'
 }
 
 
@@ -27,6 +30,7 @@ const TOGGLE_MODAL = "TOGGLE_MODAL";
 const SET_MODAL_ID = "SET_MODAL_ID";
 const SOCKET_MENTORLIST = "SOCKET_MENTORLIST";
 const POST_QUESTION= "POST_QUESTION";
+const CHANGE_THEME= "CHANGE_THEME";
 
 
 //REDUCER
@@ -52,6 +56,8 @@ export default function reducer(state= initialState, action){
       return Object.assign({}, state, {isLoading: true});
     case POST_QUESTION + "_FULFILLED":
       return Object.assign({}, state, { cancelId: action.payload, isLoading: false });      
+    case CHANGE_THEME:
+      return Object.assign({}, state, {mainBlueColor: action.payload[0], mainBoxColor: action.payload[1], mainBgColor: action.payload[2]});
     default:
      return state;
   }
@@ -122,5 +128,12 @@ export function postQuestion(obj){
     .then(response=> {
       return response.data[0].q_id;
     })
+  }
+}
+
+export function changeTheme(arr){
+  return{
+    type: CHANGE_THEME,
+    payload: arr
   }
 }

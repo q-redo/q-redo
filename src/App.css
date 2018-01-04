@@ -1,9 +1,6 @@
 .App{
   flex-direction: column;
   overflow: scroll;
-  --main-blue-color: #2aabe2;
-  --main-bg-color: #222222;
-  --main-box-color: #333333;
 }
 /* body {
   --main-bg-color: #222222;
