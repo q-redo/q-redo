@@ -28,7 +28,7 @@ class StudentView extends Component {
     return (
       <div id="StudentView">
         {!this.props.user.name? <LoadingScreen />:''}
-        <section style={{display: 'inline-block'}}>
+        <section className="student-view-left">
         {this.props.actionAskOrGetHelp === 'action'?
         <ActionCard/>:
         this.props.actionAskOrGetHelp === "question"?

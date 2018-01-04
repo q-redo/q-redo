@@ -110,7 +110,7 @@ class CohortAssignment extends Component {
     <center>
 
 
-    <input onChange={(e) => this.searchTextHandler(e.target.value)} /><button onClick={() => this.searchForStudent(this.state.searchText)}>Search for student</button>
+    <input placeholder='Student Name' onChange={(e) => this.searchTextHandler(e.target.value)} /><button onClick={() => this.searchForStudent(this.state.searchText)}>Search</button>
    
    {studentlist.length > 0? 
     <table>

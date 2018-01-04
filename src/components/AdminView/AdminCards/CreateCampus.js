@@ -67,7 +67,7 @@ class CreateCampus extends Component {
                 <div>
                     <center>
 
-                <input onChange={(e) => this.createCampusText(e.target.value)} /><button onClick={() => this.sendCampusCreate(this.state.campusNameText)}>Create Campus Click Here!</button>
+                <input placeholder="New Campus Name" onChange={(e) => this.createCampusText(e.target.value)} /><button onClick={() => this.sendCampusCreate(this.state.campusNameText)}>Create Campus</button>
                     {campuslist.length > 0? 
                     <table>
                         <tbody>

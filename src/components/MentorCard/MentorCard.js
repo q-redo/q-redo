@@ -26,6 +26,8 @@ class MentorCard extends Component {
     return (
         <div style={{display: 'inline-block'}}>
         <div className="mentorCard curved m10 shadowed">
+        <center><h4 style={{margin: '5px 0 0 0', color: 'white'}}>Mentors</h4></center>
+        <div className="mentor-holder">
         {mentors[0] === null?
           <div style={{margin: 'auto'}}>
           <h4>No Mentors Available</h4>
@@ -40,6 +42,7 @@ class MentorCard extends Component {
           </div>:
           mentors
         }
+        </div>
         </div>
         </div>
     );

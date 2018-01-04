@@ -113,7 +113,7 @@ theCallBack(){
       <td>{ques.code_block}</td>
       <td>{ques.time}</td>
       <td>{ques.answered}</td>
-      <td className="divtestfix"><button onClick={()=> this.deleteQuestion}> X</button></td>
+      <td className="divtestfix"><i onClick={()=> this.deleteQuestion} className="fa fa-trash"/></td>
       </tr>
     ))
 
@@ -173,11 +173,11 @@ theCallBack(){
     <table>
         <tbody>
   <tr>
-    <th>Question:</th>
-    <th>Code:</th> 
-    <th>Date/time:</th>
-    <th>Answered: </th>
-      <th> Delete:</th>
+    <th>Question</th>
+    <th>Code</th> 
+    <th>Date/time</th>
+    <th>Answered </th>
+      <th> Delete</th>
       </tr>
 {questionsList}
 </tbody>

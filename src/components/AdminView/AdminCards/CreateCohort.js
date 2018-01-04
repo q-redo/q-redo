@@ -98,8 +98,8 @@ class CreateCohort extends Component {
      {campusids}
     </select>
     <p> Set cohort formal name: </p>
-        <input onChange={(e) => this.createCohortText(e.target.value)} /><button onClick={() => this.sendCohortCreate(this.state.cohortNameText, this.state.campusID)}>Create Cohort Click Here!</button>
-        
+        <input placeholder='New Cohort Name' onChange={(e) => this.createCohortText(e.target.value)} /><button onClick={() => this.sendCohortCreate(this.state.cohortNameText, this.state.campusID)}>Create Cohort</button>
+
     {campuslist.length > 0? 
     <div>
     <table>

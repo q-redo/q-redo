@@ -1,13 +1,15 @@
 .mentorCard {
     width: 250px  !important;
     background-color: var(--main-box-color);
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    align-content: center !important;
     padding-top: 10px;
     padding-bottom: 10px;
     color: white;
+}
+.mentor-holder{
+  display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    align-content: center !important;
 }
 .travolta{
   width:100px;

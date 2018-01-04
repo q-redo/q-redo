@@ -1,10 +1,38 @@
 .adminpopupbox {
   width: 95vw;
-  z-index: 5;
+  min-height: 100px;
   left: 1.5%;
   top: 500px;
   background-color: var(--main-box-color);
   position: absolute;
+}
+.adminpopupbox input{
+  margin: 20px 10px 0px 10px;
+  background-color: var(--main-box-color);
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom-color: aliceblue;
+  border-bottom-style: solid 1px;
+  font-size: 1.3em;
+}
+.adminpopupbox input::placeholder{
+  color: white;
+  filter: brightness(50%);
+}
+.adminpopupbox button{
+  border-radius: 5px;
+}
+.adminpopupbox select{
+  font-size: 1em;
+  background-color: var(--main-box-color);
+  color: white;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom: 2px solid var(--main-bg-color);
+  border-left: 2px solid var(--main-bg-color);
+  margin: 10px;
 }
 
 .admincenterboxcontent {
@@ -44,7 +72,6 @@ th{
 }
 
 .adminSearchTableWidthSpecs {
-  background-color: red;
   max-width: 100%;
 
   max-height: 100%;
@@ -52,5 +79,5 @@ th{
 }
 
 .divtestfix {
-  max-width: 15px;
+  width: 15px !important;
 }
