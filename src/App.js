@@ -21,8 +21,10 @@ class App extends Component {
     }
     }
 
+
+
+
     componentDidMount(props) {
-      
       const { endpoint } = this.state
       const socket = socketIOClient(endpoint)
       socket.on("FromAPI", data =>  this.props.getQuestionList(data) && this.setState({response: data}))
