@@ -218,5 +218,13 @@ const {table_name} = req.body
     dbInstance.inactive_question([req.params.id])
       .then(response=> res.status(200).json(response))
       .catch(console.log);      
+  helpRemover: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    const {user_id} = req.body;
+
+    dbInstance
+    .remove_user_help(user_id)
+    .then(response => res.status(200).json(response))
+    .catch(console.log)
   }
 };
