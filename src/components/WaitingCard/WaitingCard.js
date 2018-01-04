@@ -31,7 +31,7 @@ class WaitingCard extends Component {
             <span style={{fontSize: '1.5em'}}>Stand By</span>
             <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
             </div>
-            <i onClick={()=> {this.props.toggleAction("action"); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.cancelId); this.props.unlinkUsers(this.props.user.user_id);}} className="fa fa-lg fa-times" aria-hidden="true"></i>
+            <i onClick={()=> {this.props.unlinkUsers(this.props.user.user_id); this.props.toggleAction("action"); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.cancelId);}} className="fa fa-lg fa-times" aria-hidden="true"></i>
       </div>
     );
   }

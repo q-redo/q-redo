@@ -44,7 +44,7 @@ class ThreadAnswer extends Component{
 
   toggleVerify(id){ 
     axios.put(`/api/verify/answers/${id}`);
-    axios.put(`/api/inactive/question/${this.props.question.q_id}`);
+    // axios.put(`/api/inactive/question/${this.props.question.q_id}`);
   }
 
 

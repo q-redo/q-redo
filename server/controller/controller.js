@@ -212,5 +212,11 @@ const {table_name} = req.body
     dbInstance.unlink_users([req.params.id])
       .then(response=> res.status(200).json(response))
       .catch(console.log);
+  },
+  inactiveQuestion: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.inactive_question([req.params.id])
+      .then(response=> res.status(200).json(response))
+      .catch(console.log);      
   }
 };
