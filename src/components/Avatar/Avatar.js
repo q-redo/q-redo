@@ -66,6 +66,7 @@ class Avatar extends Component {
                   width: '50px'
                 }}
                 src={linked}
+                alt="user-avatar"
               />
               <div
                 className="user-avatar shadowed"

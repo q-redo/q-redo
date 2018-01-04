@@ -7,10 +7,6 @@ import travolta from './travolta.gif';
 import { connect } from 'react-redux';
 
 class MentorCard extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     let paired_ids = [];
     this.props.userList.forEach(student => {
@@ -18,7 +14,7 @@ class MentorCard extends Component {
     });
     const mentors = this.props.mentorList.map((mentor, index) => {
       if (!paired_ids.includes(mentor.user_id)) {
-        return <Avatar av_user={mentor} index={index} />;
+        return <Avatar av_user={mentor} key={index} />;
       } else return null;
     });
     return (
@@ -46,10 +42,4 @@ class MentorCard extends Component {
 }
 
 const mapStateToProps = state => state;
-// const mapStateToProps = (state) => {
-//  return {
-//    actionAskOrGetHelp: actionAskOrGetHelp
-//  }
-// }
-
 export default connect(mapStateToProps)(MentorCard);

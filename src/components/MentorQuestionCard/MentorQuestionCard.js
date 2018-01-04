@@ -7,7 +7,6 @@ import AnswerModal from '../AnswerModal/AnswerModal.js';
 import { connect } from 'react-redux';
 import { toggleModal, setModalId } from '../../redux/reducer.js';
 import MentorViewQuestion from '../MentorViewQuestion/MentorViewQuestion.js';
-import linked from '../Avatar/linked.svg';
 import './MentorQuestionCard.css';
 
 class MentorQuestionCard extends Component {
@@ -50,7 +49,7 @@ class MentorQuestionCard extends Component {
   render() {
     const activeQuestions = this.state.activeQuestionsList.map(
       (question, index) => {
-        return <MentorViewQuestion question={question} index={index} />;
+        return <MentorViewQuestion question={question} key={index} />;
       }
     );
     return (

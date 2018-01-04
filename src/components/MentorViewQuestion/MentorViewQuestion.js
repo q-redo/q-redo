@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import hourglass from '../WaitingCard/hourglass.svg';
 import Avatar from '../Avatar/Avatar';
 import linked from '../Avatar/linked.svg';
-import { toggleModal, setModalId } from '../../redux/reducer.js';
+import { toggleModal, setModalId, unlinkUsers } from '../../redux/reducer.js';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './MentorViewQuestion.css';

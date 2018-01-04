@@ -27,7 +27,9 @@ class QuestionThread extends Component {
   }
   render() {
     const answers = this.state.answersList.map((answer, i) => {
-      return <ThreadAnswer answer={answer} key={i} />;
+      return (
+        <ThreadAnswer question={this.props.question} answer={answer} key={i} />
+      );
     });
 
     if (answers.length) {

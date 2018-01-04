@@ -25,6 +25,7 @@ const TOGGLE_MODAL = 'TOGGLE_MODAL';
 const SET_MODAL_ID = 'SET_MODAL_ID';
 const SOCKET_MENTORLIST = 'SOCKET_MENTORLIST';
 const POST_QUESTION = 'POST_QUESTION';
+const UNLINK_USERS = 'UNLINK_USERS';
 
 //REDUCER
 export default function reducer(state = initialState, action) {
@@ -52,6 +53,10 @@ export default function reducer(state = initialState, action) {
         cancelId: action.payload,
         isLoading: false
       });
+    case UNLINK_USERS + '_PENDING':
+      return Object.assign({}, state, { isLoading: true });
+    case UNLINK_USERS + '_FULFILLED':
+      return Object.assign({}, state, { isLoading: false });
     default:
       return state;
   }
@@ -121,5 +126,12 @@ export function postQuestion(obj) {
     payload: axios.post('/api/questions', obj).then(response => {
       return response.data[0].q_id;
     })
+  };
+}
+
+export function unlinkUsers(id) {
+  return {
+    type: UNLINK_USERS,
+    payload: axios.put(`/api/unlink/${id}`).then(response => response.data)
   };
 }

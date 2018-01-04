@@ -17,7 +17,7 @@ class TopBar extends Component {
   }
 
   handleLogout() {
-    axios.get('/api/logout').then(res => res);
+    window.location.href = 'http://localhost:3001/logout';
   }
 
   componentDidMount() {
@@ -41,7 +41,7 @@ class TopBar extends Component {
           <span children={`${this.state.campus}`} />
         </div>
         {this.props.user.rank === 1 ? (
-          <Link to="adminview" style={{ textDecoration: 'none' }}>
+          <Link to="/adminview" style={{ textDecoration: 'none' }}>
             <div className="topBar-right topBar-whitetext">
               <h3>Admin Console</h3>
             </div>

@@ -126,13 +126,20 @@ io.sockets.on('connection', socket => {
   socket.on('disconnect', () => {
     console.log('Client disconnected!');
     clearInterval(intervalId);
-    socket.handshake.session.user
-      ? db.run(
-          `UPDATE users SET logged_in = false WHERE user_id =${
+    db.run(
+      `UPDATE users SET logged_in = false WHERE user_id =${
+        socket.handshake.session.user.user_id
+      }`
+    ) &&
+      console.log(socket.handshake.session.user.user_id) &
+        db.run(`UPDATE users
+        set waiting_type = 'none'
+        where user_id = ${socket.handshake.session.user.user_id}`) &
+        db.run(
+          `DELETE FROM questions WHERE user_id = ${
             socket.handshake.session.user.user_id
-          }`
-        ) && console.log(socket.handshake.session.user.user_id)
-      : console.log('No user signed in!');
+          } AND answered = true `
+        );
   });
 });
 
@@ -199,16 +206,14 @@ app.delete('/api/help/:id', controller.clearHelp);
 app.put('/api/questions/:id', controller.answeredQuestion);
 app.put('/api/waiting_type/:id', controller.updateWaitingType);
 app.put('/api/users/:id', controller.linkUsers);
-
-app.put('/api/questions/:id', controller.answeredQuestion);
-app.put('/api/waiting_type/:id', controller.updateWaitingType);
+app.put('/api/unlink/:id', controller.unlinkUsers);
+app.put('/api/inactive/question/:id', controller.inactiveQuestion);
 
 app.get('/api/users', controller.getActiveUsers);
 app.get('/api/mentors', controller.getActiveMentors);
 app.get('/api/recentQuestions', controller.getRecentQuestions);
 app.get('/api/activeQuestions', controller.getActiveQuestions);
 app.get('/api/topics', controller.getTopics);
-app.get('/api/getMentorAnswered/:id', controller.getMentorAnswered);
 
 app.post('/api/answers', controller.postAnswer);
 app.get('/api/answers/:id', controller.getAnswers);
@@ -216,7 +221,6 @@ app.get('/api/answers/:id', controller.getAnswers);
 app.put('/api/verify/answers/:id', controller.toggleVerify);
 app.put('/api/upvote/answers/:id', controller.upvote);
 app.put('/api/downvote/answers/:id', controller.downvote);
-app.put('/api/userAnsweredQuestion/:id', controller.userAnsweredQuestion);
 
 //AdminView Endpoints//
 app.post('/api/studentsearch', controller.searchForStudent);
@@ -230,6 +234,9 @@ app.get('/api/archiveallquestions', controller.archiveAllQuestions);
 app.post('/api/searchSpecificQuestions', controller.getSpecificQuestions);
 //End of AdminView endpoints.
 
+//USER CHANGES VIEWS - REMOVES ACTIVE QUESTIONS
+app.put('/api/removequestions', controller.helpRemover);
+
 app.get('/api/me', function(req, res) {
   console.log(session.user);
   if (!session.user) {
@@ -238,9 +245,9 @@ app.get('/api/me', function(req, res) {
   res.status(200).json(session.user);
 });
 
-app.get('/api/logout', function(req, res) {
-  req.logout();
-  res.redirect('/');
+app.get('/logout', function(req, res) {
+  delete session.user;
+  res.redirect('http://localhost:3000/');
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

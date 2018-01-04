@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { toggleModal } from "../../redux/reducer.js";
+import { toggleModal, unlinkUsers } from "../../redux/reducer.js";
 import axios from "axios";
 import "./AnswerModal.css";
 import QuestionThread from "../QuestionThread/QuestionThread";
@@ -21,11 +21,11 @@ class AnswerModal extends Component {
 
   componentDidMount() {
     axios.get(`/api/questions/${this.props.questionId}`).then(response => {
+      console.log(response.data[0]);
       this.setState({
         question: response.data[0],
         code: response.data[0].code_block
       });
-      console.log(this.state.question);
     });
   }
   componentWillUpdate(){
@@ -77,7 +77,9 @@ class AnswerModal extends Component {
               className="questionInput inner-shadow"
             />
             <i
-              onClick={() => this.props.toggleModal()}
+              onClick={() => { this.props.toggleModal();
+                this.props.unlinkUsers(this.state.question.user_id);
+            }}
               className="fa fa-lg fa-times"
               aria-hidden="true"
             />
@@ -87,6 +89,7 @@ class AnswerModal extends Component {
               onClick={() => {
                 this.submitAnswer();
                 this.props.toggleModal();
+                this.props.unlinkUsers(this.state.question.user_id);
               }}
               className="bigCircle jump  shadowed flexed"
             >
