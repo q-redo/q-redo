@@ -49,7 +49,6 @@ class StudentView extends Component {
   render() {
     return (
       <div id="StudentView">
-<<<<<<< HEAD
         {!this.props.user.name? <LoadingScreen />:''}
         <section className="student-view-left">
         {this.props.actionAskOrGetHelp === 'action'?
@@ -61,26 +60,6 @@ class StudentView extends Component {
         }
         {this.props.user.waiting_type !== "question" ?<RecentQuestions />:''}
         <MentorCard />
-=======
-      <button onClick={()=> this.helpRemover()}>RULE BREAKING BUTTON</button>
-        {!this.props.user.name ? <LoadingScreen /> : ""}
-        <section style={{ display: "inline-block" }}>
-          {this.props.actionAskOrGetHelp === "action" ? (
-            <ActionCard />
-          ) : this.props.actionAskOrGetHelp === "question" ? (
-            <QuestionForm />
-          ) : this.props.actionAskOrGetHelp === "waiting" ? (
-            <WaitingCard />
-          ) : (
-            ""
-          )}
-          {this.props.user.waiting_type !== "question" ? (
-            <RecentQuestions />
-          ) : (
-            ""
-          )}
-          <MentorCard />
->>>>>>> master
         </section>
         <UserList />
       </div>

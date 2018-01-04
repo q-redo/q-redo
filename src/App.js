@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
 import Router from "./router";
 import TopBar from "./components/TopBar/TopBar";
@@ -12,16 +11,6 @@ import {
 } from "./redux/reducer";
 import { connect } from "react-redux";
 import socketIOClient from "socket.io-client";
-=======
-import React, { Component } from 'react';
-import Router from './router';
-import TopBar from './components/TopBar/TopBar';
-import Notifications from './components/Notifications/Notifications'
-import {getUserList, getQuestionList, reqUser, getMentorList} from "./redux/reducer"
-import {connect} from "react-redux"
-import socketIOClient from 'socket.io-client';
-import axios from 'axios';
->>>>>>> master
 
 import "./App.css";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
@@ -83,7 +72,6 @@ class App extends Component {
   }
 
   render() {
-<<<<<<< HEAD
     const styles = {
       //getting these from the reducer state
       "--main-blue-color": `${this.props.mainBlueColor}`,
@@ -91,8 +79,6 @@ class App extends Component {
       "--main-box-color": `${this.props.mainBoxColor}`,
       "background-color": "var(--main-bg-color)"
     };
-=======
->>>>>>> master
     return (
       <div style={styles} className="App flexed">
         <Notifications />

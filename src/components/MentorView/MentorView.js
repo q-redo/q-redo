@@ -3,17 +3,10 @@ import React, { Component } from 'react';
 import MentorQuestionCard from '../MentorQuestionCard/MentorQuestionCard';
 // import RecentQuestions from './RecentQuestions/RecentQuestions';
 import UserList from '../UserList';
-<<<<<<< HEAD
-import MentorList from '../MentorList/MentorList';
-import RecentQuestions from '../RecentQuestions/RecentQuestions';
-import QuestionForm from '../QuestionForm/QuestionForm';
-import ActionCard from '../ActionCard/ActionCard';
-=======
 // import MentorCard from '../MentorCard/MentorCard';
 // import RecentQuestions from '../RecentQuestions/RecentQuestions';
 // import QuestionForm from '../QuestionForm/QuestionForm';
 // import ActionCard from '../ActionCard/ActionCard';
->>>>>>> master
 import { connect } from 'react-redux';
 import { toggleModal } from '../../redux/reducer.js';
 import LoadingScreen from '../LoadingScreen/LoadingScreen.js';

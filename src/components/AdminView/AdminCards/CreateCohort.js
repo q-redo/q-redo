@@ -67,15 +67,9 @@ class CreateCohort extends Component {
                 <td >{campo.formal_name}</td>
                 </tr>
         ))
-<<<<<<< HEAD
-        
-        
-        let noduplicates = []
-=======
       
     
         // let noduplicates = []
->>>>>>> master
         const campusids = nodup.map((objz, i) => (
             <option value={objz.campus_id}>{objz.campus_name}</option> 
         ))

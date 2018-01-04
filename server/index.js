@@ -241,13 +241,9 @@ app.get("/api/me", function(req, res) {
   res.status(200).json(session.user)
 })
 
-<<<<<<< HEAD
-server.listen(port, () => console.log(`Listening on port ${port}`))
-=======
 app.get("/logout", function(req, res) {
   delete session.user
   res.redirect("http://localhost:3000/")
 })
 
 server.listen(port, () => console.log(`Listening on port ${port}`))
->>>>>>> master
