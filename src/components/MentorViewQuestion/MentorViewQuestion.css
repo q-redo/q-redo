@@ -1,0 +1,47 @@
+.user-help-card{
+    position: relative;
+}
+.user-help-card span{
+    position: absolute;
+    top: 10px;
+    right: 205px;
+    width: 25%;
+    font-size: 2em;
+    text-align: center;
+}
+
+.qh-avatar .user-avatar{
+    margin:0 10px 0 -40px !important;
+    min-width: 93px;
+    height: 93px;
+    border-width: 5px;
+}
+.qh-avatar{
+    font-size: 1.5em;
+  }
+
+  .uh-right-side{
+    margin-right: -30px !important;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  } 
+  
+
+  .qh-avatar .user-waiting-avatar{
+    border-width: 5px;
+    margin:0 35px 0px 35px  !important;
+    width: 93px;
+    height: 93px;
+    border-style: solid;
+    border-color: var(--main-blue-color);    border-width: 5px;
+    border-radius: 50%;
+    opacity: 0.9;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

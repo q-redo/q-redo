@@ -44,7 +44,7 @@ class RecentQuestions extends Component {
     return (
         <div style={{display: 'inline-block'}}>
         <div className="recentQuestions curved shadowed m10">
-        <h4 style={{margin: '5px 0 0 0', color: 'white'}}>RECENT QQs</h4>
+        <h4 style={{margin: '5px 0 0 0', color: 'white'}}>Recent Topics</h4>
         {recentQuestions}
         { this.props.isOpen? <div className='modal-background'><AnswerModal question_id={this.state.id}/></div> :''}
         </div>

@@ -8,6 +8,7 @@ import {connect} from "react-redux"
 import socketIOClient from 'socket.io-client'
 
 import './App.css';
+import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 
 class App extends Component {
   constructor(){
@@ -21,8 +22,10 @@ class App extends Component {
     }
     }
 
+
+
+
     componentDidMount(props) {
-      
       const { endpoint } = this.state
       const socket = socketIOClient(endpoint)
       socket.on("FromAPI", data =>  this.props.getQuestionList(data) && this.setState({response: data}))
@@ -33,7 +36,14 @@ class App extends Component {
 
 
   componentWillMount() {
-    
+    console.log("componentWillmount")
+    axios.get('/api/me').then(response => 
+      {response
+  }).catch((error) => {
+      error.response.data === "no_user"? window.location.href = 'http://localhost:3001/login':null;
+    }
+      // window.location.href = 'http://localhost:3001/login'
+    )
   }
 
   handleLogin() {
@@ -46,7 +56,7 @@ class App extends Component {
 
       <div  className="App flexed">
       <Notifications />
-
+        {this.props.isLoading? <LoadingScreen/>:''}
         <TopBar/>
         <section style={{marginTop: '100px', width: '720px'}}>
         {Router}

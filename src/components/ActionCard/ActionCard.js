@@ -22,19 +22,19 @@ handleWaitingType(val){
         <button onClick={()=>this.props.toggleAction('question')} className="bigCircle  jump shadowed flexed">
           <i className="fa fa-2x fa-question"/>
         </button>
-        <span style={{marginTop: '10px'}}>ASK QUESTION</span>
+        <span style={{marginTop: '10px'}}>Ask Question</span>
         </div>
         <div className="big-circle-card">
         <button className="bigCircle  jump shadowed flexed">
           <i className="fa fa-lg fa-handshake-o"/>
         </button>
-        <span style={{marginTop: '10px'}}>OFFER HELP</span>
+        <span style={{marginTop: '10px'}}>Offer Help</span>
         </div>
         <div className="big-circle-card">
         <button onClick={()=>{this.props.toggleAction('waiting'); this.handleWaitingType('help'); this.props.postQuestion({ campus_id: this.props.user.campus_id, cohort_id: this.props.user.cohort_id, text: 'HELP', code_block: null, topic_id: NaN, user_id: this.props.user.user_id })}} className="bigCircle shadowed jump flexed">
           <i className="fa fa-2x fa-exclamation"/>
         </button>
-        <span style={{marginTop: '10px'}}>GET HELP</span>
+        <span style={{marginTop: '10px'}}>Get Help</span>
         </div>
       </div>
     );

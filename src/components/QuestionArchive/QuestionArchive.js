@@ -14,6 +14,14 @@ class QuestionArchive extends Component{
     }
 
     componentWillMount(){
+        axios.get('/api/me').then(response => {if(response.data.rank === 2){
+            window.location.href = 'http://localhost:3000/mentorview'
+          }else if(response.data.rank === 3){
+           window.location.href = 'http://localhost:3000/student'
+          }}).catch((error) => {
+            error.response.data === "no_user"? window.location.href = 'http://localhost:3001/login':null;
+          }
+          )
         axios.get('/api/archived/questions').then(questions=> {
             console.log(questions.data);
             this.setState({ questionsList: questions.data });
