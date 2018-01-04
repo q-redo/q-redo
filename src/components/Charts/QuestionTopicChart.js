@@ -102,63 +102,6 @@ class QuestionTopicChart extends Component {
           ]
         }
       });
-      //   let questionTopics = [];
-      //   let css = [];
-      //   let react = [];
-      //   let redux= [];
-      //   let js = [];
-      //   let angular = [];
-      //   let node = [];
-      //   let other = [];
-      //   let data = [];
-      //
-      //   response.data.map(question => questionTopics.push(question.topic_id));
-      //   response.data.map(question => {
-      //     question.topic_id === 5
-      //       ? react.push(question.topic_id)
-      //       : question.topic_id === 6
-      //         ? js.push(question.topic_id)
-      //         : question.topic_id === 3
-      //           ? angular.push(question.topic_id)
-      //           : question.topic_id === 7
-      //             ? node.push(question.topic_id)
-      //             : question.topic_id === 2
-      //               ? css.push(question.topic_id)
-      //                 : question.topic_id === 4
-      //                   ? redux.push(question.topic_id)
-      //                     : question.topic_id === 1 ? other.push(question.topic_id) : null;
-      //   });
-      //   data.push(
-      //     react.length,
-      //     redux.length,
-      //     js.length,
-      //     angular.length,
-      //     angular.length,
-      //     node.length,
-      //     css.length,
-      //     other.length
-      //   );
-      //
-      //   this.setState({
-      //     topics: questionTopics,
-      //     chartData: {
-      //       datasets: [
-      //         {
-      //           label: 'Question Topics',
-      //           data: data,
-      //           backgroundColor: [
-      //             'red',
-      //             'blue',
-      //             'green',
-      //             'aquamarine',
-      //             'yellow',
-      //             'purple',
-      //             'salmon'
-      //           ]
-      //         }
-      //       ]
-      //     }
-      //   });
     });
   }
 
@@ -166,7 +109,7 @@ class QuestionTopicChart extends Component {
     return (
       <div className="chart">
         <h1>Questions by Topic</h1>
-        <Pie data={this.state.chartData} width={400} height={400} />
+        <Bar data={this.state.chartData} width={400} height={400} />
       </div>
     );
   }
