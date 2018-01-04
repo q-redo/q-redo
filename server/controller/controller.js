@@ -217,7 +217,8 @@ const {table_name} = req.body
     const dbInstance= req.app.get('db');
     dbInstance.inactive_question([req.params.id])
       .then(response=> res.status(200).json(response))
-      .catch(console.log);      
+      .catch(console.log);   
+  },       
   helpRemover: (req, res, next) => {
     const dbInstance = req.app.get('db');
     const {user_id} = req.body;
@@ -227,4 +228,4 @@ const {table_name} = req.body
     .then(response => res.status(200).json(response))
     .catch(console.log)
   }
-};
+}
