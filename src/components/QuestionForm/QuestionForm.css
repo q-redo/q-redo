@@ -79,7 +79,7 @@
 
 
 .code{
-  background: #222222;
+  background: var(--main-bg-color);
   color: var(--main-blue-color)
 }
 
@@ -143,8 +143,8 @@ input, textarea{
   font-size: 1.7em;
 }
 .fa-times:hover{
-  cursor: pointer;
-  color: var(--main-blue-color)
+  cursor: pointer !important;
+  color: var(--main-blue-color) !important;
 }
 .bigCircle:hover{
   cursor: pointer;

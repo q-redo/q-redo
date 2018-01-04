@@ -77,6 +77,7 @@ passport.deserializeUser(function(obj, done) {
 let you;
 app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
  you = req.user
+ session.user = req.user
  req.user.rank === 3 ? res.redirect("http://localhost:3000/student") : res.redirect("http://localhost:3000/mentorview")
 })
 
@@ -195,10 +196,16 @@ app.post('/api/searchSpecificQuestions', controller.getSpecificQuestions)
 //End of AdminView endpoints.
 
 app.get("/api/me", function(req, res) {
- if (!req.user) {
-   return res.status(404)
+ console.log(session.user)
+ if (!session.user) {
+   return res.status(404).send("no_user")
  }
- res.status(200).json(req.user)
+ res.status(200).json(session.user)
 })
+
+app.get('/api/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 server.listen(port, () => console.log(`Listening on port ${port}`))

@@ -92,7 +92,7 @@ class AnswerModal extends Component {
             >
               <i className="fa fa-lg fa-paper-plane" aria-hidden="true" />
             </button>
-            <span style={{marginTop: '10px'}}>SUBMIT ANSWER</span>
+            <span style={{marginTop: '10px'}}>Submit Answer</span>
             </div>
           </div>
           <QuestionThread question={this.state.question} />

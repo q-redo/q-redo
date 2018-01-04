@@ -3,16 +3,9 @@
   padding: 10px;
 }
 
-
-
 .best-answer{
   border: solid green;
 }
-
-.fa-check{
-  color: rgb(45, 214, 87);
-}
-
 
 .answers-holder{
   width:100%;
