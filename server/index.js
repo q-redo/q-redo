@@ -192,7 +192,7 @@ app.put('/api/changeusercohort', controller.changeCohort);
 app.put('/api/changeusercampus', controller.changeCampus);
 app.post('/api/createcampus', controller.campusCreation);
 app.post('/api/createcohort', controller.cohortCreation);
-app.post('/api/archiveallquestions', controller.archiveAllQuestions)
+app.get('/api/archiveallquestions', controller.archiveAllQuestions)
 app.post('/api/searchSpecificQuestions', controller.getSpecificQuestions)
 //End of AdminView endpoints.
 
