@@ -11,8 +11,6 @@ class CreateCohort extends Component {
             cohortNameText: "",
             campusID: null,
             nodup: []
-            
-         
         }
     }
 
@@ -30,7 +28,6 @@ class CreateCohort extends Component {
         let objectz = []
         axios.get("/api/getcampusandcohort")
         .then(response=> {
-            console.log(response)
             this.setState({campusAndCohorts: response.data}) &
             response.data.map((campi, i) => (
             holder.indexOf(campi.campus_id) < 0 ?
@@ -70,9 +67,15 @@ class CreateCohort extends Component {
                 <td >{campo.formal_name}</td>
                 </tr>
         ))
+<<<<<<< HEAD
         
         
         let noduplicates = []
+=======
+      
+    
+        // let noduplicates = []
+>>>>>>> master
         const campusids = nodup.map((objz, i) => (
             <option value={objz.campus_id}>{objz.campus_name}</option> 
         ))

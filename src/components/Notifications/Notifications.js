@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import Sound from "react-sound"
 import "./notifications.css"
-import { WSATYPE_NOT_FOUND } from "constants"
+// import { WSATYPE_NOT_FOUND } from "constants";
 
 import Punch from "./punchfloor.mp3"
 
@@ -26,7 +26,7 @@ class Notifications extends Component {
   }
   componentWillReceiveProps(props) {
     const clear = () => this.clearAnimation();
-    let ql = this.state.questionList;
+    // let ql = this.state.questionList;
     if (this.comparison() & this.props.user.rank < 3) {
       setTimeout(clear, 10000)
       this.setState({

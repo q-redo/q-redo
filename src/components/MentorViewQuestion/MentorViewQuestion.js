@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import hourglass from '../WaitingCard/hourglass.svg';
 import Avatar from '../Avatar/Avatar';
 import linked from '../Avatar/linked.svg';
-import { toggleModal, setModalId } from '../../redux/reducer.js';
+import { toggleModal, setModalId, unlinkUsers } from '../../redux/reducer.js';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './MentorViewQuestion.css';
@@ -40,7 +40,7 @@ class MentorViewQuestion extends Component {
         });
       }
 
-    render(){
+      render(){
         const {question, index}= this.props;
         return(
             question.question === 'HELP' ?
@@ -72,7 +72,8 @@ class MentorViewQuestion extends Component {
                 <div className="user-waiting-avatar shadowed" style={{backgroundImage:`url('${this.props.user.image_url}')`}}/>
               </div>
               <i onClick={(e)=> {
-                  this.clearHelp(e.target.value);
+                  this.props.unlinkUsers(question.user_id);
+                  this.clearHelp(question.q_id);
                   this.setHelp();
                  }} className="fa fa-lg fa-times m10" style={{color: 'white'}}/>  
             </div>              
@@ -110,4 +111,4 @@ class MentorViewQuestion extends Component {
 }
 
 const mapStateToProps= state=> state;
-export default connect(mapStateToProps, { toggleModal, setModalId })(MentorViewQuestion);
+export default connect(mapStateToProps, { toggleModal, setModalId, unlinkUsers })(MentorViewQuestion);

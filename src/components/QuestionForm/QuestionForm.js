@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
 import './QuestionForm.css';
 import axios from 'axios';
-import { relative } from 'path';
 import {connect} from 'react-redux';
 import {toggleAction,toggleQuestionWaiting} from '../../redux/reducer'
 import QuestionWaitingCard from '../QuestionWaitingCard/QuestionWaitingCard';
@@ -56,11 +54,11 @@ class QuestionForm extends Component {
     }
   }
   handleWaitingType(val){
-    axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => {console.log('this is the response', response), response});
+    axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => {console.log('this is the response', response); return response});
   } 
   submitQuestion() {
-    let { text, code, topic_id } = this.state;
-    let { user_id } = this.props.user
+    var { text, code, topic_id } = this.state;
+    var { user_id } = this.props.user
     axios
       .post("/api/questions", { text, code, topic_id, user_id })
       .then(response => {
@@ -70,8 +68,8 @@ class QuestionForm extends Component {
 
   render() {
     const method = this.handleChooseCategory;
-    const topics = this.state.topicList.map(function(thing){
-      return (<a onClick={() => method(thing)} href="#">
+    const topics = this.state.topicList.map(function(thing, index){
+      return (<a onClick={() => method(thing)} href="#" key={index}>
       {thing.topic}
     </a>)
     })
@@ -128,7 +126,7 @@ class QuestionForm extends Component {
             <i className="fa fa-lg fa-paper-plane" aria-hidden="true"></i>
           </button>
           <div style={{position: 'relative', width: '10px', height: '100px'}}>
-            <i onClick={()=>this.props.toggleAction("action")} class="fa fa-lg fa-times" aria-hidden="true"></i>
+            <i onClick={()=>this.props.toggleAction("action")} className="fa fa-lg fa-times" aria-hidden="true"></i>
           </div>  
         </div>
       </div>
