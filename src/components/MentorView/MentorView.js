@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+//import UserList from './UserList';
 import MentorQuestionCard from '../MentorQuestionCard/MentorQuestionCard';
-import axios from 'axios';
+// import RecentQuestions from './RecentQuestions/RecentQuestions';
 import UserList from '../UserList';
 import MentorCard from '../MentorCard/MentorCard';
 import RecentQuestions from '../RecentQuestions/RecentQuestions';
@@ -18,14 +19,6 @@ const black = {
 };
 
 class MentorView extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      user: {}
-    };
-  }
-
   componentWillMount() {
     axios
       .get('/api/me')
@@ -52,7 +45,6 @@ class MentorView extends Component {
           <MentorQuestionCard />
         </section>
         <UserList />
-        <div />
       </div>
     );
   }

@@ -18,7 +18,6 @@ class MentorQuestionCard extends Component {
       activeQuestionsList: []
     };
     this.answeredQuestion = this.answeredQuestion.bind(this);
-    this.getTimeFromQuestion = this.getTimeFromQuestion.bind(this);
     this.userAnsweredQuestion = this.userAnsweredQuestion.bind(this);
   }
 
@@ -45,33 +44,6 @@ class MentorQuestionCard extends Component {
 
     axios.put(`/api/userAnsweredQuestion/${user_id}`);
     console.log('here it is', user_id);
-  }
-  getTimeFromQuestion(question) {
-    var past = new Date(question).getTime();
-    var isPast = new Date().getTime() - past;
-    var inMinutes = Math.round(isPast / 1000 / 60);
-    if (inMinutes > 7000) {
-      inMinutes = 'Super Old';
-    }
-    if (inMinutes > 2880) {
-      inMinutes = 'Very Old';
-    }
-    if (inMinutes % 60 === 0) {
-      inMinutes = Math.round(inMinutes / 60) + 'hrs';
-    }
-    if (inMinutes >= 60 && inMinutes % 60 < 10) {
-      inMinutes = Math.round(inMinutes / 60) + 'h 0' + inMinutes % 60 + 'm';
-    }
-    if (inMinutes >= 60 && inMinutes % 60 >= 10) {
-      inMinutes = Math.round(inMinutes / 60) + 'h ' + inMinutes % 60 + 'm';
-    }
-    if (inMinutes < 60 && inMinutes % 60 < 10) {
-      inMinutes = '0h 0' + inMinutes + 'm';
-    }
-    if (inMinutes < 60 && inMinutes % 60 >= 10) {
-      inMinutes = '0h ' + inMinutes + 'm';
-    }
-    return inMinutes;
   }
 
   //We used conditional rendering in the map method to render different cards depending on the type of help/question the student needs.
