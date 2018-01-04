@@ -203,9 +203,4 @@ app.get("/api/me", function(req, res) {
  res.status(200).json(session.user)
 })
 
-app.get('/api/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-
 server.listen(port, () => console.log(`Listening on port ${port}`))

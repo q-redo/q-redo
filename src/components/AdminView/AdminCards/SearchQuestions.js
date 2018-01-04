@@ -119,7 +119,12 @@ theCallBack(){
 
     return (
       <div>
-        <div onClick={() => this.showBox() & this.getcohortandcampus()}> Search For Questions </div>
+        <div className="big-circle-card m10">
+        <button onClick={()=> this.showBox() & this.getcohortandcampus()} className="bigCircle  jump shadowed flexed">
+        <i className="fa fa-lg fa-search" aria-hidden="true"/>
+        </button>
+        <span style={{marginTop: '10px'}}>Search Questions</span>
+        </div>
         {this.state.displayBox === true ? (
           <div className="curved shadowed m10 adminpopupbox">
             <div className="admincenterboxcontent">
@@ -182,7 +187,7 @@ theCallBack(){
                 {" "}
                 What is state
               </button>
-              <button onClick={() => this.showBox()}> CANCEL / CLOSE </button>
+              <i onClick={() => this.showBox()} className="m10 fa fa-times fa-lg"/>
             </div>
           </div>
         ) : (

@@ -1,47 +1,12 @@
-.admin-mainbox-flex {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  align-content: stretch;
-  width: 100%;
-  height: 100%;
- 
-}
-
 .admin-position{
-  width: 100vw;
-  height: 100vh;
-  left: 0%;
-  position: absolute;
- 
+color: white;
+background-color: var(--main-box-color);
+padding: 10px;
+flex-wrap: wrap;
 }
 
-.admin-group-box-by-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: stretch;
+.admin-section{
+  justify-content: space-around;
   width: 100%;
-  height: 100%;
 }
 
-.admin-main-boxes {
-  padding: 10px;
-
-  width: 20%;
-  height: 30%;
-
-  background-color: var(--main-box-color);
-}
-
-.adminshadowed{
-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
-}
-
-.admin-display-none{
-  display: none;
-}

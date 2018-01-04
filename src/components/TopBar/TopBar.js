@@ -17,7 +17,7 @@ class TopBar extends Component {
   }
 
   handleLogout(){
-    axios.get('/api/logout').then(res=>res)
+   // NOTHING HERE YET
   }
 
   componentDidMount(){
@@ -37,7 +37,7 @@ class TopBar extends Component {
         <span children={`${this.state.cohort}`}/><i className="fa fa-circle"></i><span children={`${this.state.campus}`}/>
       </div>
       {this.props.user.rank === 1 ?
-      <Link to="adminview" style={{ textDecoration: 'none'}}><div className="topBar-right topBar-whitetext"><h3>Admin Console</h3></div></Link>
+      <Link to='/adminview' style={{ textDecoration: 'none'}}><div className="topBar-right topBar-whitetext"><h3>Admin Console</h3></div></Link>
       : false
       }
 

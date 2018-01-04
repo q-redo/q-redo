@@ -1,9 +1,8 @@
 .adminpopupbox {
   width: 95vw;
-  height: 80%;
   z-index: 5;
   left: 1.5%;
-  top: 0%;
+  top: 500px;
   background-color: var(--main-box-color);
   position: absolute;
 }
@@ -17,15 +16,31 @@
   align-content: stretch;
   width: 100%;
 }
-table,
 th,
 td {
+  padding: 5px 5px 5px 8px;
+  margin:40px 10px 20px 10px;
   color: white;
-  border: 1px solid black;
+  border-bottom: 2px solid var(--main-bg-color);
+  border-left: 2px solid var(--main-bg-color);
   word-wrap: break-word;
   table-layout: fixed;
-  width: 100%;
+  width: 95%;
   height: 100%;
+}
+table{
+  margin:40px 10px 20px 10px;
+  color: white;
+  word-wrap: break-word;
+  table-layout: fixed;
+  width: 95%;
+  height: 100%;
+}
+th{
+  border-bottom: 2px solid var(--main-blue-color);
+  border-left: none;
+  color: var(--main-blue-color);
+  font-size: 1.2em;
 }
 
 .adminSearchTableWidthSpecs {

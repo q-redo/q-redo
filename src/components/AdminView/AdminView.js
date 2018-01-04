@@ -29,27 +29,19 @@ class AdminView extends Component {
 
     render(){
         return(
-            <div className="admin-position">
-            <div className="admin-mainbox-flex">
-            <div className="admin-group-box-by-row">
-              <div className="admin-main-boxes curved adminshadowed m10"> <CreateCampus /></div>
-                    <div className="admin-main-boxes curved adminshadowed m10">
-                   <CreateCohort />
-                    </div>
-              <div className="admin-main-boxes curved adminshadowed m10"> <ArchiveQuestions /> </div>
-              <div className="admin-main-boxes curved adminshadowed m10">
-                  <UserAssignment />
-                  </div>
-                  <div className="admin-main-boxes curved adminshadowed m10">
-                      <DeleteQuestions />
-                      </div>
-                      <div  className="admin-main-boxes curved adminshadowed m10"> <TopicCharts /></div>
-                      <div className="admin-main-boxes curved adminshadowed m10"> <SearchQuestions />
-                          </div>
-                          
-</div>
-</div>
-</div>
+            <div className="admin-position  flexed m10 shadowed curved">
+                <section className="admin-section flexed">
+                   <CreateCampus />
+                   <CreateCohort />     
+                   <UserAssignment />
+                   <TopicCharts />
+                </section>
+                <section className="admin-section flexed" style={{margin: "0px 40px 0px 40px"}}>
+                   <SearchQuestions />
+                   <ArchiveQuestions /> 
+                   <DeleteQuestions />
+                </section>
+            </div>
 
         )
     }
