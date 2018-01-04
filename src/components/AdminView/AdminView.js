@@ -9,7 +9,7 @@ import axios from 'axios';
 
 import SearchQuestions from './AdminCards/SearchQuestions'
 
-import TopicCharts from './AdminCards/TopicCharts'
+import TopicCharts from './AdminCards/TopicCharts/TopicCharts'
 
 
 import './adminview.css'
