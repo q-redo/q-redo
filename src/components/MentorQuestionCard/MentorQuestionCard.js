@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-// import Moment from 'react-moment'; 
 import axios from 'axios';
-import hourglass from '../WaitingCard/hourglass.svg'
-import Avatar from '../Avatar/Avatar'
 import AnswerModal from '../AnswerModal/AnswerModal.js';
 import { connect } from 'react-redux';
 import { toggleModal, setModalId } from '../../redux/reducer.js';
 import MentorViewQuestion from '../MentorViewQuestion/MentorViewQuestion.js';
-import linked from '../Avatar/linked.svg';
 import './MentorQuestionCard.css';
 
 class MentorQuestionCard extends Component {
@@ -44,14 +40,14 @@ class MentorQuestionCard extends Component {
     const activeQuestions = this.state.activeQuestionsList.map(          
       (question, index) => {
         return (
-          <MentorViewQuestion question={question} index={index}/>
+          <MentorViewQuestion question={question} key={index}/>
         );
       }
     );
     return (
       <div className="questions-array">
         {activeQuestions}
-        { this.props.isOpen? <div className='modal-background'><AnswerModal question_id={this.state.id}/></div> :''}
+        { this.props.isOpen ? <div className='modal-background'><AnswerModal question_id={this.state.id}/></div> :''}
       </div>
     );
   }

@@ -203,11 +203,22 @@ const {table_name} = req.body
   },
   linkUsers: (req, res, next)=> {
     const dbInstance= req.app.get('db');
-    console.log('params: ', req.params, 'body: ', req.body)
     dbInstance.link_users([req.params.id, req.body.paired])
       .then(response=> res.status(200).json(response))
       .catch(console.log);
   },
+  unlinkUsers: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.unlink_users([req.params.id])
+      .then(response=> res.status(200).json(response))
+      .catch(console.log);
+  },
+  inactiveQuestion: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.inactive_question([req.params.id])
+      .then(response=> res.status(200).json(response))
+      .catch(console.log);   
+  },       
   helpRemover: (req, res, next) => {
     const dbInstance = req.app.get('db');
     const {user_id} = req.body;
@@ -217,5 +228,4 @@ const {table_name} = req.body
     .then(response => res.status(200).json(response))
     .catch(console.log)
   }
-
-};
+}

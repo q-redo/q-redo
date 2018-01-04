@@ -200,8 +200,10 @@ app.delete("/api/questions/:id", controller.deleteQuestion)
 app.delete("/api/help/:id", controller.clearHelp)
 
 app.put("/api/questions/:id", controller.answeredQuestion)
-app.put("/api/waiting_type/:id", controller.updateWaitingType)
-app.put("/api/users/:id", controller.linkUsers)
+app.put('/api/waiting_type/:id', controller.updateWaitingType)
+app.put('/api/users/:id', controller.linkUsers)
+app.put('/api/unlink/:id', controller.unlinkUsers)
+app.put('/api/inactive/question/:id', controller.inactiveQuestion)
 
 app.get("/api/users", controller.getActiveUsers)
 app.get("/api/mentors", controller.getActiveMentors)

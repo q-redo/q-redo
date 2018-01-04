@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Router from './router';
 import TopBar from './components/TopBar/TopBar';
 import Notifications from './components/Notifications/Notifications'
-import axios from 'axios';
 import {getUserList, getQuestionList, reqUser, getMentorList} from "./redux/reducer"
 import {connect} from "react-redux"
-import socketIOClient from 'socket.io-client'
+import socketIOClient from 'socket.io-client';
+import axios from 'axios';
 
 import './App.css';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
@@ -51,7 +51,6 @@ class App extends Component {
   }
 
   render() {
-  
     return (
 
       <div  className="App flexed">

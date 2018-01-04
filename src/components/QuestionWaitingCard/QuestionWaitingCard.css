@@ -16,3 +16,15 @@
 .fa-times:hover {
     transition: all ease 0.5s;
 }
+
+.waiting-btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.waiting-btns button{
+    background:red;
+    border: none;
+}
