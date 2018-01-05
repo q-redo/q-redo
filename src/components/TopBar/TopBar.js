@@ -18,7 +18,7 @@ class TopBar extends Component {
   }
 
   handleLogout(){
-   // NOTHING HERE YET
+   window.location.href = "http://localhost:3001/login"
   }
 
   componentDidMount() {
@@ -130,6 +130,7 @@ class TopBar extends Component {
       <input type="color" onChange={(e)=>this.handleColor(e.target.value)}/>
       <div className='topBar-right'>
         <span onClick={this.handleLogout} children='Logout'/>
+      </div>
       </div>
     )
   }

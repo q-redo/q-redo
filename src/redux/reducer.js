@@ -32,6 +32,8 @@ const SOCKET_MENTORLIST = "SOCKET_MENTORLIST";
 const POST_QUESTION= "POST_QUESTION";
 const CHANGE_THEME= "CHANGE_THEME";
 const UNLINK_USERS= "UNLINK_USERS";
+const REDIRECT_USER= "REDIRECT_USER";
+const REDIRECT_STUDENT= "REDIRECT_STUDENT";
 
 
 //REDUCER
@@ -63,7 +65,15 @@ export default function reducer(state= initialState, action){
     case UNLINK_USERS + "_PENDING":
       return Object.assign({}, state, {isLoading: true});  
     case UNLINK_USERS + "_FULFILLED":
-      return Object.assign({}, state, {isLoading: false});        
+      return Object.assign({}, state, {isLoading: false});  
+    case REDIRECT_USER + "_PENDING":
+      return Object.assign({}, state, {isLoading: true});  
+    case REDIRECT_USER + "_FULFILLED":
+      return Object.assign({}, state, {user: action.payload,  isLoading: false});    
+    case REDIRECT_STUDENT + "_PENDING":
+      return Object.assign({}, state, {isLoading: true});  
+    case REDIRECT_STUDENT + "_FULFILLED":
+      return Object.assign({}, state, {user: action.payload,  isLoading: false});        
     default:
      return state;
   }
@@ -141,10 +151,49 @@ export function changeTheme(arr){
   return{
     type: CHANGE_THEME,
     payload: arr
+  }
 }
 export function unlinkUsers(id){
   return {
     type: UNLINK_USERS,
     payload: axios.put(`/api/unlink/${id}`).then(response=> response.data)
+  }
+}
+
+export function redirectUser() {
+    return {
+      type: REDIRECT_USER,
+      payload: axios
+    .get("/api/me")
+    .then(response => {
+      if (response.data.rank === 2) {
+        window.location.href = "http://localhost:3000/mentorview"
+      }
+      return response.data
+    })
+    .catch(error => {
+      error.response.data === "no_user"
+        ? (window.location.href = "http://localhost:3001/login")
+        : null
+    })
+    }
+}
+
+export function redirectStudent() {
+  return {
+    type: REDIRECT_USER,
+    payload: axios
+  .get("/api/me")
+  .then(response => {
+    if (response.data.rank === 3) {
+      window.location.href = "http://localhost:3000/student"
+    }
+    return response.data
+  })
+  .catch(error => {
+    error.response.data === "no_user"
+      ? (window.location.href = "http://localhost:3001/login")
+      : null
+  })
   }
 }
