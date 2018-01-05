@@ -36,14 +36,14 @@ class App extends Component {
 
 
   componentWillMount() {
-    console.log("componentWillmount")
-    axios.get('/api/me').then(response => 
-      {response
-  }).catch((error) => {
-      error.response.data === "no_user"? window.location.href = 'http://localhost:3001/login':null;
-    }
-      // window.location.href = 'http://localhost:3001/login'
-    )
+  //   console.log("componentWillmount")
+  //   axios.get('/api/me').then(response => 
+  //     {response
+  // }).catch((error) => {
+  //     error.response.data === "no_user"? window.location.href = 'http://localhost:3001/login':null;
+  //   }
+  //     // window.location.href = 'http://localhost:3001/login'
+  //   )
   }
 
   handleLogin() {
