@@ -109,6 +109,8 @@ let interval
 io.sockets.on("connection", socket => {
   var db = app.get("db")
   socket.handshake.session.user = you
+  you = null;
+  console.log(you)
   console.log("Client connected!")
 
   socket.handshake.session.user
@@ -126,18 +128,31 @@ io.sockets.on("connection", socket => {
   socket.on("disconnect", () => {
     console.log("Client disconnected!")
     clearInterval(intervalId)
+
+    socket.handshake.session.user?
+
     db.run(
       `UPDATE users SET logged_in = false WHERE user_id =${
         socket.handshake.session.user.user_id
       }`
-    ) &&
-      console.log(socket.handshake.session.user.user_id) &
-        db.run(`UPDATE users
-        set waiting_type = 'none'
-        where user_id = ${socket.handshake.session.user.user_id}`) &
-        db.run(`DELETE FROM questions WHERE user_id = ${socket.handshake.session.user.user_id} AND answered = true `)
+    ) &
+    db.run(`UPDATE users
+    set waiting_type = 'none'
+    where user_id = ${socket.handshake.session.user.user_id}`) &
+    db.run(`DELETE FROM questions WHERE user_id = ${socket.handshake.session.user.user_id} AND answered = true `)
+    &
+    console.log(socket.handshake.session.user.user_id) &
+    delete socket.handshake.session.user & breakSession()
+    // console.log("this one is after the delete",socket.handshake.session.user.user_id)
+    :null
   })
 })
+
+const breakSession = function() {
+  if(session.user.rank === 3){
+delete session.user
+  }
+}
 
 const getInfoAndEmit = async (socket, usr) => {
   console.log("User still connected")
@@ -236,14 +251,11 @@ app.put("/api/removequestions", controller.helpRemover)
 app.get("/api/me", function(req, res) {
   console.log(session.user)
   if (!session.user) {
-    return res.status(404).send("no_user")
+    return res.status(404).send("no_user");
   }
   res.status(200).json(session.user)
+  res.status(408).send("no_user");
 })
 
-app.get("/logout", function(req, res) {
-  delete session.user
-  res.redirect("http://localhost:3000/")
-})
 
 server.listen(port, () => console.log(`Listening on port ${port}`))
