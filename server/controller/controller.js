@@ -94,26 +94,16 @@ module.exports = {
       .then(answers => res.status(200).json(answers))
       .catch(console.log);
   },
-  // ****************
-  // ****************
-  // ****************
-  // ****************
+
   getMentorAnswered: (req, res, next) => {
     const dbInstance = req.app.get('db');
     console.log('********* REQUEST **********: ', req);
     dbInstance
-      .get_mentor_answered([
-        //     req.params.request.mentor1,
-        req.params.id
-        //     req.params.request.mentor3
-      ])
+      .get_mentor_answered([req.params.id])
       .then(answers => res.status(200).json(answers))
       .catch(console.log);
   },
-  // ****************
-  // ****************
-  // ****************// ****************
-  // ****************
+
   updateWaitingType: (req, res, next) => {
     console.log(req.body.val, req.params.id);
     const dbInstance = req.app.get('db');

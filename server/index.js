@@ -229,6 +229,7 @@ app.get('/api/recentQuestions', controller.getRecentQuestions);
 app.get('/api/activeQuestions', controller.getActiveQuestions);
 app.get('/api/topics', controller.getTopics);
 app.get('/api/questionsPerCampus', controller.getQuestionsPerCampus);
+app.get('/api/getMentorAnswered/:id', controller.getMentorAnswered);
 
 app.post('/api/answers', controller.postAnswer);
 app.get('/api/answers/:id', controller.getAnswers);

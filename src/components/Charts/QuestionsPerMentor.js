@@ -98,8 +98,8 @@ class QuestionsPerMentor extends Component {
     const { chartData } = this.state;
     return (
       <div className="chart">
-        <h1>Questions Per Mentor</h1>
-        <Bar data={chartData} width={250} height={150} barChartLegend={false} />
+        <h2>Questions Per Mentor</h2>
+        <Bar data={chartData} width={750} height={300} barChartLegend={false} />
         <h2>Select Mentor by ID</h2>
         <div>
           {userlist.length > 0 ? (
@@ -122,21 +122,47 @@ class QuestionsPerMentor extends Component {
             <div />
           )}
           <div>
-            <p> Enter Mentor Name Below</p> <br />
+            <p
+              style={{
+                fontWeight: 'lighter',
+                fontSize: 14,
+                fontColor: '#E2E2E2'
+              }}
+            >
+              {' '}
+              (Enter Mentor Name Below)
+            </p>{' '}
+            <br />
             <input
               type="text"
-              placeholder="Mentor One"
+              style={{
+                color: '#111',
+                outline: 'none',
+                borderRadius: 3,
+                height: 25,
+                width: 175,
+                margin: 10,
+                border: 'none',
+                backgroundColor: '#E2E2E2'
+              }}
               onChange={e => this.mentorText(e.target.value)}
             />
             <button
+              style={{
+                border: 'none',
+                background: '#2AABE2',
+                color: '#111',
+                borderRadius: 3,
+                height: 29,
+                width: 80,
+                fontSize: 14,
+                textAlign: 'center'
+              }}
               onClick={e => {
                 this.getQuestionsPerMentor1(this.state.typedText1);
               }}
             >
-              Submit
-            </button>
-            <button onClick={() => console.log(this.state)}>
-              TEMP STATE BUTTON
+              SUBMIT
             </button>
           </div>
         </div>

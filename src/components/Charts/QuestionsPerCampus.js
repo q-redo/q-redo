@@ -53,7 +53,6 @@ class QuestionsPerCampus extends Component {
         chartData: {
           datasets: [
             {
-              label: 'Questions Per Campus',
               data: dataArr,
               backgroundColor: ['#5080f0', '#d82e52', '#7e5eb8', '#32def8']
             }
@@ -66,7 +65,8 @@ class QuestionsPerCampus extends Component {
   render() {
     return (
       <div className="chart">
-        <Bar data={this.state.chartData} width={400} height={400} />
+        <h2>Questions Asked By Campus</h2>
+        <Bar data={this.state.chartData} width={750} height={500} />
       </div>
     );
   }

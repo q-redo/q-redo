@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 import axios from 'axios';
 
 class QuestionTopicChart extends Component {
@@ -108,7 +108,7 @@ class QuestionTopicChart extends Component {
     return (
       <div className="chart">
         <h1>Questions by Topic</h1>
-        <Bar data={this.state.chartData} width={400} height={400} />
+        <Pie data={this.state.chartData} width={750} height={500} />
       </div>
     );
   }
