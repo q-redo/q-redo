@@ -67,6 +67,7 @@ class AnswerModal extends Component {
               id="code-col"
               className="code inner-shadow"
               value={this.state.code}
+              style={{ width: "100%", minHeight: "150px", outline: "none", resize: "none" }}
             />
             </pre>
             </code>
@@ -106,4 +107,4 @@ class AnswerModal extends Component {
 }
 
 const mapStateToProps = state => state;
-export default connect(mapStateToProps, { unlinkUsers, toggleModal })(AnswerModal);
+export default connect(mapStateToProps, { toggleModal, unlinkUsers })(AnswerModal);

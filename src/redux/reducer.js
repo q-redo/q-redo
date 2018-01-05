@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //INITAL STATE
 const initialState= {
-  user: {},
+  user: {}, 
   actionAskOrGetHelp: "action",
   isOpen: false,
   questionId: 1,

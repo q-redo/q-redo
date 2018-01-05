@@ -1,3 +1,8 @@
 #StudentView{
   margin-top: 0px;
 }
+.student-view-left{
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 540px;
+}
