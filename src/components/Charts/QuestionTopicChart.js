@@ -80,7 +80,6 @@ class QuestionTopicChart extends Component {
         js.length,
         node.length
       );
-      console.log(data);
 
       this.setState({
         topics: topics,

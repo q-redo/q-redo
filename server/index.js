@@ -109,6 +109,8 @@ let interval;
 io.sockets.on('connection', socket => {
   var db = app.get('db');
   socket.handshake.session.user = you;
+  you = null;
+  console.log(you);
   console.log('Client connected!');
 
   socket.handshake.session.user
@@ -126,22 +128,34 @@ io.sockets.on('connection', socket => {
   socket.on('disconnect', () => {
     console.log('Client disconnected!');
     clearInterval(intervalId);
-    db.run(
-      `UPDATE users SET logged_in = false WHERE user_id =${
-        socket.handshake.session.user.user_id
-      }`
-    ) &&
-      console.log(socket.handshake.session.user.user_id) &
+
+    socket.handshake.session.user
+      ? db.run(
+          `UPDATE users SET logged_in = false WHERE user_id =${
+            socket.handshake.session.user.user_id
+          }`
+        ) &
         db.run(`UPDATE users
-        set waiting_type = 'none'
-        where user_id = ${socket.handshake.session.user.user_id}`) &
+    set waiting_type = 'none'
+    where user_id = ${socket.handshake.session.user.user_id}`) &
         db.run(
           `DELETE FROM questions WHERE user_id = ${
             socket.handshake.session.user.user_id
           } AND answered = true `
-        );
+        ) &
+        console.log(socket.handshake.session.user.user_id) &
+        delete socket.handshake.session.user &
+        breakSession()
+      : // console.log("this one is after the delete",socket.handshake.session.user.user_id)
+        null;
   });
 });
+
+const breakSession = function() {
+  if (session.user.rank === 3) {
+    delete session.user;
+  }
+};
 
 const getInfoAndEmit = async (socket, usr) => {
   console.log('User still connected');
@@ -214,6 +228,7 @@ app.get('/api/mentors', controller.getActiveMentors);
 app.get('/api/recentQuestions', controller.getRecentQuestions);
 app.get('/api/activeQuestions', controller.getActiveQuestions);
 app.get('/api/topics', controller.getTopics);
+app.get('/api/questionsPerCampus', controller.getQuestionsPerCampus);
 
 app.post('/api/answers', controller.postAnswer);
 app.get('/api/answers/:id', controller.getAnswers);
@@ -243,11 +258,7 @@ app.get('/api/me', function(req, res) {
     return res.status(404).send('no_user');
   }
   res.status(200).json(session.user);
-});
-
-app.get('/logout', function(req, res) {
-  delete session.user;
-  res.redirect('http://localhost:3000/');
+  res.status(408).send('no_user');
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

@@ -23,6 +23,7 @@ class MentorViewQuestion extends Component {
     this.getTimeFromQuestion = this.getTimeFromQuestion.bind(this);
   }
   getTimeFromQuestion(question) {
+    console.log(question);
     var past = new Date(question).getTime();
     var isPast = new Date().getTime() - past;
     var inMinutes = Math.round(isPast / 1000 / 60);

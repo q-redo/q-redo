@@ -241,7 +241,6 @@ module.exports = {
   },
   archiveAllQuestions: (req, res, next) => {
     const dbInstance = req.app.get('db');
-
     dbInstance
       .archive_questions()
       .then(response => res.status(200).send(response))
@@ -256,7 +255,13 @@ module.exports = {
       .then(response => res.status(200).send(response))
       .catch(console.log);
   },
-
+  getQuestionsPerCampus: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .get_questions_per_campus()
+      .then(response => res.send(response))
+      .catch(console.log);
+  },
   clearHelp: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance
@@ -264,31 +269,34 @@ module.exports = {
       .then(response => res.status(200).json(response))
       .catch(console.log);
   },
-  linkUsers: (req, res, next)=> {
-    const dbInstance= req.app.get('db');
-    dbInstance.link_users([req.params.id, req.body.paired])
-      .then(response=> res.status(200).json(response))
+  linkUsers: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .link_users([req.params.id, req.body.paired])
+      .then(response => res.status(200).json(response))
       .catch(console.log);
   },
-  unlinkUsers: (req, res, next)=> {
-    const dbInstance= req.app.get('db');
-    dbInstance.unlink_users([req.params.id])
-      .then(response=> res.status(200).json(response))
+  unlinkUsers: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .unlink_users([req.params.id])
+      .then(response => res.status(200).json(response))
       .catch(console.log);
   },
-  inactiveQuestion: (req, res, next)=> {
-    const dbInstance= req.app.get('db');
-    dbInstance.inactive_question([req.params.id])
-      .then(response=> res.status(200).json(response))
-      .catch(console.log);   
-  },       
+  inactiveQuestion: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance
+      .inactive_question([req.params.id])
+      .then(response => res.status(200).json(response))
+      .catch(console.log);
+  },
   helpRemover: (req, res, next) => {
     const dbInstance = req.app.get('db');
-    const {user_id} = req.body;
+    const { user_id } = req.body;
 
     dbInstance
-    .remove_user_help(user_id)
-    .then(response => res.status(200).json(response))
-    .catch(console.log)
+      .remove_user_help(user_id)
+      .then(response => res.status(200).json(response))
+      .catch(console.log);
   }
-}
+};

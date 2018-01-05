@@ -12,6 +12,7 @@ import QuestionThread from './components/QuestionThread/QuestionThread.js';
 import QuestionArchive from './components/QuestionArchive/QuestionArchive.js';
 import QuestionsPerMentor from './components/Charts/QuestionsPerMentor';
 import AdminView from './components/AdminView/AdminView';
+import QuestionsPerCampus from './components/Charts/QuestionsPerCampus';
 
 export default (
   <BrowserRouter>
@@ -26,6 +27,7 @@ export default (
       <Route component={QuestionThread} path="/question/:id" />
       <Route component={QuestionArchive} path="/archive/questions" />
       <Route component={QuestionsPerMentor} path="/questionsPerMentor" />
+      <Route component={QuestionsPerCampus} path="/questionsPerCampus" />
     </div>
   </BrowserRouter>
 );
