@@ -28,8 +28,9 @@ Other libraries used:
 
 ## Authors
 
-* **Eric Bui** - https://github.com/PurpleBooth
-* **Devin Jackson** - https://github.com/PurpleBooth
-* **Kara Cavanaugh** - https://github.com/PurpleBooth
-* **Chris Foster** - https://github.com/PurpleBooth
+* **Eric Bui** - https://github.com/ebui91
+* **Devin Jackson** - https://github.com/devinbjackson
+* **Chris Foster** - https://github.com/chriswfoster
+* **Kara Cavanaugh** - https://github.com/KaraCav
+
 
