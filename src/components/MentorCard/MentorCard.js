@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './MentorCard.css';
 import Avatar from '../Avatar/Avatar';
 import travolta from './travolta.gif';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux';
 
 class MentorCard extends Component {
   render() {
@@ -28,25 +28,29 @@ class MentorCard extends Component {
      return <Avatar av_user={student} key={index}/>;
     });
     return (
-        <div style={{display: 'inline-block'}}>
+      <div style={{ display: 'inline-block' }}>
         <div className="mentorCard curved m10 shadowed">
-        <center><h4 style={{margin: '5px 0 0 0', color: 'white'}}>Mentors</h4></center>
-        <div className="mentor-holder">
-        {mentors[0] === null?
-          <div style={{margin: 'auto'}}>
-          <h4>No Mentors Available</h4>
-          <img className="travolta" src={travolta}/>
-          <div className="hider"/>
+          <center>
+            <h4 style={{ margin: '5px 0 0 0', color: 'white' }}>Mentors</h4>
+          </center>
+          <div className="mentor-holder">
+            {mentors[0] === null ? (
+              <div style={{ margin: 'auto' }}>
+                <h4>No Mentors Available</h4>
+                <img className="travolta" src={travolta} />
+                <div className="hider" />
+              </div>
+            ) : !mentors.length ? (
+              <div style={{ margin: 'auto' }}>
+                <h4>No Mentors Available</h4>
+                <img className="travolta" src={travolta} />
+                <div className="hider" />
+              </div>
+            ) : (
+              mentors
+            )}
           </div>
-          :!mentors.length?
-          <div style={{margin: 'auto'}}>
-          <h4>No Mentors Available</h4>
-          <img className="travolta" src={travolta}/>
-          <div className="hider"/>
-          </div>:
-          mentors
-        }
-        </div>
+
         <div className="mentorCard curved m10 shadowed">
         <center><h4 style={{margin: '5px 0 0 0', color: 'white'}}>Student Helpers</h4></center>
         <div className="mentor-holder">
@@ -63,7 +67,6 @@ class MentorCard extends Component {
     );
   }
 }
-
 
 const mapStateToProps = state => state;
 export default connect(mapStateToProps)(MentorCard);

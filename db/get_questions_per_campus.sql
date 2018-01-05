@@ -1,0 +1,1 @@
+SELECT * FROM questions WHERE campus_id > 0;

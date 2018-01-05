@@ -1,0 +1,27 @@
+.all-charts-container {
+  /* min-height: 100vh;
+  min-width: 100%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.chart-container {
+  padding: 25px;
+  background: #333;
+  color: #eee;
+  margin: 20px;
+}
+
+.charts-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-half {
+  width: 50%;
+  height: 100%;
+  border: solid 1px aquamarine;
+}
