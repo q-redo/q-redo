@@ -17,7 +17,7 @@ class TopBar extends Component {
   }
 
   handleLogout() {
-    window.location.href = "http://localhost:3001/logout"
+    window.location.href = "http://localhost:3001/login"
   }
 
   componentDidMount() {

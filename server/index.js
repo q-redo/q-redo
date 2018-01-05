@@ -19,13 +19,13 @@ const port = process.env.PORT || 3001
 const controller = require("./controller/controller")
 
 var app = require("express")(),
-  server = require("http").createServer(app),
-  io = require("socket.io")(server),
-  session = require("express-session")({
-    secret: secret,
-    resave: true,
-    saveUninitialized: true
-  })
+ server = require("http").createServer(app),
+ io = require("socket.io")(server),
+ session = require("express-session")({
+   secret: secret,
+   resave: true,
+   saveUninitialized: true
+ })
 
 //Auth0
 
@@ -33,54 +33,54 @@ app.use(passport.initialize())
 app.use(passport.session())
 // console.log("passport sesh", passport.session()) //session object is still intact up to this point
 passport.use(
-  new Auth0Strategy(
-    {
-      domain,
-      clientID,
-      clientSecret,
-      callbackURL: "/login"
-    },
-    function(accessToken, refreshToken, extraParams, profile, done) {
-      console.log("PROFILE", profile._json.email)
-      app
-        .get("db")
-        .getUserByAuthId([profile.id])
-        .then(response => {
-          if (!response[0]) {
-            const db = app.get("db")
-            db
-              .createUserByAuth([
-                profile.id,
-                profile.displayName,
-                profile.picture,
-                profile._json.email
-              ])
-              .then(created => {
-                return done(null, created[0])
-              })
-          } else {
-            return done(null, response[0])
-          }
-        })
-    }
-  )
+ new Auth0Strategy(
+   {
+     domain,
+     clientID,
+     clientSecret,
+     callbackURL: "/login"
+   },
+   function(accessToken, refreshToken, extraParams, profile, done) {
+     console.log('PROFILE', profile._json.email)
+     app
+       .get("db")
+       .getUserByAuthId([profile.id])
+       .then(response => {
+         if (!response[0]) {
+           const db = app.get("db")
+           db
+             .createUserByAuth([
+               profile.id,
+               profile.displayName,
+               profile.picture,
+               profile._json.email
+             ])
+             .then(created => {
+               return done(null, created[0])
+             })
+         } else {
+           return done(null, response[0])
+         }
+       })
+   }
+ )
 )
 
 passport.serializeUser(function(user, done) {
-  done(null, user)
+ done(null, user)
 })
 
 passport.deserializeUser(function(obj, done) {
-  done(null, obj)
+ done(null, obj)
 })
 
-let you
+let you;
 app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
-  you = req.user
-  session.user = req.user
-  req.user.rank === 3
-    ? res.redirect("http://localhost:3000/student")
-    : res.redirect("http://localhost:3000/mentorview")
+ you = req.user
+ session.user= req.user
+ req.user.rank === 3 
+ ? res.redirect("http://localhost:3000/student") : 
+ res.redirect("http://localhost:3000/mentorview")
 })
 
 const sharedsession = require("express-socket.io-session")
@@ -88,10 +88,10 @@ const sharedsession = require("express-socket.io-session")
 app.use(session) // ATTACH SESSION
 // console.log("initial", session) //Session exists at this point
 io.use(
-  //SHARE SESSION WITH IO SOCKETS
-  sharedsession(session, {
-    autoSave: true
-  })
+ //SHARE SESSION WITH IO SOCKETS
+ sharedsession(session, {
+   autoSave: true
+ })
 )
 const index = require("./../routes/index")
 app.use(index)
@@ -100,8 +100,8 @@ app.use(json())
 app.use(cors())
 
 massive(connectionString)
-  .then(dbInstance => app.set("db", dbInstance) && dbInstance.log_them_out())
-  .catch(console.log)
+.then(dbInstance => app.set("db", dbInstance) && dbInstance.log_them_out())
+.catch(console.log)
 
 //SOCKET.IO STARTS
 
@@ -109,6 +109,8 @@ let interval
 io.sockets.on("connection", socket => {
   var db = app.get("db")
   socket.handshake.session.user = you
+  you = null;
+  console.log(you)
   console.log("Client connected!")
 
   socket.handshake.session.user
@@ -126,18 +128,31 @@ io.sockets.on("connection", socket => {
   socket.on("disconnect", () => {
     console.log("Client disconnected!")
     clearInterval(intervalId)
+
+    socket.handshake.session.user?
+
     db.run(
       `UPDATE users SET logged_in = false WHERE user_id =${
         socket.handshake.session.user.user_id
       }`
-    ) &&
-      console.log(socket.handshake.session.user.user_id) &
-        db.run(`UPDATE users
-        set waiting_type = 'none'
-        where user_id = ${socket.handshake.session.user.user_id}`) &
-        db.run(`DELETE FROM questions WHERE user_id = ${socket.handshake.session.user.user_id} AND answered = true `)
+    ) &
+    db.run(`UPDATE users
+    set waiting_type = 'none'
+    where user_id = ${socket.handshake.session.user.user_id}`) &
+    db.run(`DELETE FROM questions WHERE user_id = ${socket.handshake.session.user.user_id} AND answered = true `)
+    &
+    console.log(socket.handshake.session.user.user_id) &
+    delete socket.handshake.session.user & breakSession()
+    // console.log("this one is after the delete",socket.handshake.session.user.user_id)
+    :null
   })
 })
+
+const breakSession = function() {
+  if(session.user.rank === 3){
+delete session.user
+  }
+}
 
 const getInfoAndEmit = async (socket, usr) => {
   console.log("User still connected")
@@ -182,66 +197,61 @@ app.get("/api/questions", (req, res, next) => {
 ///////////////// I DELETED SOME ENDPOINTS FOR THE ABOVE SOCKET.IO TO WORK//////////
 //Endpoints
 
-app.get("/api/archived/questions", controller.getArchivedQuestions)
+app.get('/api/archived/questions', controller.getArchivedQuestions)
 app.post("/api/questions", controller.postQuestion)
 app.get("/api/questions/:id", controller.getQuestionById)
 
 app.get("/api/users/:id", (req, res, next) => {
-  const dbInstance = req.app.get("db")
-  dbInstance
-    .getUserByAuthId([req.params.id])
-    .then(user => {
-      res.status(200).json(user)
-    })
-    .catch(console.log)
+ const dbInstance = req.app.get("db")
+ dbInstance
+   .getUserByAuthId([req.params.id])
+   .then(user => {
+     res.status(200).json(user)
+   })
+   .catch(console.log)
 })
 //change answer to true //
-app.delete("/api/questions/:id", controller.deleteQuestion)
-app.delete("/api/help/:id", controller.clearHelp)
+app.delete('/api/questions/:id', controller.deleteQuestion)
+app.delete('/api/help/:id', controller.clearHelp)
 
 app.put("/api/questions/:id", controller.answeredQuestion)
-app.put("/api/waiting_type/:id", controller.updateWaitingType)
-app.put("/api/users/:id", controller.linkUsers)
+app.put('/api/waiting_type/:id', controller.updateWaitingType)
+app.put('/api/users/:id', controller.linkUsers)
+app.put('/api/unlink/:id', controller.unlinkUsers)
+// app.put('/api/inactive/question/:id', controller.inactiveQuestion)
 
-app.get("/api/users", controller.getActiveUsers)
-app.get("/api/mentors", controller.getActiveMentors)
-app.get("/api/recentQuestions", controller.getRecentQuestions)
-app.get("/api/activeQuestions", controller.getActiveQuestions)
-app.get("/api/topics", controller.getTopics)
 
-app.post("/api/answers", controller.postAnswer)
-app.get("/api/answers/:id", controller.getAnswers)
 
-app.put("/api/verify/answers/:id", controller.toggleVerify)
-app.put("/api/upvote/answers/:id", controller.upvote)
-app.put("/api/downvote/answers/:id", controller.downvote)
+app.get("/api/users", controller.getActiveUsers);
+app.get("/api/mentors", controller.getActiveMentors);
+app.get("/api/recentQuestions", controller.getRecentQuestions);
+app.get("/api/activeQuestions", controller.getActiveQuestions);
+app.get("/api/topics", controller.getTopics);
+
+app.post('/api/answers', controller.postAnswer);
+app.get('/api/answers/:id', controller.getAnswers);
+
+app.put('/api/verify/answers/:id', controller.toggleVerify);
+app.put('/api/upvote/answers/:id', controller.upvote);
+app.put('/api/downvote/answers/:id', controller.downvote);
 
 //AdminView Endpoints//
-app.post("/api/studentsearch", controller.searchForStudent)
-app.put("/api/changeuserrank", controller.changeRank)
-app.get("/api/getcampusandcohort", controller.getCandC)
-app.put("/api/changeusercohort", controller.changeCohort)
-app.put("/api/changeusercampus", controller.changeCampus)
-app.post("/api/createcampus", controller.campusCreation)
-app.post("/api/createcohort", controller.cohortCreation)
-app.get("/api/archiveallquestions", controller.archiveAllQuestions)
-app.post("/api/searchSpecificQuestions", controller.getSpecificQuestions)
+app.post('/api/studentsearch', controller.searchForStudent);
+app.put('/api/changeuserrank', controller.changeRank);
+app.get('/api/getcampusandcohort', controller.getCandC);
+app.put('/api/changeusercohort', controller.changeCohort);
+app.put('/api/changeusercampus', controller.changeCampus);
+app.post('/api/createcampus', controller.campusCreation);
+app.post('/api/createcohort', controller.cohortCreation);
+app.post('/api/archiveallquestions', controller.archiveAllQuestions)
+app.post('/api/searchSpecificQuestions', controller.getSpecificQuestions)
 //End of AdminView endpoints.
 
-//USER CHANGES VIEWS - REMOVES ACTIVE QUESTIONS
-app.put("/api/removequestions", controller.helpRemover)
-
 app.get("/api/me", function(req, res) {
-  console.log(session.user)
-  if (!session.user) {
-    return res.status(404).send("no_user")
-  }
-  res.status(200).json(session.user)
-})
-
-app.get("/logout", function(req, res) {
-  delete session.user
-  res.redirect("http://localhost:3000/")
+ if (!req.user) {
+   return res.status(404)
+ }
+ res.status(200).json(req.user)
 })
 
 server.listen(port, () => console.log(`Listening on port ${port}`))

@@ -13,7 +13,10 @@ const initialState= {
   endpoint: "127.0.0.1:3001",
   mentorList: [],
   questionWaiting: false,
-  isLoading:false
+  isLoading:false,
+  mainBlueColor: '#2aabe2',
+  mainBoxColor: '#333333',
+  mainBgColor: '#222222'
 }
 
 
@@ -27,6 +30,10 @@ const TOGGLE_MODAL = "TOGGLE_MODAL";
 const SET_MODAL_ID = "SET_MODAL_ID";
 const SOCKET_MENTORLIST = "SOCKET_MENTORLIST";
 const POST_QUESTION= "POST_QUESTION";
+const CHANGE_THEME= "CHANGE_THEME";
+const UNLINK_USERS= "UNLINK_USERS";
+const REDIRECT_USER= "REDIRECT_USER";
+const REDIRECT_STUDENT= "REDIRECT_STUDENT";
 
 
 //REDUCER
@@ -52,6 +59,21 @@ export default function reducer(state= initialState, action){
       return Object.assign({}, state, {isLoading: true});
     case POST_QUESTION + "_FULFILLED":
       return Object.assign({}, state, { cancelId: action.payload, isLoading: false });      
+    case CHANGE_THEME:
+      return Object.assign({}, state, {mainBlueColor: action.payload[0], mainBoxColor: action.payload[1], mainBgColor: action.payload[2]});
+      return Object.assign({}, state, { cancelId: action.payload, isLoading: false });  
+    case UNLINK_USERS + "_PENDING":
+      return Object.assign({}, state, {isLoading: true});  
+    case UNLINK_USERS + "_FULFILLED":
+      return Object.assign({}, state, {isLoading: false});  
+    case REDIRECT_USER + "_PENDING":
+      return Object.assign({}, state, {isLoading: true});  
+    case REDIRECT_USER + "_FULFILLED":
+      return Object.assign({}, state, {user: action.payload,  isLoading: false});    
+    case REDIRECT_STUDENT + "_PENDING":
+      return Object.assign({}, state, {isLoading: true});  
+    case REDIRECT_STUDENT + "_FULFILLED":
+      return Object.assign({}, state, {user: action.payload,  isLoading: false});        
     default:
      return state;
   }
@@ -122,5 +144,56 @@ export function postQuestion(obj){
     .then(response=> {
       return response.data[0].q_id;
     })
+  }
+}
+
+export function changeTheme(arr){
+  return{
+    type: CHANGE_THEME,
+    payload: arr
+  }
+}
+export function unlinkUsers(id){
+  return {
+    type: UNLINK_USERS,
+    payload: axios.put(`/api/unlink/${id}`).then(response=> response.data)
+  }
+}
+
+export function redirectUser() {
+    return {
+      type: REDIRECT_USER,
+      payload: axios
+    .get("/api/me")
+    .then(response => {
+      if (response.data.rank === 2) {
+        window.location.href = "http://localhost:3000/mentorview"
+      }
+      return response.data
+    })
+    .catch(error => {
+      error.response.data === "no_user"
+        ? (window.location.href = "http://localhost:3001/login")
+        : null
+    })
+    }
+}
+
+export function redirectStudent() {
+  return {
+    type: REDIRECT_USER,
+    payload: axios
+  .get("/api/me")
+  .then(response => {
+    if (response.data.rank === 3) {
+      window.location.href = "http://localhost:3000/student"
+    }
+    return response.data
+  })
+  .catch(error => {
+    error.response.data === "no_user"
+      ? (window.location.href = "http://localhost:3001/login")
+      : null
+  })
   }
 }
