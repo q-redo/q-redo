@@ -54,13 +54,20 @@ class MentorViewQuestion extends Component {
     this.setState({ helping: !this.state.helping });
   }
 
+  setHelp() {
+    this.setState({ helping: !this.state.helping });
+  }
+
   linkToStudent(id) {
     this.setState({ studentId: id });
-    axios
-      .put(`/api/users/${id}`, { paired: this.props.user.user_id })
-      .then(response => {
-        return response.data;
-      });
+
+    if (this.props.user.rank < 3) {
+      axios
+        .put(`/api/users/${id}`, { paired: this.props.user.user_id })
+        .then(response => {
+          return response.data;
+        });
+    }
   }
 
   clearHelp(id) {
@@ -120,7 +127,8 @@ class MentorViewQuestion extends Component {
           </div>
           <i
             onClick={e => {
-              this.clearHelp(e.target.value);
+              this.props.unlinkUsers(question.user_id);
+              this.clearHelp(question.q_id);
               this.setHelp();
             }}
             className="fa fa-lg fa-times m10"
@@ -147,7 +155,14 @@ class MentorViewQuestion extends Component {
           <p>{question.question}</p>
           <code>
             <pre>
-              <textarea id="code-col">{question.code_block}</textarea>
+              <textarea
+                style={{ resize: 'none', outline: 'none', width: '100%' }}
+                readonly="readonly"
+                id="code-col"
+                className="code inner-shadow"
+              >
+                {question.code_block}
+              </textarea>
             </pre>
           </code>
         </section>

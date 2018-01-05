@@ -204,7 +204,12 @@ getTopics(){
         ))
     return (
       <div>
-        <div onClick={() => this.showBox() & this.getcohortandcampus()}> TOPIC CHARTZ </div>
+        <div className="big-circle-card m10">
+        <button onClick={() => this.showBox() & this.getcohortandcampus()} className="bigCircle  jump shadowed flexed">
+        <i className="fa fa-lg fa-bar-chart" aria-hidden="true"/>
+        </button>
+        <span style={{marginTop: '10px'}}>Topic Charts</span>
+        </div>
         {this.state.displayBox === true ? (
           <div className="curved shadowed m10 adminpopupbox">
             <div className="admincenterboxcontent">

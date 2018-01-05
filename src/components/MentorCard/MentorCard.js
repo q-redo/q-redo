@@ -20,21 +20,26 @@ class MentorCard extends Component {
     return (
       <div style={{ display: 'inline-block' }}>
         <div className="mentorCard curved m10 shadowed">
-          {mentors[0] === null ? (
-            <div style={{ margin: 'auto' }}>
-              <h4>No Mentors Available</h4>
-              <img className="travolta" src={travolta} />
-              <div className="hider" />
-            </div>
-          ) : !mentors.length ? (
-            <div style={{ margin: 'auto' }}>
-              <h4>No Mentors Available</h4>
-              <img className="travolta" src={travolta} />
-              <div className="hider" />
-            </div>
-          ) : (
-            mentors
-          )}
+          <center>
+            <h4 style={{ margin: '5px 0 0 0', color: 'white' }}>Mentors</h4>
+          </center>
+          <div className="mentor-holder">
+            {mentors[0] === null ? (
+              <div style={{ margin: 'auto' }}>
+                <h4>No Mentors Available</h4>
+                <img className="travolta" src={travolta} />
+                <div className="hider" />
+              </div>
+            ) : !mentors.length ? (
+              <div style={{ margin: 'auto' }}>
+                <h4>No Mentors Available</h4>
+                <img className="travolta" src={travolta} />
+                <div className="hider" />
+              </div>
+            ) : (
+              mentors
+            )}
+          </div>
         </div>
       </div>
     );

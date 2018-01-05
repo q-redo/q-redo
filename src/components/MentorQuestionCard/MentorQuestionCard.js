@@ -54,7 +54,13 @@ class MentorQuestionCard extends Component {
     );
     return (
       <div className="questions-array">
-        {activeQuestions}
+        {activeQuestions.length ? (
+          activeQuestions
+        ) : (
+          <div className="user-help-card curved shadowed m10">
+            <h2> No Questions</h2>
+          </div>
+        )}
         {this.props.isOpen ? (
           <div className="modal-background">
             <AnswerModal question_id={this.state.id} />

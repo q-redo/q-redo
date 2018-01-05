@@ -1,5 +1,5 @@
 .question-thread-container{
-  width: 60vw;
+  min-width: 60vw;
   padding: 10px;
 }
 

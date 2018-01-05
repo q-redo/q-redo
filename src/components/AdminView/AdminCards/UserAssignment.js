@@ -95,7 +95,12 @@ class CohortAssignment extends Component {
     return(
    
         <div>
-            <div onClick={()=> this.showBox()}> User assignment </div>
+        <div className="big-circle-card m10">
+        <button onClick={()=> this.showBox()} className="bigCircle  jump shadowed flexed">
+        <i className="fa fa-lg fa-user-plus" aria-hidden="true"/>
+        </button>
+        <span style={{marginTop: '10px'}}>User Assignment</span>
+        </div>
 { this.state.displayBox === true ?
 
 <div className="curved shadowed m10 adminpopupbox">
@@ -105,19 +110,19 @@ class CohortAssignment extends Component {
     <center>
 
 
-    <input onChange={(e) => this.searchTextHandler(e.target.value)} /><button onClick={() => this.searchForStudent(this.state.searchText)}>Search for student</button>
+    <input placeholder='Student Name' onChange={(e) => this.searchTextHandler(e.target.value)} /><button onClick={() => this.searchForStudent(this.state.searchText)}>Search</button>
    
    {studentlist.length > 0? 
     <table>
         <tbody>
   <tr>
-    <th>ID:</th>
-    <th>Name:</th> 
-    <th>Email:</th>
-    <th>Logged in: </th>
-    <th>Rank: </th>
-    <th>Campus:</th>
-    <th>Cohort:</th>
+    <th>ID</th>
+    <th>Name</th> 
+    <th>Email</th>
+    <th>Logged In </th>
+    <th>Rank </th>
+    <th>Campus</th>
+    <th>Cohort</th>
   </tr>
 {studentlist}
 </tbody>
@@ -127,8 +132,8 @@ class CohortAssignment extends Component {
 
 </center>
      </div> 
-     
-<button onClick={() => this.showBox()}> CANCEL / CLOSE </button></div>
+     <i onClick={() => this.showBox()} className="m10 fa fa-times fa-lg"/>
+</div>
 <button onClick={() => console.log(this.state)}> WHATS STATE </button>
 </div>
 : false

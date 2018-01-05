@@ -2,11 +2,11 @@
     width: 250px;
     background-color: var(--main-box-color);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
     align-content: center;
-    min-height: 328px;
+    padding: 10px 0 10px 0;
 }
 
 .topicPill{
