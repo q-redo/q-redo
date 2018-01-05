@@ -8,8 +8,9 @@ import UserList from '../UserList';
 // import QuestionForm from '../QuestionForm/QuestionForm';
 // import ActionCard from '../ActionCard/ActionCard';
 import { connect } from 'react-redux';
-import { toggleModal } from '../../redux/reducer.js';
+import { toggleModal, redirectStudent } from '../../redux/reducer.js';
 import LoadingScreen from '../LoadingScreen/LoadingScreen.js';
+import MentorList from '../MentorList/MentorList';
 import axios from 'axios';
 import './MentorView.css';
 
@@ -18,13 +19,11 @@ import './MentorView.css';
 class MentorView extends Component {
 
   componentWillMount(){
-    axios.get('/api/me').then(response => {if(response.data.rank === 3){
-      window.location.href = 'http://localhost:3000/student'
-    }}).catch((error) => {
-      error.response.data === "no_user"? window.location.href = 'http://localhost:3001/login':null;
-    }
-      // window.location.href = 'http://localhost:3001/login'
-    )
+    this.props.redirectStudent().then(()=>{
+      const {user} = this.props
+        setTimeout(function(){ if(!user.user_id){ 
+          window.location.href = "http://localhost:3001/login"}} , 8000)
+      })
   }
 
 
@@ -35,11 +34,14 @@ class MentorView extends Component {
         <section style={{display: 'inline-block'}}>
         <MentorQuestionCard/>
         </section>
+        <div style={{display: 'inline-flex', flexDirection: 'column', float: 'right'}}>
         <UserList />
+        <MentorList />
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps= state=> state;
-export default connect(mapStateToProps, { toggleModal })(MentorView);
+export default connect(mapStateToProps, { toggleModal, redirectStudent })(MentorView);

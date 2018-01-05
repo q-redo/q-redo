@@ -10,10 +10,10 @@ import './QuestionWaitingCard.css';
 class QuestionWaitingCard extends Component {
   constructor(props) {
     super(props);
-    
-    this.state ={
+
+    this.state = {
       question: {}
-    }
+    };
 
     this.handleWaitingType= this.handleWaitingType.bind(this);
     this.handleCancelQuestion= this.handleCancelQuestion.bind(this);
@@ -92,23 +92,31 @@ class QuestionWaitingCard extends Component {
             />
             </div>
           </div> */}
-      <div className="question-waiting-question m10 flexed curved shadowed">
-      <h3>Your Question:</h3>
-      <p> {this.state.question.question}</p>
-      <code className="code curved m10" style={{overflow: 'scroll', maxWidth: '450px', minWidth: '250px', padding: '0 10px 0 10px'}}>
-            <pre>
-         {this.state.question.code_block}
-         </pre>
-         </code>
-      <hr style={{width: '90%'}}/>
-      <p>Answers will appear below</p>
-      </div>   
-    <QuestionThread question={this.state.question} />
-
-    </div>
+        <div className="question-waiting-question m10 flexed curved shadowed">
+          <h3>Your Question:</h3>
+          <p> {this.state.question.question}</p>
+          <code
+            className="code curved m10"
+            style={{
+              overflow: "scroll",
+              maxWidth: "450px",
+              minWidth: "250px",
+              padding: "0 10px 0 10px"
+            }}
+          >
+            <pre>{this.state.question.code_block}</pre>
+          </code>
+          <hr style={{ width: "90%" }} />
+          <p>Answers will appear below</p>
+        </div>
+        <QuestionThread question={this.state.question} />
+      </div>
     );
   }
 }
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps ,{toggleAction, toggleQuestionWaiting})(QuestionWaitingCard);
+export default connect(mapStateToProps, {
+  toggleAction,
+  toggleQuestionWaiting
+})(QuestionWaitingCard);

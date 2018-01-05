@@ -31,8 +31,13 @@ class ArchiveQuestions extends Component {
 
     render(){
         return(
-            <div>
-                <div onClick={()=> this.showBox()}> ARCHIVE QUESTIONS </div>
+        <div>
+        <div className="big-circle-card m10">
+        <button onClick={()=> this.showBox()} className="bigCircle  jump shadowed flexed">
+        <i className="fa fa-lg fa-archive" aria-hidden="true"/>
+        </button>
+        <span style={{marginTop: '10px'}}>Archive Questions</span>
+        </div>
 { this.state.displayBox === true ?
 
 <div className="curved shadowed m10 adminpopupbox">
@@ -49,7 +54,8 @@ class ArchiveQuestions extends Component {
 </center>
      </div> 
      
-<button onClick={() => this.showBox()}> CANCEL / CLOSE </button></div>
+<i onClick={() => this.showBox()} className="m10 fa fa-times fa-lg"/>
+</div>
 </div>
 : false
 }

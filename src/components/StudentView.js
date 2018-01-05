@@ -9,64 +9,36 @@ import ActionCard from "./ActionCard/ActionCard"
 import WaitingCard from "./WaitingCard/WaitingCard"
 import LoadingScreen from "./LoadingScreen/LoadingScreen"
 import axios from "axios"
+import {redirectUser} from '../redux/reducer';
 
 class StudentView extends Component {
   constructor(props) {
     super(props)
   }
 
-
-  helpRemover(){
-  axios.put("/api/removequestions", {
-      user_id: this.props.user.user_id
-    }).then(response => response.data)
-} 
-
-  componentWillUnmount() {
-    // window.removeEventListener('beforeunload', this.helpRemover);
-    
-  }
-  componentDidMount() {
-    window.addEventListener('beforeunload', this.helpRemover);
-   
-      }
-
   componentWillMount() {
-    axios
-      .get("/api/me")
-      .then(response => {
-        if (response.data.rank === 2) {
-          window.location.href = "http://localhost:3000/mentorview"
-        }
-      })
-      .catch(error => {
-        error.response.data === "no_user"
-          ? (window.location.href = "http://localhost:3001/login")
-          : null
-      })
+    this.props.redirectUser().then(()=>{
+    const {user} = this.props
+      setTimeout(function(){ if(!user.user_id){ 
+        window.location.href = "http://localhost:3001/login"}} , 8000)
+    })
+
   }
 
   render() {
     return (
       <div id="StudentView">
-      <button onClick={()=> this.helpRemover()}>RULE BREAKING BUTTON</button>
-        {!this.props.user.name ? <LoadingScreen /> : ""}
-        <section style={{ display: "inline-block" }}>
-          {this.props.actionAskOrGetHelp === "action" ? (
-            <ActionCard />
-          ) : this.props.actionAskOrGetHelp === "question" ? (
-            <QuestionForm />
-          ) : this.props.actionAskOrGetHelp === "waiting" ? (
-            <WaitingCard />
-          ) : (
-            ""
-          )}
-          {this.props.user.waiting_type !== "question" ? (
-            <RecentQuestions />
-          ) : (
-            ""
-          )}
-          <MentorCard />
+        {!this.props.user.name? <LoadingScreen />:''}
+        <section className="student-view-left">
+        {this.props.actionAskOrGetHelp === 'action'?
+        <ActionCard/>:
+        this.props.actionAskOrGetHelp === "question"?
+        <QuestionForm/>:
+        this.props.actionAskOrGetHelp === "waiting"?
+        <WaitingCard/>:''
+        }
+        {this.props.user.waiting_type !== "question" ?<RecentQuestions />:''}
+        <MentorCard />
         </section>
         <UserList />
       </div>
@@ -75,4 +47,4 @@ class StudentView extends Component {
 }
 
 const mapStateToProps = state => state
-export default connect(mapStateToProps)(StudentView)
+export default connect(mapStateToProps, {redirectUser})(StudentView)

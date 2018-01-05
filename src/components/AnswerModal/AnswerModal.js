@@ -107,4 +107,4 @@ class AnswerModal extends Component {
 }
 
 const mapStateToProps = state => state;
-export default connect(mapStateToProps, { toggleModal })(AnswerModal);
+export default connect(mapStateToProps, { toggleModal, unlinkUsers })(AnswerModal);

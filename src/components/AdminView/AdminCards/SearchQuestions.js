@@ -113,13 +113,18 @@ theCallBack(){
       <td>{ques.code_block}</td>
       <td>{ques.time}</td>
       <td>{ques.answered}</td>
-      <td className="divtestfix"><button onClick={()=> this.deleteQuestion}> X</button></td>
+      <td className="divtestfix"><i onClick={()=> this.deleteQuestion} className="fa fa-trash"/></td>
       </tr>
     ))
 
     return (
       <div>
-        <div onClick={() => this.showBox() & this.getcohortandcampus()}> Search For Questions </div>
+        <div className="big-circle-card m10">
+        <button onClick={()=> this.showBox() & this.getcohortandcampus()} className="bigCircle  jump shadowed flexed">
+        <i className="fa fa-lg fa-search" aria-hidden="true"/>
+        </button>
+        <span style={{marginTop: '10px'}}>Search Questions</span>
+        </div>
         {this.state.displayBox === true ? (
           <div className="curved shadowed m10 adminpopupbox">
             <div className="admincenterboxcontent">
@@ -168,11 +173,11 @@ theCallBack(){
     <table>
         <tbody>
   <tr>
-    <th>Question:</th>
-    <th>Code:</th> 
-    <th>Date/time:</th>
-    <th>Answered: </th>
-      <th> Delete:</th>
+    <th>Question</th>
+    <th>Code</th> 
+    <th>Date/time</th>
+    <th>Answered </th>
+      <th> Delete</th>
       </tr>
 {questionsList}
 </tbody>
@@ -182,7 +187,7 @@ theCallBack(){
                 {" "}
                 What is state
               </button>
-              <button onClick={() => this.showBox()}> CANCEL / CLOSE </button>
+              <i onClick={() => this.showBox()} className="m10 fa fa-times fa-lg"/>
             </div>
           </div>
         ) : (
