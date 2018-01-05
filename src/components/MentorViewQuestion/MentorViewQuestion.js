@@ -22,9 +22,15 @@ class MentorViewQuestion extends Component {
     this.linkToStudent = this.linkToStudent.bind(this);
     this.getTimeFromQuestion = this.getTimeFromQuestion.bind(this);
   }
+<<<<<<< HEAD
   getTimeFromQuestion(question) {
     console.log(question);
     var past = new Date(question).getTime();
+=======
+  getTimeFromQuestion(questionTime) {
+    var past = new Date(questionTime).getTime();
+    console.log(past)
+>>>>>>> devin-branch
     var isPast = new Date().getTime() - past;
     var inMinutes = Math.round(isPast / 1000 / 60);
     if (inMinutes > 7000) {
@@ -87,8 +93,13 @@ class MentorViewQuestion extends Component {
             />
           </div>
 
+<<<<<<< HEAD
           <span style={{ display: 'inline-block' }}>
             {this.getTimeFromQuestion(question.time)}{' '}
+=======
+          <span style={{ display: 'inline-flex' }}>
+            <div className="time-elapsed">{this.getTimeFromQuestion(question.time)}{' '}</div>
+>>>>>>> devin-branch
             <img
               style={{ width: '25px' }}
               src={hourglass}
@@ -143,8 +154,13 @@ class MentorViewQuestion extends Component {
             <Avatar
               av_user={{ name: question.name, image_url: question.image_url }}
             />
+<<<<<<< HEAD
             <span style={{ display: 'inline-block' }}>
               {this.getTimeFromQuestion(question.time)}{' '}
+=======
+            <span style={{ display: 'inline-flex' }}>
+            <div className="time-elapsed">{this.getTimeFromQuestion(question.time)}{' '}</div>
+>>>>>>> devin-branch
               <img
                 style={{ width: '25px' }}
                 src={hourglass}

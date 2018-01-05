@@ -81,6 +81,7 @@ class App extends Component {
     };
     return (
       <div style={styles} className="App flexed">
+        <div className="background" style={styles}></div>
         <Notifications />
         {this.props.isLoading ? <LoadingScreen /> : ""}
         <TopBar />

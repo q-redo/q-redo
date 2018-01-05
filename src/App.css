@@ -2,6 +2,12 @@
   flex-direction: column;
   overflow: scroll;
 }
+.background{
+  height: 200%;
+  width: 200%;
+  position:fixed;
+  z-index: -1;
+}
 /* body {
   --main-bg-color: #222222;
 background-image: url('http://www.heathrowe.com/tuts/gridimages/8.gif');
@@ -19,8 +25,6 @@ background-color: var(--main-bg-color);
     } */
 
 body {
-  --main-bg-color: #222222;
-  background-color: var(--main-bg-color);
   font-family: 'Poppins', sans-serif;
 }    
 input,textarea{
