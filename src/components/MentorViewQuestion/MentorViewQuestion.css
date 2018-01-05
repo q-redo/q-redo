@@ -45,3 +45,7 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.time-elapsed{
+    font-size: .6em;
+}
