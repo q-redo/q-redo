@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-//import Moment from 'react-moment';
 import './MentorCard.css';
 import Avatar from '../Avatar/Avatar';
 import travolta from './travolta.gif';
