@@ -117,6 +117,6 @@ position: relative;
   border: none;
 }
 
-.uq-left-side img, .user-help-card img{
+.uq-left-side img, .user-help-card>span> img{
  height: 28px; 
 }

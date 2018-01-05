@@ -24,7 +24,6 @@ class MentorViewQuestion extends Component {
   }
   getTimeFromQuestion(questionTime) {
     var past = new Date(questionTime).getTime();
-    console.log(past)
     var isPast = new Date().getTime() - past;
     var inMinutes = Math.round(isPast / 1000 / 60);
     if (inMinutes > 7000) {
@@ -53,12 +52,13 @@ class MentorViewQuestion extends Component {
   setHelp() {
     this.setState({ helping: !this.state.helping });
   }
-
+  
   setHelp() {
     this.setState({ helping: !this.state.helping });
   }
-
+  
   linkToStudent(id) {
+    console.log("this is the user id", id);
     this.setState({ studentId: id });
 
     if (this.props.user.rank < 3) {
@@ -196,6 +196,6 @@ class MentorViewQuestion extends Component {
 }
 
 const mapStateToProps = state => state;
-export default connect(mapStateToProps, { toggleModal, setModalId })(
+export default connect(mapStateToProps, { toggleModal, setModalId , unlinkUsers})(
   MentorViewQuestion
 );
