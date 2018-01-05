@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import './LoadingScreen.css';
 import {connect} from 'react-redux'
 import hourglass from '../WaitingCard/hourglass.svg';
 import ellipsis from '../WaitingCard/ellipsis.svg';
+import './LoadingScreen.css';
 
 class LoadingScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
       return (
     <div className="LoadingScreen">

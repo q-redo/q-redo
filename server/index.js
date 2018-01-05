@@ -218,8 +218,7 @@ app.put("/api/questions/:id", controller.answeredQuestion)
 app.put('/api/waiting_type/:id', controller.updateWaitingType)
 app.put('/api/users/:id', controller.linkUsers)
 app.put('/api/unlink/:id', controller.unlinkUsers)
-// app.put('/api/inactive/question/:id', controller.inactiveQuestion)
-
+app.put('/api/inactive/question/:id', controller.inactiveQuestion)
 
 
 app.get("/api/users", controller.getActiveUsers);

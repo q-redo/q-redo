@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import linked from './linked.svg';
 import default_user_icon from './default-user-icon.png';
@@ -10,7 +9,6 @@ class Avatar extends Component {
     super(props);
     this.state ={
       paired_user: {name: 'Mentor',image_url: default_user_icon}
-
     }
   }
   componentWillReceiveProps(){
@@ -45,7 +43,7 @@ class Avatar extends Component {
             
             {this.props.av_user.paired?
             <div>
-            <img style={{position: 'absolute', marginLeft: '-26px',marginTop: '-5px', width: '50px'}}src={linked}/>  
+            <img style={{position: 'absolute', marginLeft: '-26px',marginTop: '-5px', width: '50px'}} src={linked} alt="user-avatar"/>  
             <div className="user-avatar shadowed" style={{marginLeft: '25px', backgroundImage:`url('${this.state.paired_user.image_url}')`}}/>
             </div>
             :
