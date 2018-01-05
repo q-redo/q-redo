@@ -1,6 +1,6 @@
 #code-col{
-  background: rgb(0,43,54);
-  color: rgb(42,161,152);
+  background: var(--main-bg-color);
+  color: var(--main-blue-color);
   border: none;
 }
 .user-question-card{
@@ -66,7 +66,7 @@ position: relative;
   width: 75px;
   /* background: rgb(115, 159, 189); */
   outline: none;
-  background: #2AABE2;
+  background: var(--main-blue-color);
   font-size: 2em;
   color: white;
 }
@@ -113,6 +113,6 @@ position: relative;
   font-size: 20px;
   font-weight: bold;
   position: relative;
-  background: #333;
+  background: var(--main-bg-color);
   border: none;
 }

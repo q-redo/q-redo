@@ -161,12 +161,12 @@ const getInfoAndEmit = async (socket, usr) => {
     const userres = await db.run(
       `SELECT * FROM users WHERE logged_in = true AND rank = 3 AND cohort_id = ${
         usr.cohort_id
-      } AND campus_id = ${usr.campus_id}`
+      } AND campus_id = ${usr.campus_id} AND waiting_type != 'helping'`
     )
     const mentorres = await db.run(
       `select * FROM users WHERE logged_in = true AND rank = 2 AND cohort_id = ${
         usr.cohort_id
-      } AND campus_id = ${usr.campus_id}`
+      } AND campus_id = ${usr.campus_id} OR waiting_type = 'helping'`
     )
     const res = await db.run(
       `SELECT * FROM questions WHERE cohort_id = ${

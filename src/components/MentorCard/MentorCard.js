@@ -7,16 +7,25 @@ import {connect} from 'react-redux'
 class MentorCard extends Component {
   render() {
     let paired_ids=[];
+    let student_helpers = [];
     this.props.userList.forEach(student => {
       student.paired?
       paired_ids.push(student.paired)
       :'';
     })
+    this.props.mentorList.forEach(student => {
+      student.waiting_type === 'helping'?
+      student_helpers.push(student)
+      :'';
+    })
     const mentors = this.props.mentorList.map((mentor, index) => {
-      if(!paired_ids.includes(mentor.user_id)){
+      if(paired_ids.includes(mentor.user_id) || student_helpers.includes(mentor)){
       return (
-        <Avatar av_user={mentor} key={index}/>
-      )}else return null;
+        null
+      )}else return <Avatar av_user={mentor} key={index}/>;
+    });
+    const helpers = student_helpers.map((student, index) => {
+     return <Avatar av_user={student} key={index}/>;
     });
     return (
         <div style={{display: 'inline-block'}}>
@@ -37,6 +46,17 @@ class MentorCard extends Component {
           </div>:
           mentors
         }
+        </div>
+        <div className="mentorCard curved m10 shadowed">
+        <center><h4 style={{margin: '5px 0 0 0', color: 'white'}}>Student Helpers</h4></center>
+        <div className="mentor-holder">
+        {helpers[0] === null?
+          null
+          :!helpers.length?
+          null:
+          helpers
+        }
+        </div>
         </div>
         </div>
         </div>

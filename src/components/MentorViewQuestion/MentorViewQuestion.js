@@ -76,7 +76,7 @@ class MentorViewQuestion extends Component {
               </div>
               <i onClick={(e)=> {
                   this.props.unlinkUsers(question.user_id);
-                  this.clearHelp(question.q_id);
+                  // this.clearHelp(question.q_id);
                   this.setHelp();
                  }} className="fa fa-lg fa-times m10" style={{color: 'white'}}/>  
             </div>              

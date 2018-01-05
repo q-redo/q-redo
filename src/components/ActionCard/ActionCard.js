@@ -24,7 +24,7 @@ handleWaitingType(val){
         <span style={{marginTop: '10px'}}>Ask Question</span>
         </div>
         <div className="big-circle-card">
-        <button className="bigCircle  jump shadowed flexed">
+        <button onClick={()=>{this.props.toggleAction('helping'); this.handleWaitingType('helping')}} className="bigCircle  jump shadowed flexed">
           <i className="fa fa-lg fa-handshake-o"/>
         </button>
         <span style={{marginTop: '10px'}}>Offer Help</span>
