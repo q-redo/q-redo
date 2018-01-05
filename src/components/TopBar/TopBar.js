@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 
 class TopBar extends Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
       cohort: "DM9",
@@ -132,15 +132,15 @@ class TopBar extends Component {
         <span onClick={this.handleLogout} children='Logout'/>
       </div>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => {
-  const { user } = state
+  const { user } = state;
   return {
     user
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, { reqUser , changeTheme})(TopBar);
