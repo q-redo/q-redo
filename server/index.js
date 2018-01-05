@@ -19,13 +19,13 @@ const port = process.env.PORT || 3001
 const controller = require("./controller/controller")
 
 var app = require("express")(),
-server = require("http").createServer(app),
-io = require("socket.io")(server),
-session = require("express-session")({
-  secret: secret,
-  resave: true,
-  saveUninitialized: true
-})
+  server = require("http").createServer(app),
+  io = require("socket.io")(server),
+  session = require("express-session")({
+    secret: secret,
+    resave: true,
+    saveUninitialized: true
+  })
 
 app.use(session) // ATTACH SESSION
 // console.log("initial", session) //Session exists at this point
@@ -88,7 +88,6 @@ app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
 
 const sharedsession = require("express-socket.io-session")
 
-
 io.use(
   //SHARE SESSION WITH IO SOCKETS
   sharedsession(session, {
@@ -112,7 +111,7 @@ let interval
 io.sockets.on("connection", socket => {
   var db = app.get("db")
   socket.handshake.session.user = you
-  you = null;
+  you = null
   console.log(you)
   console.log("Client connected!")
 
@@ -132,28 +131,28 @@ io.sockets.on("connection", socket => {
     console.log("Client disconnected!")
     clearInterval(intervalId)
 
-    socket.handshake.session.user?
-
-    db.run(
-      `UPDATE users SET logged_in = false WHERE user_id =${
-        socket.handshake.session.user.user_id
-      }`
-    ) &
-    db.run(`UPDATE users
-    set waiting_type = 'none'
-    where user_id = ${socket.handshake.session.user.user_id}`) &
-    db.run(`DELETE FROM questions WHERE user_id = ${socket.handshake.session.user.user_id} AND answered = true `)
-    &
-    console.log(socket.handshake.session.user.user_id) &
-    delete socket.handshake.session.user & breakSession()
-    // console.log("this one is after the delete",socket.handshake.session.user.user_id)
-    :null
+    socket.handshake.session.user
+      ? db.run(
+          `UPDATE users SET logged_in = false, paired = null WHERE user_id =${
+            socket.handshake.session.user.user_id
+          }; UPDATE users
+          set waiting_type = 'none'
+          where user_id = ${socket.handshake.session.user.user_id}; DELETE FROM questions WHERE user_id = ${
+            socket.handshake.session.user.user_id
+          } AND (answered = true OR topic_id is NULL)`) &
+        console.log(socket.handshake.session.user.user_id) &
+        delete socket.handshake.session.user &
+        breakSession()
+      : // console.log("this one is after the delete",socket.handshake.session.user.user_id)
+        null
   })
 })
 
 const breakSession = function() {
-  if(session.user.rank === 3){
-delete session.user
+  if (session.user) {
+    if (session.user.rank === 3) {
+      delete session.user
+    }
   }
 }
 
@@ -172,9 +171,13 @@ const getInfoAndEmit = async (socket, usr) => {
       } AND campus_id = ${usr.campus_id}`
     )
     const res = await db.run(
-      `SELECT * FROM questions WHERE cohort_id = ${
-        usr.cohort_id
-      } AND campus_id = ${usr.campus_id}`
+      `SELECT users.user_id, users.name, users.image_url, users.paired, questions.q_id, questions.question, questions.code_block, questions.answered, questions.time, topics.topic, topics.color, questions.q_id 
+      FROM users
+        FULL JOIN questions ON users.user_id=questions.user_id 
+        FULL JOIN topics ON topics.id=questions.topic_id 
+        WHERE answered = false AND users.cohort_id = ${
+          usr.cohort_id
+        } AND users.campus_id = ${usr.campus_id} ORDER BY questions.q_id DESC`
     )
     const currentUser = await db.run(
       `SELECT * FROM users WHERE user_id = ${usr.user_id}`
@@ -218,10 +221,10 @@ app.delete("/api/questions/:id", controller.deleteQuestion)
 app.delete("/api/help/:id", controller.clearHelp)
 
 app.put("/api/questions/:id", controller.answeredQuestion)
-app.put('/api/waiting_type/:id', controller.updateWaitingType)
-app.put('/api/users/:id', controller.linkUsers)
-app.put('/api/unlink/:id', controller.unlinkUsers)
-app.put('/api/inactive/question/:id', controller.inactiveQuestion)
+app.put("/api/waiting_type/:id", controller.updateWaitingType)
+app.put("/api/users/:id", controller.linkUsers)
+app.put("/api/unlink/:id", controller.unlinkUsers)
+app.put("/api/inactive/question/:id", controller.inactiveQuestion)
 
 app.get("/api/users", controller.getActiveUsers)
 app.get("/api/mentors", controller.getActiveMentors)
@@ -252,13 +255,12 @@ app.post("/api/searchSpecificQuestions", controller.getSpecificQuestions)
 app.put("/api/removequestions", controller.helpRemover)
 
 app.get("/api/me", function(req, res) {
-  console.log(session.user)
-  if (!session.user) {
-    return res.status(404).send("no_user");
+  console.log("from api me ", req.session.user)
+  if (!req.session.user) {
+    return res.status(403).send("no_user")
   }
-  res.status(200).json(session.user)
-  res.status(408).send("no_user");
+  res.status(200).json(req.session.user)
+  res.status(408).send("no_user")
 })
-
 
 server.listen(port, () => console.log(`Listening on port ${port}`))

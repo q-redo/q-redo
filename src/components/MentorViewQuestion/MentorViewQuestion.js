@@ -15,10 +15,10 @@ class MentorViewQuestion extends Component {
             id: 0,
             voted: false,
             helping: false,
-            studentId: 0
+            studentId: 0,
+            helpingMentorPic: ""
         }
         this.setHelp= this.setHelp.bind(this);
-        this.clearHelp= this.clearHelp.bind(this);
         this.linkToStudent= this.linkToStudent.bind(this);
     }
 
@@ -36,14 +36,20 @@ class MentorViewQuestion extends Component {
         }
       }
     
-      clearHelp(id){
-        axios.delete(`/api/help/${id}`)
-        .then(response=>{
-          this.setState({ activeQuestionsList: response.data });
-        });
+     
+
+      picSetter(id){
+        const {mentorList} = this.props
+        console.log(this.props)
+        mentorList.forEach(usr => (
+          usr.user_id === id ?
+          this.setState({helpingMentorPic: usr.image_url}) & console.log(usr.name) :
+          false
+        ))
       }
 
       render(){
+        const {helpingMentorPic} = this.state;
         const {question, index}= this.props;
         return(
             question.question === 'HELP' ?
@@ -52,8 +58,10 @@ class MentorViewQuestion extends Component {
                 <div className='qh-avatar' style={{width: '160px'}}>
                   <Avatar av_user={{name: question.name, image_url: question.image_url}}/>         
                 </div>
-  
-  
+              {
+                question.paired > 0 ? 
+                this.setHelp() & this.picSetter(question.paired) : false
+              }
                 <span style={{display: 'inline-block'}}>0:00 <img style={{width: '25px'}} src={hourglass} alt="hourglass spinning"/></span>
               <section className="uh-right-side m10">
                <button className="bigCircle jump shadowed" onClick={()=> {
@@ -72,11 +80,10 @@ class MentorViewQuestion extends Component {
                 </div>
                 <img style={{width: '200px', margin: '-20px 0 -20px 0'}} src={linked}/>  
                 <div className='qh-avatar'>
-                <div className="user-waiting-avatar shadowed" style={{backgroundImage:`url('${this.props.user.image_url}')`}}/>
+                <div className="user-waiting-avatar shadowed" style={{backgroundImage:`url('${helpingMentorPic}')`}}/>
               </div>
               <i onClick={(e)=> {
                   this.props.unlinkUsers(question.user_id);
-                  this.clearHelp(question.q_id);
                   this.setHelp();
                  }} className="fa fa-lg fa-times m10" style={{color: 'white'}}/>  
             </div>              
@@ -88,13 +95,17 @@ class MentorViewQuestion extends Component {
                 <span style={{display: 'inline-block'}}>0:00 <img style={{width: '25px'}} src={hourglass} alt="hourglass spinning"/></span>
                 </section>
                 <p>{question.question}</p>
-                    <code>
+                    
+                    {question.code_block.length > 0 ?
+                    (<code>
                       <pre>
-                        <textarea style={{ resize: "none", outline: "none", width: "100%" }} readonly="readonly" id='code-col' className="code inner-shadow">
+                        <textarea style={{ resize: "none", outline: "none", width: "100%" }} readonly="readonly" id='code-col' className="code">
                           {question.code_block}
                         </textarea>
                       </pre>
-                    </code>
+                    </code>) : (false)}
+
+
               </section>  
   
               <section className="uq-right-side m10">
