@@ -6,16 +6,6 @@ import { connect } from 'react-redux';
 
 class MentorCard extends Component {
   render() {
-<<<<<<< HEAD
-    let paired_ids = [];
-    this.props.userList.forEach(student => {
-      student.paired ? paired_ids.push(student.paired) : '';
-    });
-    const mentors = this.props.mentorList.map((mentor, index) => {
-      if (!paired_ids.includes(mentor.user_id)) {
-        return <Avatar av_user={mentor} key={index} />;
-      } else return null;
-=======
     let paired_ids=[];
     let student_helpers = [];
     this.props.userList.forEach(student => {
@@ -36,7 +26,6 @@ class MentorCard extends Component {
     });
     const helpers = student_helpers.map((student, index) => {
      return <Avatar av_user={student} key={index}/>;
->>>>>>> devin-branch
     });
     return (
       <div style={{ display: 'inline-block' }}>
@@ -61,10 +50,6 @@ class MentorCard extends Component {
               mentors
             )}
           </div>
-<<<<<<< HEAD
-        </div>
-      </div>
-=======
 
         <div className="mentorCard curved m10 shadowed">
         <center><h4 style={{margin: '5px 0 0 0', color: 'white'}}>Student Helpers</h4></center>
@@ -79,7 +64,6 @@ class MentorCard extends Component {
         </div>
         </div>
         </div>
->>>>>>> devin-branch
     );
   }
 }
