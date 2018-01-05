@@ -28,9 +28,12 @@ class MentorViewQuestion extends Component {
     
       linkToStudent(id){
         this.setState({ studentId: id });
-        axios.put(`/api/users/${id}`, { paired: this.props.user.user_id }).then(response => {
+        
+        if(this.props.user.rank < 3){
+          axios.put(`/api/users/${id}`, { paired: this.props.user.user_id }).then(response => {
             return response.data;
           });
+        }
       }
     
       clearHelp(id){
@@ -87,7 +90,7 @@ class MentorViewQuestion extends Component {
                 <p>{question.question}</p>
                     <code>
                       <pre>
-                        <textarea id='code-col'>
+                        <textarea style={{ resize: "none", outline: "none", width: "100%" }} readonly="readonly" id='code-col' className="code inner-shadow">
                           {question.code_block}
                         </textarea>
                       </pre>
