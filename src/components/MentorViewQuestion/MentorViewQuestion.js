@@ -23,9 +23,9 @@ class MentorViewQuestion extends Component {
     this.getTimeFromQuestion = this.getTimeFromQuestion.bind(this)
   }
   getTimeFromQuestion(questionTime) {
-    var past = new Date(questionTime).getTime()
-    var isPast = new Date().getTime() - past
-    var inMinutes = Math.round(isPast / 1000 / 60)
+    var past = new Date(questionTime).getTime();
+    var isPast = new Date().getTime() - past;
+    var inMinutes = Math.round(isPast / 1000 / 60);
     if (inMinutes > 7000) {
       inMinutes = "Super Old"
     }
@@ -215,9 +215,5 @@ class MentorViewQuestion extends Component {
   }
 }
 
-const mapStateToProps = state => state
-export default connect(mapStateToProps, {
-  toggleModal,
-  setModalId,
-  unlinkUsers
-})(MentorViewQuestion)
+const mapStateToProps= state=> state;
+export default connect(mapStateToProps, { toggleModal, setModalId, unlinkUsers })(MentorViewQuestion);

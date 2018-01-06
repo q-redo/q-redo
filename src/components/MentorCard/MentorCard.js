@@ -51,19 +51,22 @@ class MentorCard extends Component {
             )}
           </div>
 
-        <div className="mentorCard curved m10 shadowed">
-        <center><h4 style={{margin: '5px 0 0 0', color: 'white'}}>Student Helpers</h4></center>
-        <div className="mentor-holder">
+
+
         {helpers[0] === null?
           null
           :!helpers.length?
           null:
-          helpers
+          <div>
+          <center><h4 style={{margin: '5px 0 0 0', color: 'white'}}>Student Helpers</h4></center>
+          <div className="mentor-holder">
+          {helpers}
+          </div>
+        </div>
         }
         </div>
         </div>
-        </div>
-        </div>
+
     );
   }
 }
