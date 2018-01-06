@@ -8,8 +8,8 @@ import axios from 'axios';
 import './MentorViewQuestion.css';
 
 class MentorViewQuestion extends Component {
-  constructor(props) {
-    super(props);
+    constructor(props){
+        super(props);
 
     this.state = {
       id: 0,
@@ -19,7 +19,6 @@ class MentorViewQuestion extends Component {
       helpingMentorPic: ""
     };
     this.setHelp = this.setHelp.bind(this);
-    
     this.linkToStudent = this.linkToStudent.bind(this);
     this.getTimeFromQuestion = this.getTimeFromQuestion.bind(this);
   }
@@ -50,25 +49,19 @@ class MentorViewQuestion extends Component {
     }
     return inMinutes;
   }
-  setHelp() {
-    this.setState({ helping: !this.state.helping });
-  }
-
-    setHelp(){
+  
+      setHelp() {
         this.setState({ helping: !this.state.helping });
       }
-    
+
       linkToStudent(id){
         this.setState({ studentId: id });
-        
         if(this.props.user.rank < 3){
           axios.put(`/api/users/${id}`, { paired: this.props.user.user_id }).then(response => {
             return response.data;
           });
         }
       }
-    
-     
 
       picSetter(id){
         const {mentorList} = this.props
@@ -169,6 +162,7 @@ class MentorViewQuestion extends Component {
                <button className="bigCircle jump shadowed" onClick={()=> {
                  this.props.toggleModal(); 
                  this.props.setModalId(question.q_id);
+                 this.linkToStudent(question.user_id);
                 }}>
                 <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
                </button>
@@ -176,9 +170,14 @@ class MentorViewQuestion extends Component {
             </div>
         )
     }
-  }
+}
 
+<<<<<<< HEAD
 const mapStateToProps = state => state;
 export default connect(mapStateToProps, { toggleModal, setModalId , unlinkUsers})(
   MentorViewQuestion
 );
+=======
+const mapStateToProps= state=> state;
+export default connect(mapStateToProps, { toggleModal, setModalId, unlinkUsers })(MentorViewQuestion);
+>>>>>>> master
