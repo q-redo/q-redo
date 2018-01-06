@@ -53,16 +53,6 @@ class MentorViewQuestion extends Component {
   setHelp() {
     this.setState({ helping: !this.state.helping });
   }
-<<<<<<< HEAD
-  
-  setHelp() {
-    this.setState({ helping: !this.state.helping });
-  }
-  
-  linkToStudent(id) {
-    console.log("this is the user id", id);
-    this.setState({ studentId: id });
-=======
 
     setHelp(){
         this.setState({ helping: !this.state.helping });
@@ -89,7 +79,6 @@ class MentorViewQuestion extends Component {
           false
         ))
       }
->>>>>>> master
 
       render(){
         const {helpingMentorPic} = this.state;
