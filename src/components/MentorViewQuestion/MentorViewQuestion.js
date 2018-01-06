@@ -15,10 +15,11 @@ class MentorViewQuestion extends Component {
       id: 0,
       voted: false,
       helping: false,
-      studentId: 0
+      studentId: 0,
+      helpingMentorPic: ""
     };
     this.setHelp = this.setHelp.bind(this);
-    this.clearHelp = this.clearHelp.bind(this);
+    
     this.linkToStudent = this.linkToStudent.bind(this);
     this.getTimeFromQuestion = this.getTimeFromQuestion.bind(this);
   }
@@ -52,6 +53,7 @@ class MentorViewQuestion extends Component {
   setHelp() {
     this.setState({ helping: !this.state.helping });
   }
+<<<<<<< HEAD
   
   setHelp() {
     this.setState({ helping: !this.state.helping });
@@ -60,42 +62,58 @@ class MentorViewQuestion extends Component {
   linkToStudent(id) {
     console.log("this is the user id", id);
     this.setState({ studentId: id });
+=======
 
-    if (this.props.user.rank < 3) {
-      axios
-        .put(`/api/users/${id}`, { paired: this.props.user.user_id })
-        .then(response => {
-          return response.data;
-        });
-    }
-  }
+    setHelp(){
+        this.setState({ helping: !this.state.helping });
+      }
+    
+      linkToStudent(id){
+        this.setState({ studentId: id });
+        
+        if(this.props.user.rank < 3){
+          axios.put(`/api/users/${id}`, { paired: this.props.user.user_id }).then(response => {
+            return response.data;
+          });
+        }
+      }
+    
+     
 
-  clearHelp(id) {
-    axios.delete(`/api/help/${id}`).then(response => {
-      this.setState({ activeQuestionsList: response.data });
-    });
-  }
+      picSetter(id){
+        const {mentorList} = this.props
+        console.log(this.props)
+        mentorList.forEach(usr => (
+          usr.user_id === id ?
+          this.setState({helpingMentorPic: usr.image_url}) & console.log(usr.name) :
+          false
+        ))
+      }
+>>>>>>> master
 
-  render() {
-    const { question, index } = this.props;
-    return question.question === 'HELP' ? (
-      this.state.helping === false ? (
-        <div className="user-help-card curved shadowed m10" key={index}>
-          <div className="qh-avatar" style={{ width: '160px' }}>
-            <Avatar
-              av_user={{ name: question.name, image_url: question.image_url }}
-            />
-          </div>
-
-          <span style={{ display: 'inline-flex' }}>
-            <div className="time-elapsed">{this.getTimeFromQuestion(question.time)}{' '}</div>
-            <img
-              style={{ width: '25px' }}
-              src={hourglass}
-              alt="hourglass spinning"
-            />
-          </span>
-          <section className="uh-right-side m10">
+      render(){
+        const {helpingMentorPic} = this.state;
+        const {question, index}= this.props;
+        return(
+            question.question === 'HELP' ?
+            this.state.helping === false ? 
+            <div className="user-help-card curved shadowed m10" key={index}>
+                <div className='qh-avatar' style={{width: '160px'}}>
+                  <Avatar av_user={{name: question.name, image_url: question.image_url}}/>         
+                </div>
+              {
+                question.paired > 0 ? 
+                this.setHelp() & this.picSetter(question.paired) : false
+              }
+              <span style={{ display: 'inline-flex' }}>
+              <div className="time-elapsed">{this.getTimeFromQuestion(question.time)}{' '}</div>
+              <img
+                style={{ width: '25px' }}
+                src={hourglass}
+                alt="hourglass spinning"
+              />
+            </span>
+            <section className="uh-right-side m10">
             <button
               className="bigCircle jump shadowed"
               onClick={() => {
@@ -107,93 +125,69 @@ class MentorViewQuestion extends Component {
             </button>
           </section>
         </div>
-      ) : (
-        <div className="user-help-card curved shadowed m10" key={index}>
-          <div className="qh-avatar">
-            <div
-              className="user-waiting-avatar shadowed"
-              style={{ backgroundImage: `url('${question.image_url}')` }}
-            />
-          </div>
-          <img
-            style={{ width: '200px', margin: '-20px 0 -20px 0' }}
-            src={linked}
-          />
-          <div className="qh-avatar">
-            <div
-              className="user-waiting-avatar shadowed"
-              style={{ backgroundImage: `url('${this.props.user.image_url}')` }}
-            />
-          </div>
-          <i
-            onClick={e => {
-              this.props.unlinkUsers(question.user_id);
-              this.clearHelp(question.q_id);
-              this.setHelp();
-            }}
-            className="fa fa-lg fa-times m10"
-            style={{ color: 'white' }}
-          />
-        </div>
-      )
-    ) : (
-      <div className="user-question-card curved shadowed m10" key={index}>
-        <section className="uq-left-side m10">
-          <section className="uq-top-left">
-            <Avatar
-              av_user={{ name: question.name, image_url: question.image_url }}
-            />
-            <span style={{ display: 'inline-flex' }}>
-            <div className="time-elapsed">{this.getTimeFromQuestion(question.time)}{' '}</div>
-              <img
-                style={{ width: '25px' }}
-                src={hourglass}
-                alt="hourglass spinning"
-              />
-            </span>
-          </section>
-          <p>{question.question}</p>
-          <code>
-            <pre>
-              <textarea
-                style={{ resize: 'none', outline: 'none', width: '100%' }}
-                readonly="readonly"
-                id="code-col"
-                className="code inner-shadow"
-              >
-                {question.code_block}
-              </textarea>
-            </pre>
-          </code>
-        </section>
+            :
+            <div className="user-help-card curved shadowed m10" key={index}>
+  
+              <div className='qh-avatar'>
+                <div 
+                  className="user-waiting-avatar shadowed" 
+                  style={{backgroundImage:`url('${question.image_url}')`}}/>
+                </div>
+                <img 
+                style={{width: '200px', margin: '-20px 0 -20px 0'}} 
+                src={linked}/>  
+                <div className='qh-avatar'>
+                <div className="user-waiting-avatar shadowed" style={{backgroundImage:`url('${helpingMentorPic}')`}}/>
+              </div>
+              <i onClick={(e)=> {
+                  this.props.unlinkUsers(question.user_id);
+                  this.setHelp();
+                 }} className="fa fa-lg fa-times m10" style={{color: 'white'}}/>  
+            </div>              
+            :
+            <div className="user-question-card curved shadowed m10" key={index}>
+              <section className="uq-left-side m10">
+                <section className="uq-top-left">
+                <Avatar 
+                  av_user={{name: question.name, image_url: question.image_url}}/>
+                  <span style={{ display: 'inline-flex' }}>
+                  <div className="time-elapsed">{this.getTimeFromQuestion(question.time)}{' '}</div>
+                    <img
+                      style={{ width: '25px' }}
+                      src={hourglass}
+                      alt="hourglass spinning"
+                    />
+                  </span>
+                </section>
+                <p>{question.question}</p>
+                    
+                    {question.code_block.length > 0 ?
+                    (<code>
+                      <pre>
+                        <textarea style={{ resize: "none", outline: "none", width: "100%" }} readonly="readonly" id='code-col' className="code">
+                          {question.code_block}
+                        </textarea>
+                      </pre>
+                    </code>) : (false)}
 
-        <section className="uq-right-side m10">
-          <button
-            className="topicPill m10"
-            style={{
-              borderColor: `${question.color}`,
-              background: `radial-gradient(at top left, ${question.color},${
-                question.color
-              }, black)`
-            }}
-            key={index}
-          >
-            {question.topic}
-          </button>
-          <button
-            className="bigCircle jump shadowed"
-            onClick={() => {
-              this.props.toggleModal();
-              this.props.setModalId(question.q_id);
-            }}
-          >
-            <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true" />
-          </button>
-        </section>
-      </div>
-    );
+
+              </section>  
+  
+              <section className="uq-right-side m10">
+                <button className="topicPill m10" style={{borderColor:`${question.color}`, background: `radial-gradient(at top left, ${question.color},${question.color}, black)`}} key={index}>
+               {question.topic}
+               </button>
+               <button className="bigCircle jump shadowed" onClick={()=> {
+                 this.props.toggleModal(); 
+                 this.props.setModalId(question.q_id);
+                }}>
+                <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
+               </button>
+              </section>
+            </div>
+        )
+    }
   }
-}
 
 const mapStateToProps = state => state;
 export default connect(mapStateToProps, { toggleModal, setModalId , unlinkUsers})(

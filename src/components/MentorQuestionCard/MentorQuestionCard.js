@@ -21,17 +21,17 @@ class MentorQuestionCard extends Component {
   }
 
   //CWM get three most recent questions
-  componentWillMount() {
-    axios.get('/api/activeQuestions').then(response => {
-      this.setState({ activeQuestionsList: response.data });
-    });
-  }
+  // componentWillMount(){
+  //   axios.get('/api/activeQuestions').then(response => {
+  //     this.setState({ activeQuestionsList: response.data });
+  //   });
+  // }
 
-  componentWillReceiveProps() {
-    axios.get('/api/activeQuestions').then(response => {
-      this.setState({ activeQuestionsList: response.data });
-    });
-  }
+  // componentWillReceiveProps(){
+  //   axios.get('/api/activeQuestions').then(response => {
+  //     this.setState({ activeQuestionsList: response.data });
+  //   });
+  // }
 
   answeredQuestion(id) {
     axios.put(`/api/questions/${id}`).then(response => {
@@ -47,7 +47,7 @@ class MentorQuestionCard extends Component {
 
   //We used conditional rendering in the map method to render different cards depending on the type of help/question the student needs.
   render() {
-    const activeQuestions = this.state.activeQuestionsList.map(
+    const activeQuestions = this.props.questionList.map(          
       (question, index) => {
         return <MentorViewQuestion question={question} key={index} />;
       }
