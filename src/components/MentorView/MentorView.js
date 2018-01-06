@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react"
 //import UserList from './UserList';
-import MentorQuestionCard from '../MentorQuestionCard/MentorQuestionCard';
+import MentorQuestionCard from "../MentorQuestionCard/MentorQuestionCard"
 // import RecentQuestions from './RecentQuestions/RecentQuestions';
-import UserList from '../UserList';
+import UserList from "../UserList"
 // import MentorCard from '../MentorCard/MentorCard';
 // import RecentQuestions from '../RecentQuestions/RecentQuestions';
 // import QuestionForm from '../QuestionForm/QuestionForm';
@@ -44,7 +44,7 @@ class MentorView extends Component {
           <MentorList />
         </div>
       </div>
-    );
+    )
   }
 }
 
