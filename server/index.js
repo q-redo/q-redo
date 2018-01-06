@@ -101,7 +101,9 @@ app.use(json());
 app.use(cors());
 
 massive(connectionString)
-  .then(dbInstance => app.set("db", dbInstance) & dbInstance.log_them_out())
+  .then(dbInstance => app.set("db", dbInstance)
+  //  & dbInstance.log_them_out()
+  )
   .catch(console.log)
 
 //SOCKET.IO STARTS
