@@ -172,12 +172,5 @@ class MentorViewQuestion extends Component {
     }
 }
 
-<<<<<<< HEAD
-const mapStateToProps = state => state;
-export default connect(mapStateToProps, { toggleModal, setModalId , unlinkUsers})(
-  MentorViewQuestion
-);
-=======
 const mapStateToProps= state=> state;
 export default connect(mapStateToProps, { toggleModal, setModalId, unlinkUsers })(MentorViewQuestion);
->>>>>>> master
