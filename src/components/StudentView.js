@@ -16,15 +16,16 @@ import {redirectUser, toggleAction} from '../redux/reducer';
 class StudentView extends Component {
   constructor(props) {
     super(props)
+    this.handleWaitingType=this.handleWaitingType.bind(this)
   }
 
   componentWillMount() {
     this.props.redirectUser().then(()=>{
     const {user} = this.props
-      setTimeout(function(){ if(!user.user_id){ 
+      setTimeout(function(){ console.log("this ran")
+      if(!user.user_id){
         window.location.href = "http://localhost:3001/login"}} , 8000)
     })
-    this.handleWaitingType=this.handleWaitingType.bind(this)
   }
   handleWaitingType(val){
     axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => response);

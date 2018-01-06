@@ -24,7 +24,6 @@ class MentorViewQuestion extends Component {
   }
   getTimeFromQuestion(questionTime) {
     var past = new Date(questionTime).getTime();
-    console.log(past)
     var isPast = new Date().getTime() - past;
     var inMinutes = Math.round(isPast / 1000 / 60);
     if (inMinutes > 7000) {
