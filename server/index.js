@@ -228,6 +228,8 @@ app.get('/api/topics', controller.getTopics);
 app.get('/api/questionsPerCampus', controller.getQuestionsPerCampus);
 app.get('/api/getMentorAnswered/:id', controller.getMentorAnswered);
 
+let count = 0;
+
 app.post('/api/answers', controller.postAnswer);
 app.get('/api/answers/:id', controller.getAnswers);
 

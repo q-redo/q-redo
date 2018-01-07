@@ -20,18 +20,10 @@ class AnswerModal extends Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/questions/${this.props.questionId}`).then(response => {
-      console.log(response.data[0]);
-      this.setState({
-        question: response.data[0],
-        code: response.data[0].code_block
-      });
+    const currentQuestion = this.props.questionList.filter(elem => {
+      return elem.q_id === this.props.questionId;
     });
-  }
-  componentWillUpdate(){
-    axios.get(`/api/answers/${this.props.questionId}`).then(answers=> {
-      this.setState({ answersList: answers.data });
-    });
+    this.setState({question: currentQuestion[0], code: currentQuestion[0].code_block })
   }
 
   handleAnswer(input) {

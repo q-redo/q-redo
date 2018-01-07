@@ -86,6 +86,8 @@ module.exports = {
       .catch(console.log);
   },
   getAnswers: (req, res, next) => {
+    
+    console.log(1)
     const dbInstance = req.app.get('db');
     dbInstance
       .get_answers([req.params.id])
