@@ -3,6 +3,7 @@ import './MentorCard.css';
 import Avatar from '../Avatar/Avatar';
 import travolta from './travolta.gif';
 import { connect } from 'react-redux';
+import spinner from '../spinner.svg'
 
 class MentorCard extends Component {
   render() {
@@ -47,7 +48,7 @@ class MentorCard extends Component {
                 <div className="hider" />
               </div>
             ) : (
-              mentors
+              this.props.user.name?mentors:<img style={{width: '90px'}} src={spinner} alt="spinning"/>
             )}
           </div>
 
