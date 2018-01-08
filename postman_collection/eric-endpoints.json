@@ -1,0 +1,228 @@
+{
+    "info": {
+		"name": "Eric Endpoints",
+		"_postman_id": "19cc9f3c-5c32-bb75-dcf4-389952be47f0",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+            "name": "GET - All Users",
+            "event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"let res = pm.response.json();",
+							"",
+							"pm.test('Returns an array of all active users', function() {",
+							"    let isArray = res.length > 0",
+							"    pm.expect(isArray).to.eql(true);",
+							"})",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3001/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Returns a list of all users that are logged in"
+			},
+			"response": []
+        },
+        {
+            "name": "GET - All Active Mentors",
+            "event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"let res = pm.response.json();",
+							"",
+							"pm.test('Returns an array of all active users', function() {",
+							"    let isArray = res.length > 0",
+							"    pm.expect(isArray).to.eql(true);",
+							"})",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3001/api/mentors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"mentors"
+					]
+				},
+				"description": "Returns a list of all mentors that are logged in"
+			},
+			"response": []
+        },
+        {
+            "name": "GET - Recently Asked Questions",
+            "event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"let res = pm.response.json();",
+							"",
+							"pm.test('Returns an array of recently asked questions', function() {",
+							"    let isArray = res.length",
+							"    pm.expect(isArray).to.eql(4);",
+							"})",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3001/api/recentQuestions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"recentQuestions"
+					]
+				},
+				"description": "Returns a list of the last 4 questions asked."
+			},
+			"response": []
+        },
+        {
+            "name": "GET - All Active Questions",
+            "event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"let res = pm.response.json();",
+							"",
+							"pm.test('Returns an array of active questions', function() {",
+							"    let isArray = res.length > 0",
+							"    pm.expect(isArray).to.eql(true);",
+							"})",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3001/api/activeQuestions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"activeQuestions"
+					]
+				},
+				"description": "Returns a list of all active questions."
+			},
+			"response": []
+        },
+        {
+            "name": "GET - All Topics",
+            "event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"let res = pm.response.json();",
+							"",
+							"pm.test('Returns an array of all topics', function() {",
+							"    pm.expect(res.length).to.eql(7);",
+							"})",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3001/api/topics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"topics"
+					]
+				},
+				"description": "Returns a list of all topics."
+			},
+			"response": []
+        }
+    ]
+}

@@ -6,29 +6,28 @@ import './TopBar.css';
 import {Link} from 'react-router-dom'
 
 class TopBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      cohort: "DM9",
-      campus: "DALLAS"
+      cohort: " ",
+      campus: " "
     }
     this.handleLogout= this.handleLogout.bind(this)
     this.handleColor= this.handleColor.bind(this)
+  }
+
+  componentWillReceiveProps(){
+    if(this.props.user !== {}){
+      this.setState({ cohort: `DM ${this.props.user.cohort_id}`, campus: this.props.user.campus_id });
+    }
   }
 
   handleLogout(){
    window.location.href = "http://localhost:3001/login"
   }
 
-  componentDidMount() {
-    // axios.get('/api/cohort').then(response=> {
-    //   this.setState({ cohort: response.data });
-    // });
-    // axios.get('/api/campus').then(response=> {
-    //   this.setState({ campus: response.data });
-    // });
-  }
+  
   handleColor(color){
     function hexToComplimentary(hex){
 
@@ -118,7 +117,17 @@ class TopBar extends Component {
     <div className="topBar-main-container flexed">
       <div className='topBar-left'>
         <img width='60px' src={`http://192.241.205.79/wp-content/uploads/2017/06/cropped-cropped-cropped-devmountain_logo-1-1.png`}/>
-        <span children={`${this.state.cohort}`}/><i className="fa fa-circle"></i><span children={`${this.state.campus}`}/>
+        { 
+          this.state.campus === 1 ? <p>PROVO</p>
+          : this.state.campus === 2 ? <p>SALT LAKE CITY</p>
+          : this.state.campus === 3 ? <p>PHOENIX</p>
+          : this.state.campus === 4 ? <p>DALLAS</p>
+          : this.state.campus === 20 ? <p>DENVER</p>
+          : this.state.campus === 23 ? <p>HOUSTON</p>
+          : null
+        }
+          <i className="fa fa-circle"></i>
+        <span children={`${this.state.cohort}`}/>
       </div>
       {this.props.user.rank === 1 ?
       <Link to='/adminview' style={{ textDecoration: 'none'}}><div className="topBar-right topBar-whitetext"><h3>Admin Console</h3></div></Link>

@@ -28,8 +28,8 @@ class WaitingCard extends Component {
       <div className="waiting-card-main-container m10 flexed curved shadowed">
             <img style={{width: '90px'}} src={hourglass} alt="hourglass spinning"/>
             <div style={{width: '170px',height: '90px', display: 'inline-flex', justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}>
-            <span style={{fontSize: '1.5em'}}>Stand By</span>
-            <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
+              <span style={{fontSize: '1.5em'}}>Stand By</span>
+              <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
             </div>
             <i onClick={()=> {this.props.unlinkUsers(this.props.user.user_id); this.props.toggleAction("action"); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.cancelId);}} className="fa fa-lg fa-times" aria-hidden="true"></i>
       </div>

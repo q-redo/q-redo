@@ -4,7 +4,7 @@ import hourglass from '../WaitingCard/hourglass.svg';
 import ellipsis from '../WaitingCard/ellipsis.svg';
 import QuestionThread from '../QuestionThread/QuestionThread.js';
 import {connect} from 'react-redux';
-import {toggleAction, toggleQuestionWaiting} from '../../redux/reducer';
+import {toggleAction, toggleQuestionWaiting, unlinkUsers} from '../../redux/reducer';
 import './QuestionWaitingCard.css';
 
 class QuestionWaitingCard extends Component {
@@ -22,8 +22,6 @@ class QuestionWaitingCard extends Component {
 
   componentDidMount(){
     this.getQuestion(this.props.question_id).then(response => this.setState({question: response.data[0]}));
-    console.log('PROPS', this.props);
-    console.log('******STATE******', this.state);
   }
 
   handleWaitingType(val){
@@ -60,6 +58,7 @@ class QuestionWaitingCard extends Component {
                 this.handleCancelQuestion(this.props.question_id)}} className="fa fa-lg fa-times" aria-hidden="true"></i>
 
               <button onClick={()=> {
+                  this.props.unlinkUsers(this.props.user.user_id);
                   this.finishedQuestion();
                   this.props.toggleAction("action");
                   this.handleWaitingType('none');
@@ -118,5 +117,6 @@ const mapStateToProps = state => state;
 
 export default connect(mapStateToProps, {
   toggleAction,
-  toggleQuestionWaiting
+  toggleQuestionWaiting,
+  unlinkUsers
 })(QuestionWaitingCard);
