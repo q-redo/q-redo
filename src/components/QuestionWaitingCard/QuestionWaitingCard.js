@@ -60,12 +60,7 @@ class QuestionWaitingCard extends Component {
                 this.handleWaitingType('none'); 
                 this.handleCancelQuestion(this.props.question_id)}} className="fa fa-lg fa-times" aria-hidden="true"></i>
 
-<<<<<<< HEAD
-              <button onClick={()=> {
-                  this.props.unlinkUsers(this.props.user.user_id);
-=======
               <button style={{position: 'absolute', bottom: '0', right: '0'}} className="circle m10 shadowed jump tooltip" onClick={()=> {
->>>>>>> master
                   this.finishedQuestion();
                   this.props.toggleAction("action");
                   this.handleWaitingType('none');
