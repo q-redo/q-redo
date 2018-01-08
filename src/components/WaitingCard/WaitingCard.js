@@ -36,8 +36,8 @@ class WaitingCard extends Component {
       <div className="waiting-card-main-container m10 flexed curved shadowed">
             <img style={{width: '90px'}} src={hourglass} alt="hourglass spinning"/>
             <div style={{width: '170px',height: '90px', display: 'inline-flex', justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}>
-            <span style={{fontSize: '1.5em'}}>Stand By</span>
-            <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
+              <span style={{fontSize: '1.5em'}}>Stand By</span>
+              <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
             </div>
             <button style={{position: 'absolute', bottom: '0', right: '0'}} className="circle m10 shadowed jump tooltip" onClick={()=> {
                   this.finishedQuestion();

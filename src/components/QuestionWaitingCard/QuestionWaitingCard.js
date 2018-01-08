@@ -22,8 +22,6 @@ class QuestionWaitingCard extends Component {
 
   componentDidMount(){
     this.getQuestion(this.props.question_id).then(response => this.setState({question: response.data[0]}));
-    console.log('PROPS', this.props);
-    console.log('******STATE******', this.state);
   }
 
   handleWaitingType(val){
