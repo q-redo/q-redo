@@ -44,7 +44,6 @@ class ThreadAnswer extends Component{
   }
 
 
-
   render(){
       const answer = this.props.answer
       return(
@@ -55,11 +54,18 @@ class ThreadAnswer extends Component{
 
           { answer.code_block ? 
             <div id='code-col' className='answer-code-box curved'>
-              <code>
-                <pre>
-                  {answer.code_block}
-                </pre>
+              <pre>
+              <code style={{ 
+                maxWidth: "750px",
+                whiteSpace: "pre-wrap",       
+                whiteSpace: "-moz-pre-wrap",  
+                whiteSpace: "-pre-wrap",      
+                whiteSpace: "-o-pre-wrap",   
+                wordWrap: "break-word"
+              }}>
+                {answer.code_block}
               </code>
+              </pre>
             </div> : null }
             <hr />
           
@@ -88,10 +94,15 @@ class ThreadAnswer extends Component{
 
           { answer.code_block ? 
             <div id='code-col' className='answer-code-box curved'>
-              <code>
-                <pre>
+              <code style={{ 
+                  maxWidth: "750px",
+                  whiteSpace: "pre-wrap",       
+                  whiteSpace: "-moz-pre-wrap",  
+                  whiteSpace: "-pre-wrap",      
+                  whiteSpace: "-o-pre-wrap",   
+                  wordWrap: "break-word"
+                }}>
                   {answer.code_block}
-                </pre>
               </code>
             </div> : null }
             <hr />

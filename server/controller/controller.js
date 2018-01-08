@@ -285,5 +285,9 @@ module.exports = {
       .remove_user_help(user_id)
       .then(response => res.status(200).json(response))
       .catch(console.log);
+  },
+  getUserInfo: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.getClassInfo
   }
 };
