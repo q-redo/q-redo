@@ -8,7 +8,6 @@ module.exports = {
   },
   postQuestion: (req, res, next) => {
     const dbInstance = req.app.get('db');
-    // console.log('***************** REQ BODY: *****************', req.body);
     dbInstance
       .post_question([
         req.body.campus_id,
@@ -33,7 +32,6 @@ module.exports = {
     dbInstance
       .get_recent_questions()
       .then(mentors => {
-        console.log(mentors);
         res.status(200).json(mentors);
       })
       .catch(console.log);
@@ -88,6 +86,8 @@ module.exports = {
       .catch(console.log);
   },
   getAnswers: (req, res, next) => {
+    
+    console.log(1)
     const dbInstance = req.app.get('db');
     dbInstance
       .get_answers([req.params.id])
@@ -97,7 +97,6 @@ module.exports = {
 
   getMentorAnswered: (req, res, next) => {
     const dbInstance = req.app.get('db');
-    console.log('********* REQUEST **********: ', req);
     dbInstance
       .get_mentor_answered([req.params.id])
       .then(answers => res.status(200).json(answers))
@@ -105,7 +104,6 @@ module.exports = {
   },
 
   updateWaitingType: (req, res, next) => {
-    console.log(req.body.val, req.params.id);
     const dbInstance = req.app.get('db');
     dbInstance
       .put_waiting_type([req.body.val, req.params.id])
@@ -168,7 +166,6 @@ module.exports = {
   },
   searchForStudent: (req, res, next) => {
     const dbInstance = req.app.get('db');
-    console.log(req.body);
     const { searchText } = req.body;
 
     dbInstance

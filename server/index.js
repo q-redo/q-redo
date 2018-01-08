@@ -101,8 +101,8 @@ app.use(json());
 app.use(cors());
 
 massive(connectionString)
-  .then(dbInstance => app.set("db", dbInstance) 
-  // & dbInstance.log_them_out()
+  .then(dbInstance => app.set("db", dbInstance)
+  //  & dbInstance.log_them_out()
   )
   .catch(console.log)
 
@@ -143,20 +143,12 @@ io.sockets.on("connection", socket => {
             socket.handshake.session.user.user_id
           } AND (answered = true OR topic_id is NULL)`) &
         console.log(socket.handshake.session.user.user_id) &
-        delete socket.handshake.session.user &
-        breakSession()
-      : // console.log("this one is after the delete",socket.handshake.session.user.user_id)
+        delete socket.handshake.session.user
+        : // console.log("this one is after the delete",socket.handshake.session.user.user_id)
         null
   })
 })
 
-const breakSession = function() {
-  if (session.user) {
-    if (session.user.rank === 3) {
-      delete session.user
-    }
-  }
-};
 
 const getInfoAndEmit = async (socket, usr) => {
   console.log('User still connected');
@@ -227,6 +219,7 @@ app.put('/api/waiting_type/:id', controller.updateWaitingType);
 app.put('/api/users/:id', controller.linkUsers);
 app.put('/api/unlink/:id', controller.unlinkUsers);
 app.put('/api/inactive/question/:id', controller.inactiveQuestion);
+app.put('/api/user_answered/:id', controller.userAnsweredQuestion);
 
 app.get('/api/users', controller.getActiveUsers);
 app.get('/api/mentors', controller.getActiveMentors);
@@ -236,6 +229,7 @@ app.get('/api/topics', controller.getTopics);
 app.get('/api/questionsPerCampus', controller.getQuestionsPerCampus);
 app.get('/api/getMentorAnswered/:id', controller.getMentorAnswered);
 app.get('/api/campus-cohort/:id', controller.getUserInfo);
+
 
 app.post('/api/answers', controller.postAnswer);
 app.get('/api/answers/:id', controller.getAnswers);
@@ -259,9 +253,16 @@ app.post('/api/searchSpecificQuestions', controller.getSpecificQuestions);
 //USER CHANGES VIEWS - REMOVES ACTIVE QUESTIONS
 app.put('/api/removequestions', controller.helpRemover);
 
+app.get('/api/logout', function(req, res, next){
+  req.session.destroy()
+  res.redirect('http://localhost:3001/login')
+})
+  
+
 app.get("/api/me", function(req, res) {
-  console.log("from api me ", req.session.user)
+  console.log("this is req.session",req.session)
   if (!req.session.user) {
+    console.log("from api me ", req.session.user)
     return res.status(403).send("no_user")
   }
   res.status(200).json(req.session.user)

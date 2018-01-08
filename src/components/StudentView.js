@@ -16,15 +16,16 @@ import {redirectUser, toggleAction} from '../redux/reducer';
 class StudentView extends Component {
   constructor(props) {
     super(props)
+    this.handleWaitingType=this.handleWaitingType.bind(this)
   }
 
   componentWillMount() {
     this.props.redirectUser().then(()=>{
     const {user} = this.props
-      setTimeout(function(){ if(!user.user_id){ 
+      setTimeout(function(){ console.log("this ran")
+      if(!user.user_id){
         window.location.href = "http://localhost:3001/login"}} , 8000)
     })
-    this.handleWaitingType=this.handleWaitingType.bind(this)
   }
   handleWaitingType(val){
     axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => response);
@@ -52,11 +53,12 @@ class StudentView extends Component {
         <MentorQuestionCard/>:null
       }
         {this.props.user.waiting_type === "question" || this.props.user.waiting_type === "helping" ?null:<RecentQuestions />}
-        {this.props.user.waiting_type === "helping"?null:<MentorCard />}
+        {this.props.user.waiting_type === "helping"
+        || this.props.actionAskOrGetHelp === "question"?null:<MentorCard />}
         </section>
         <div style={{display: 'inline-flex', flexDirection: 'column', float: 'right'}}>
         <UserList />
-        {this.props.user.waiting_type === "helping"?<MentorList />:null}
+        {this.props.user.waiting_type === "helping" || this.props.user.waiting_type === "question"  ?<MentorList />:null}
         </div>
       </div>
     )

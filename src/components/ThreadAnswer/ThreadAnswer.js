@@ -19,10 +19,6 @@ class ThreadAnswer extends Component{
     this.unUpvote = this.unUpvote.bind(this);
     this.unDownvote= this.unDownvote.bind(this);
   }
-
-  componentWillMount(){
-    console.log(this.props);
-  }
  
   upvote(id){
     axios.put(`/api/upvote/answers/${id}`);

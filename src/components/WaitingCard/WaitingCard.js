@@ -11,6 +11,8 @@ class WaitingCard extends Component {
     super(props);
     this.handleWaitingType= this.handleWaitingType.bind(this);
     this.handleCancelQuestion= this.handleCancelQuestion.bind(this);
+    this.finishedQuestion= this.finishedQuestion.bind(this);
+    this.incrementMentorScore= this.incrementMentorScore.bind(this);
   }
   handleWaitingType(val){
     axios.put(`/api/waiting_type/${this.props.user.user_id}`, {val}).then(response => response);
@@ -22,6 +24,12 @@ class WaitingCard extends Component {
       return response;
     });
   }
+  finishedQuestion(){
+    axios.put(`/api/inactive/question/${this.props.cancelId}`);
+  }
+  incrementMentorScore(id){
+    axios.put(`/api/user_answered/${id}`);
+  }
   
   render() {
     return (
@@ -31,6 +39,15 @@ class WaitingCard extends Component {
               <span style={{fontSize: '1.5em'}}>Stand By</span>
               <img style={{width: '36px', marginBottom: '-16px'}} src={ellipsis} alt="ellipsis"/>
             </div>
+            <button style={{position: 'absolute', bottom: '0', right: '0'}} className="circle m10 shadowed jump tooltip" onClick={()=> {
+                  this.finishedQuestion();
+                  this.props.toggleAction("action");
+                  this.handleWaitingType('none');
+                  this.props.user.paired?this.incrementMentorScore(this.props.user.paired):null
+                  this.props.unlinkUsers(this.props.user.user_id)
+                  }}><i className="fa fa-check"/>
+                  <span class="tooltiptext">Question Answered!</span>
+              </button>
             <i onClick={()=> {this.props.unlinkUsers(this.props.user.user_id); this.props.toggleAction("action"); this.handleWaitingType('none'); this.handleCancelQuestion(this.props.cancelId);}} className="fa fa-lg fa-times" aria-hidden="true"></i>
       </div>
     );
