@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './QuestionForm.css';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {toggleAction,toggleQuestionWaiting} from '../../redux/reducer'
+import {toggleAction,toggleQuestionWaiting, setModalId} from '../../redux/reducer'
 import QuestionWaitingCard from '../QuestionWaitingCard/QuestionWaitingCard';
 
 class QuestionForm extends Component {
@@ -63,6 +63,7 @@ class QuestionForm extends Component {
       .post("/api/questions", { text, code, topic_id, user_id })
       .then(response => {
         this.setState({question_id: response.data[0].q_id})
+        this.props.setModalId(response.data[0].q_id)
         this.props.toggleQuestionWaiting(true)});  
   }
 
@@ -135,4 +136,4 @@ class QuestionForm extends Component {
 }
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps ,{toggleAction, toggleQuestionWaiting})(QuestionForm);
+export default connect(mapStateToProps ,{toggleAction, toggleQuestionWaiting, setModalId})(QuestionForm);
