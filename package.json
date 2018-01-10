@@ -38,6 +38,11 @@
     "enzyme": "^3.3.0",
     "jest-cli": "^22.0.4"
   },
-  "babel": { "presets": [ "react", "es2015" ] },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015"
+    ]
+  },
   "proxy": "http://localhost:3001"
 }
