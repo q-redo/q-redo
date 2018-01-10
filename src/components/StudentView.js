@@ -34,15 +34,15 @@ class StudentView extends Component {
   render() {
     return (
       <div id="StudentView">
-        {!this.props.user.name? <LoadingScreen />:''}
+        {!this.props.user ? !this.props.user.name? <LoadingScreen />:'' : false}
         <section className="student-view-left">
-        {this.props.user.waiting_type === "helping"?
+        {this.props.user ? this.props.user.waiting_type === "helping"?
         <div>
             <div style={{width: '520px', height: '100px', backgroundColor:'var(--main-box-color)', color:'white', position:'relative'}} className='m10 curved shadowed flexed'>
             <i onClick={()=>{this.props.toggleAction('action'); this.handleWaitingType('none')}} className='fa fa-lg fa-times m10'/>
             <h3>You are offering assistance</h3>
             </div>
-         </div>:null}
+         </div>:null : null}
         {this.props.actionAskOrGetHelp === 'action'?
         <ActionCard/>:
         this.props.actionAskOrGetHelp === "question"?

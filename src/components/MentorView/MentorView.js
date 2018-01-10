@@ -29,7 +29,7 @@ class MentorView extends Component {
   render() {
     return (
       <div id="MentorView">
-        {!this.props.user.name ? <LoadingScreen /> : ''}
+        { this.props.user ? !this.props.user.name ? <LoadingScreen /> : '' : false}
         <section style={{ display: 'inline-block' }}>
           <MentorQuestionCard />
         </section>

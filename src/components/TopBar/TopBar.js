@@ -130,10 +130,10 @@ class TopBar extends Component {
           <i className="fa fa-circle"></i>
         <span children={`${this.state.cohort}`}/>
       </div>
-      {this.props.user.rank === 1 ?
+      {this.props.user ? this.props.user.rank === 1 ?
       <Link to='/adminview' style={{ textDecoration: 'none'}}><div className="topBar-right topBar-whitetext"><h3>Admin Console</h3></div></Link>
       : false
-      }
+      : false}
 
 
       {this.props.user ? <h3>Welcome {this.props.user.name}</h3> : null}
