@@ -24,6 +24,7 @@ class CreateCampus extends Component {
         .then(response=> {
             console.log(response)
             this.setState({campusAndCohorts: response.data})
+            return response.data;
         })
     }
     createCampusText(val){

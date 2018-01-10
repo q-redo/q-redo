@@ -24,6 +24,7 @@ class App extends Component {
       user: [],
       userList: [],
       mentorList: [],
+      currentTime: ""
     };
   }
 
@@ -48,6 +49,9 @@ class App extends Component {
       data =>
         this.props.getMentorList(data) && this.setState({ mentorList: data })
     );
+    socket.on(
+      "The Time", data=> this.setState({currentTime: data})
+    )
   }
 
   componentWillMount() {
