@@ -53,11 +53,12 @@ class StudentView extends Component {
         <MentorQuestionCard/>:null
       }
         {this.props.user.waiting_type === "question" || this.props.user.waiting_type === "helping" ?null:<RecentQuestions />}
-        {this.props.user.waiting_type === "helping"?null:<MentorCard />}
+        {this.props.user.waiting_type === "helping"
+        || this.props.actionAskOrGetHelp === "question"?null:<MentorCard />}
         </section>
         <div style={{display: 'inline-flex', flexDirection: 'column', float: 'right'}}>
         <UserList />
-        {this.props.user.waiting_type === "helping"?<MentorList />:null}
+        {this.props.user.waiting_type === "helping" || this.props.user.waiting_type === "question"  ?<MentorList />:null}
         </div>
       </div>
     )

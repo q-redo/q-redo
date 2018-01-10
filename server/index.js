@@ -219,6 +219,7 @@ app.put('/api/waiting_type/:id', controller.updateWaitingType);
 app.put('/api/users/:id', controller.linkUsers);
 app.put('/api/unlink/:id', controller.unlinkUsers);
 app.put('/api/inactive/question/:id', controller.inactiveQuestion);
+app.put('/api/user_answered/:id', controller.userAnsweredQuestion);
 
 app.get('/api/users', controller.getActiveUsers);
 app.get('/api/mentors', controller.getActiveMentors);
@@ -227,6 +228,8 @@ app.get('/api/activeQuestions', controller.getActiveQuestions);
 app.get('/api/topics', controller.getTopics);
 app.get('/api/questionsPerCampus', controller.getQuestionsPerCampus);
 app.get('/api/getMentorAnswered/:id', controller.getMentorAnswered);
+app.get('/api/campus-cohort/:id', controller.getUserInfo);
+
 
 app.post('/api/answers', controller.postAnswer);
 app.get('/api/answers/:id', controller.getAnswers);

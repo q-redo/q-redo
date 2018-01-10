@@ -4,7 +4,7 @@ import hourglass from '../WaitingCard/hourglass.svg';
 import ellipsis from '../WaitingCard/ellipsis.svg';
 import QuestionThread from '../QuestionThread/QuestionThread.js';
 import {connect} from 'react-redux';
-import {toggleAction, toggleQuestionWaiting} from '../../redux/reducer';
+import {toggleAction, toggleQuestionWaiting, unlinkUsers} from '../../redux/reducer';
 import './QuestionWaitingCard.css';
 
 class QuestionWaitingCard extends Component {
@@ -22,8 +22,6 @@ class QuestionWaitingCard extends Component {
 
   componentDidMount(){
     this.getQuestion(this.props.question_id).then(response => this.setState({question: response.data[0]}));
-    console.log('PROPS', this.props);
-    console.log('******STATE******', this.state);
   }
 
   handleWaitingType(val){
@@ -40,6 +38,9 @@ class QuestionWaitingCard extends Component {
 
   finishedQuestion(){
     axios.put(`/api/inactive/question/${this.props.question_id}`);
+  }
+  incrementMentorScore(id){
+    axios.put(`/api/user_answered/${id}`);
   }
 
   render() {
@@ -59,12 +60,15 @@ class QuestionWaitingCard extends Component {
                 this.handleWaitingType('none'); 
                 this.handleCancelQuestion(this.props.question_id)}} className="fa fa-lg fa-times" aria-hidden="true"></i>
 
-              <button onClick={()=> {
+              <button style={{position: 'absolute', bottom: '0', right: '0'}} className="circle m10 shadowed jump tooltip" onClick={()=> {
                   this.finishedQuestion();
                   this.props.toggleAction("action");
                   this.handleWaitingType('none');
                   this.props.toggleQuestionWaiting(false);
-                  }}>Question Answered!
+                  this.props.user.paired?this.incrementMentorScore(this.props.user.paired):null
+                  this.props.unlinkUsers(this.props.user.user_id)
+                  }}><i className="fa fa-check"/>
+                  <span class="tooltiptext">Question Answered!</span>
               </button>
       </div>
           {/* <div className="modal-main-container curved">
@@ -118,5 +122,6 @@ const mapStateToProps = state => state;
 
 export default connect(mapStateToProps, {
   toggleAction,
-  toggleQuestionWaiting
+  toggleQuestionWaiting,
+  unlinkUsers
 })(QuestionWaitingCard);

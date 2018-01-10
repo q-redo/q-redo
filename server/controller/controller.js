@@ -86,6 +86,8 @@ module.exports = {
       .catch(console.log);
   },
   getAnswers: (req, res, next) => {
+    
+    console.log(1)
     const dbInstance = req.app.get('db');
     dbInstance
       .get_answers([req.params.id])
@@ -283,5 +285,9 @@ module.exports = {
       .remove_user_help(user_id)
       .then(response => res.status(200).json(response))
       .catch(console.log);
+  },
+  getUserInfo: (req, res, next)=> {
+    const dbInstance= req.app.get('db');
+    dbInstance.getClassInfo
   }
 };
