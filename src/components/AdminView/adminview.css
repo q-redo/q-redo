@@ -1,12 +1,15 @@
-.admin-position{
-color: white;
-background-color: var(--main-box-color);
-padding: 10px;
-flex-wrap: wrap;
+.admin-position {
+  color: white;
+  background-color: var(--main-box-color);
+  padding: 10px;
+  flex-wrap: wrap;
 }
 
-.admin-section{
+.admin-section {
   justify-content: space-around;
   width: 100%;
 }
 
+.bargraphsize {
+  max-height: 50.5vh;
+}

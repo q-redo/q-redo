@@ -293,12 +293,14 @@ class TopicCharts extends Component {
                   {" "}
                   Search CLICK HERE!{" "}
                 </button>
-                <Bar
-                  data={this.state.chartData}
-                  width={500}
-                  height={100}
-                  options={{ maintainAspectRatio: false }}
-                />
+                <div className="backgraphsize">
+                  <Bar
+                    data={this.state.chartData}
+                    width={500}
+                    height={100}
+                    options={{ maintainAspectRatio: false }}
+                  />
+                </div>
                 <button
                   onClick={() => console.log("whatisSTATE  ", this.state)}
                 />
