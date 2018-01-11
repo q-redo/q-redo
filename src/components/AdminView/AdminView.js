@@ -18,11 +18,11 @@ class AdminView extends Component {
 
     componentWillMount(){
         axios.get('/api/me').then(response => {if(response.data.rank === 2){
-          window.location.href = 'http://localhost:3000/mentorview'
+          window.location.href = '/mentorview'
         }else if(response.data.rank === 3){
-         window.location.href = 'http://localhost:3000/student'
+         window.location.href = '/student'
         }}).catch((error) => {
-          error.response.data === "no_user"? window.location.href = 'http://localhost:3001/login':null;
+          error.response.data === "no_user"? window.location.href = '/login':null;
         }
         )
       }

@@ -179,13 +179,13 @@ export function redirectUser() {
       .get('/api/me')
       .then(response => {
         if (response.data.rank === 2) {
-          window.location.href = 'http://localhost:3000/mentorview';
+          window.location.href = '/mentorview';
         }
         return response.data;
       })
       .catch(error => {
         error.response.data === 'no_user'
-          ? (window.location.href = 'http://localhost:3001/login')
+          ? (window.location.href = '/login')
           : null;
       })
   };
@@ -198,13 +198,13 @@ export function redirectStudent() {
       .get('/api/me')
       .then(response => {
         if (response.data.rank === 3) {
-          window.location.href = 'http://localhost:3000/student';
+          window.location.href = '/student';
         }
         return response.data;
       })
       .catch(error => {
         error.response.data === 'no_user'
-          ? (window.location.href = 'http://localhost:3001/login')
+          ? (window.location.href = '/login')
           : null;
       })
   };
