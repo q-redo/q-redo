@@ -24,8 +24,10 @@ class StudentView extends Component {
       const { user } = this.props
       setTimeout(function() {
         console.log("this ran")
-        if (!user.user_id) {
-          window.location.href = "/login"
+        if (user) {
+          if (!user.user_id) {
+            window.location.href = "/login"
+          }
         }
       }, 8000)
     })
