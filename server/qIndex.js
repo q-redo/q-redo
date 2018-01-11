@@ -27,8 +27,8 @@ var app = require("express")(),
     saveUninitialized: true
   })
 
-  app.use(express.static(`${__dirname}/../build`))
-  
+app.use(express.static(`${__dirname}/../build`))
+
 app.use(session) // ATTACH SESSION
 // console.log("initial", session) //Session exists at this point
 
@@ -83,7 +83,7 @@ let you
 app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
   you = req.user
   req.session.user = req.user
-  req.user.rank === 3 ? res.redirect("q2.devmountain.review/student") : res.redirect("q2.devmountain.review/mentorview")
+  req.user.rank === 3 ? res.redirect("/student") : res.redirect("/mentorview")
 })
 
 const sharedsession = require("express-socket.io-session")
@@ -270,13 +270,9 @@ app.get("/api/me", function(req, res) {
   res.status(408).send("no_user")
 })
 
-
-
 const path = require("path")
 app.get("*", (req, res, next) => {
   res.sendFile(path.join(__dirname, "/../build/index.html"))
 })
-
-
 
 server.listen(port, () => console.log(`Listening on port ${port}`))
