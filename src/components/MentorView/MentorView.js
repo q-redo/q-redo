@@ -19,9 +19,9 @@ class MentorView extends Component {
     this.props.redirectStudent().then(() => {
       const { user } = this.props;
       setTimeout(function() {
-        if (!user.user_id) {
-          window.location.href = 'http://localhost:3001/login';
-        }
+       if(user){  if (!user.user_id) {
+          window.location.href = 'http://localhost:3001/login'
+        } }
       }, 8000);
     });
   }
