@@ -297,7 +297,7 @@ class TopicCharts extends Component {
                   <Bar
                     data={this.state.chartData}
                     width={500}
-                    height={100}
+                    height={330}
                     options={{ maintainAspectRatio: false }}
                   />
                 </div>
