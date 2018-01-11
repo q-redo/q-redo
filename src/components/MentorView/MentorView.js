@@ -20,7 +20,7 @@ class MentorView extends Component {
       const { user } = this.props;
       setTimeout(function() {
        if(user){  if (!user.user_id) {
-          window.location.href = 'http://localhost:3001/login'
+          window.location.href = '/login'
         } }
       }, 8000);
     });
