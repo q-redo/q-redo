@@ -83,14 +83,18 @@ class StudentView extends Component {
           ) : this.props.actionAskOrGetHelp === "helping" ? (
             <MentorQuestionCard />
           ) : null}
-          {this.props.user.waiting_type === "question" ||
-          this.props.user.waiting_type === "helping" ? null : (
-            <RecentQuestions />
-          )}
-          {this.props.user.waiting_type === "helping" ||
-          this.props.actionAskOrGetHelp === "question" ? null : (
-            <MentorCard />
-          )}
+          {this.props.user ? (
+            this.props.user.waiting_type === "question" ||
+            this.props.user.waiting_type === "helping" ? null : (
+              <RecentQuestions />
+            )
+          ) : null}
+          {this.props.user ? (
+            this.props.user.waiting_type === "helping" ||
+            this.props.actionAskOrGetHelp === "question" ? null : (
+              <MentorCard />
+            )
+          ) : null}
         </section>
         <div
           style={{
@@ -100,9 +104,11 @@ class StudentView extends Component {
           }}
         >
           <UserList />
-          {this.props.user.waiting_type === "helping" ||
-          this.props.user.waiting_type === "question" ? (
-            <MentorList />
+          {this.props.user ? (
+            this.props.user.waiting_type === "helping" ||
+            this.props.user.waiting_type === "question" ? (
+              <MentorList />
+            ) : null
           ) : null}
         </div>
       </div>
