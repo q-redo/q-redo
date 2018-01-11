@@ -18,9 +18,9 @@ class TopBar extends Component {
   }
 
   componentWillReceiveProps(){
-    if(this.props.user !== {}){
+    if(this.props.user){ if(this.props.user !== {}){
       this.setState({ cohort: `DM ${this.props.user.cohort_id}`, campus: this.props.user.campus_id });
-    }
+    }}
   }
 
   handleLogout(){
