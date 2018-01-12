@@ -3,11 +3,17 @@ import { Link } from "react-router-dom"
 import "./admincards.css"
 
 class DeleteQuestions extends Component {
+
+
+redirector(){
+    window.location.href = "/allcharts"
+}
+
   render() {
     return (
       <div>
         <div className="big-circle-card m10">
-          <Link to="/allcharts">
+          <div onClick={() => this.redirector()}>
             <button className="bigCircle  jump shadowed flexed">
               <i
                 style={{
@@ -20,7 +26,7 @@ class DeleteQuestions extends Component {
                 aria-hidden="true"
               />
             </button>
-          </Link>
+          </div>
 
           <span style={{ marginTop: "10px" }}>Charts</span>
         </div>
