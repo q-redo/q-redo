@@ -183,10 +183,7 @@ theCallBack(){
 </tbody>
 </table></div> :
 <div />}
-              <button onClick={() => console.log(this.state)}>
-                {" "}
-                What is state
-              </button>
+             
               <i onClick={() => this.showBox()} className="m10 fa fa-times fa-lg"/>
             </div>
           </div>
