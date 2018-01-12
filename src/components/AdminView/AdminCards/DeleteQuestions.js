@@ -11,11 +11,11 @@ class DeleteQuestions extends Component {
             <button className="bigCircle  jump shadowed flexed">
               <i className="fa fa-lg fa-pie-chart" aria-hidden="true" />
             </button>
+          </Link>
 
-            <span style={{ marginTop: "10px", textDecoration: "none" }}>
+            <span style={{ marginTop: "10px"}}>
               Charts
             </span>
-          </Link>
         </div>
       </div>
     )
