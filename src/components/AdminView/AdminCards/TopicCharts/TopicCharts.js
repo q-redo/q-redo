@@ -301,9 +301,6 @@ class TopicCharts extends Component {
                     options={{ maintainAspectRatio: false }}
                   />
                 </div>
-                <button
-                  onClick={() => console.log("whatisSTATE  ", this.state)}
-                />
               </div>
             </div>
 

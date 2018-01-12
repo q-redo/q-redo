@@ -134,7 +134,7 @@ class CohortAssignment extends Component {
      </div> 
      <i onClick={() => this.showBox()} className="m10 fa fa-times fa-lg"/>
 </div>
-<button onClick={() => console.log(this.state)}> WHATS STATE </button>
+
 </div>
 : false
 }
