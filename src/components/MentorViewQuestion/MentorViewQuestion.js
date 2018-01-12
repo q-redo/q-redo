@@ -168,7 +168,7 @@ class MentorViewQuestion extends Component {
           </section>
           <p>{question.question}</p>
 
-          {question.code_block.length > 0 ? (
+          {question ? question.code_block.length > 0 ? (
             <code>
               <pre>
                 <textarea
@@ -183,7 +183,7 @@ class MentorViewQuestion extends Component {
             </code>
           ) : (
             false
-          )}
+          ) : null}
         </section>
 
         <section className="uq-right-side m10">
