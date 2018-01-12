@@ -168,7 +168,7 @@ class MentorViewQuestion extends Component {
           </section>
           <p>{question.question}</p>
 
-          {question ? question.code_block.length > 0 ? (
+          {question.code_block ? question.code_block.length > 0 ? (
             <code>
               <pre>
                 <textarea
