@@ -9,13 +9,20 @@ class DeleteQuestions extends Component {
         <div className="big-circle-card m10">
           <Link to="/allcharts">
             <button className="bigCircle  jump shadowed flexed">
-              <i className="fa fa-lg fa-pie-chart" aria-hidden="true" />
+              <i
+                style={{
+                  textDecorationLine: "none",
+                  textDecoration: "none",
+                  textDecorationUnderline: "none",
+                  textDecorationColor: "none"
+                }}
+                className="fa fa-lg fa-pie-chart"
+                aria-hidden="true"
+              />
             </button>
           </Link>
 
-            <span style={{ marginTop: "10px"}}>
-              Charts
-            </span>
+          <span style={{ marginTop: "10px" }}>Charts</span>
         </div>
       </div>
     )
