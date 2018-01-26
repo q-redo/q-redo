@@ -2,6 +2,8 @@
 
 ## Getting Started
 
+VIDEO DEMO: https://www.youtube.com/watch?v=xsKCZNNVW8o&t=195s
+
 There are three types of users: student, mentor, and admin. Admin accounts can assign new user types as well as assign students and mentors to different classes.
 
 Students can ask questions, post related code, and pick a question topic. Once a question is posted, both students and mentors can post answers to that question. Each posted question will become a "thread", with multiple users having the ability to answer the same question. 
